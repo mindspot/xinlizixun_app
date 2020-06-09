@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.User">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="type" jdbcType="BIGINT" property="type"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="head_img" jdbcType="VARCHAR" property="headImg"/>
+        <result column="sex" jdbcType="BIT" property="sex"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="account" jdbcType="INTEGER" property="account"/>
+        <result column="easemob_id" jdbcType="VARCHAR" property="easemobId"/>
+        <result column="cash_withdrawal_amount" jdbcType="INTEGER" property="cashWithdrawalAmount"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+       
+        id, type, user_name, pwd, real_name, head_img, sex, age, status, account, cash_withdrawal_amount,
+        insert_time, is_delete,easemob_id
+    </sql>
+    <resultMap id="userResultMap" type="com.kuangji.paopao.model.User">
+        <id column="id" property="id"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="userName" property="userName"/>
+        <result column="pwd" property="pwd"/>
+        <result column="realName" property="realName"/>
+        <result column="headImg" property="headImg"/>
+        <result column="headImgSize" property="headImgSize"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="status" property="status"/>
+        <result column="account" property="account"/>
+         <result column="type" property="type"/>
+        <result column="firstLogin" property="firstLogin"/>
+        
+    </resultMap>
+    
+   <resultMap id="useVOrResultMap" extends="userResultMap" type="com.kuangji.paopao.vo.UserVO">
+       
+        <result column="consultantStatus" property="consultantStatus"/>
+        
+    </resultMap>
+
+    <sql id="userColumns">
+		user.id AS "id",
+		user.type AS "type",
+		user.update_time AS "updateTime",
+		user.insert_time AS "insertTime",
+		user.is_delete AS "isDelete",
+		user.user_name AS "userName",
+		user.pwd AS "pwd",
+		user.real_name AS "realName",
+		user.head_img AS "headImg",
+		user.sex AS "sex",
+		user.age AS "age",
+		user.status AS "status",
+		user.account AS "account",
+		user.easemob_id AS "easemobId"
+	</sql>
+
+    <sql id="userJoins">
+
+    </sql>
+
+    <resultMap id="userResultVOMap" type="com.kuangji.paopao.vo.ConsultantVO">
+        <id column="id" property="id"/>
+        <result column="realName" property="realName"/>
+        <result column="headImg" property="headImg"/>
+        <result column="headImgSize" property="headImgSize"/>
+        <result column="provName" property="provName"/>
+        <result column="provCode" property="provCode"/>
+        <result column="cityName" property="cityName"/>
+        <result column="cityCode" property="cityCode"/>
+        <result column="areaName" property="areaName"/>
+        <result column="areaCode" property="areaCode"/>
+        <result column="addrDetail" property="addrDetail"/>
+        <result column="content" property="content"/>
+        <result column="consultationFee" property="consultationFee"/>
+        <result column="easemobId" property="easemobId"/>
+        <result column="sendWord" property="sendWord"/>
+  		<result column="workingSeniority" property="workingSeniority"/>
+        <result column="title" property="title"/>
+		<result column="accumulativeCase" property="accumulativeCase"/>
+
+        <collection property="consultantLabelVOs" javaType="java.util.ArrayList"
+                    ofType="com.kuangji.paopao.vo.ConsultantLabelVO">
+            <id column="labelId" property="labelId"/>
+            <result column="labelVal" property="labelVal"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="aboutConsultantVOMap" type="com.kuangji.paopao.vo.AboutConsultantVO">
+        <id column="id" property="id"/>
+        <result column="realName" property="realName"/>
+        <result column="headImg" property="headImg"/>
+        <result column="headImgSize" property="headImgSize"/>
+        <result column="provName" property="provName"/>
+        <result column="provCode" property="provCode"/>
+        <result column="cityName" property="cityName"/>
+        <result column="cityCode" property="cityCode"/>
+        <result column="areaName" property="areaName"/>
+        <result column="areaCode" property="areaCode"/>
+        <result column="addrDetail" property="addrDetail"/>
+        <result column="content" property="content"/>
+        <result column="sendWord" property="sendWord"/>
+        <result column="easemobId" property="easemobId"/>
+        <collection property="workVOs" javaType="java.util.ArrayList"
+                    ofType="com.kuangji.paopao.vo.WorkVO">
+            <id column="labelId" property="labelId"/>
+            <result column="labelVal" property="labelVal"/>
+            <result column="userLabelType" property="userLabelType"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="get" resultMap="userResultMap">
+        SELECT
+        <include refid="userColumns"/>
+        FROM user
+        <include refid="userJoins"/>
+        <where>
+            IS_DELETE=0
+            AND user.ID = #{id}
+        </where>
+    </select>
+
+    <select id="getUserUpdateVO" resultType="com.kuangji.paopao.vo.UserUpdateVO">
+        SELECT
+        user.ID AS "id",
+        user.USER_NAME AS "userName",
+        user.REAL_NAME AS "realName",
+       	CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+		user.head_img_size AS "headImgSize",
+        user.SEX AS "sex",
+        member.SEND_WORD AS "sendWord",
+        member.MARITAL_STATUS AS "maritalStatus",
+        member.OCCUPATION AS "occupation",
+        account as "account"
+        FROM
+        user
+        LEFT JOIN
+        member
+        ON
+        member.user_id =user.id
+        AND member.is_delete=0
+        <where>
+            user.is_delete=0
+            AND user.ID = #{id}
+        </where>
+    </select>
+
+    <select id="login" resultMap="userResultMap">
+        SELECT
+      	user.id AS "id",
+		user.update_time AS "updateTime",
+		user.insert_time AS "insertTime",
+		user.is_delete AS "isDelete",
+		user.user_name AS "userName",
+		user.pwd AS "pwd",
+		user.real_name AS "realName",
+		CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+		user.head_img_size AS "headImgSize",
+		user.sex AS "sex",
+		user.age AS "age",
+		user.status AS "status",
+		user.type AS type,
+		user.account AS "account",
+		user.easemob_id AS "easemobId"
+      
+        FROM user
+        <include refid="userJoins"/>
+        <where>
+            AND user.USER_NAME = #{userName}
+            <if test="type !=null">
+                AND user.type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <select id="consultantLogin" resultMap="userResultMap">
+		SELECT
+		user.id AS "id",
+		user.update_time AS "updateTime",
+		user.insert_time AS "insertTime",
+		user.is_delete AS "isDelete",
+		user.user_name AS "userName",
+		user.pwd AS "pwd",
+		user.real_name AS "realName",
+		CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+		user.sex AS "sex",
+		user.age AS "age",
+		user.status AS "status",
+		user.account AS "account",
+		easemob_id AS "easemobId",
+		user.first_login "firstLogin"
+		FROM
+		consultant
+		LEFT JOIN
+		user
+		ON
+		consultant.user_id=user.id
+		WHERE
+		consultant.is_delete=0
+		AND user.type = 0
+		AND user.USER_NAME = #{userName}
+	</select>
+
+
+	 <select id="consultantLoginVO" resultMap="useVOrResultMap">
+		SELECT
+		user.id AS "id",
+		user.update_time AS "updateTime",
+		user.insert_time AS "insertTime",
+		user.is_delete AS "isDelete",
+		user.user_name AS "userName",
+		user.pwd AS "pwd",
+		user.real_name AS "realName",
+		CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+		user.sex AS "sex",
+		user.age AS "age",
+		user.status AS "status",
+		user.account AS "account",
+		easemob_id AS "easemobId",
+		user.first_login "firstLogin",
+		consultant.status "consultantStatus"
+		FROM
+		consultant
+		LEFT JOIN
+		user
+		ON
+		consultant.user_id=user.id
+		WHERE
+		consultant.is_delete=0
+		AND user.type = 0
+		AND user.USER_NAME = #{userName}
+	</select>
+
+    <select id="getUserInvitationCode" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM
+		consultant
+		LEFT JOIN
+		user
+		ON
+		consultant.user_id=user.id
+
+		WHERE
+		user.is_delete=0
+		AND consultant.INVITATION_CODE = #{invitationCode}
+		AND consultant.user_type = 1
+
+	</select>
+
+
+    <select id="list" resultMap="userResultMap">
+        SELECT
+        <include refid="userColumns"/>
+        FROM user
+        <include refid="userJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <select id="countConsultant" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        consultant
+        LEFT JOIN
+        user
+        ON
+        consultant.user_id=user.id
+        WHERE
+        user.IS_DELETE=0
+        AND consultant.status=2
+        AND  user.status=2
+        <if test="consultationSex != null and consultationSex.length >0">
+            AND user.SEX in
+            <foreach collection="consultationSex" item="code" open="(" separator="," close=")" index="index">
+                #{code}
+            </foreach>
+        </if>
+        <if test="minPrice != null and minPrice != 0">
+            AND consultant.CONSULTATION_FEE <![CDATA[>=]]> #{minPrice}
+        </if>
+
+        <if test="maxPrice != null and maxPrice != 0">
+            AND consultant.CONSULTATION_FEE <![CDATA[<=]]> #{maxPrice}
+        </if>
+        <if test="consultationAge != null and consultationAge.length >0">
+            AND
+            <foreach collection="consultationAge" item="key" open=" (" separator=" OR " close=")" index="index">
+			    consultant.birth_date LIKE CONCAT(#{key},'%')
+            </foreach>
+        </if>
+
+
+        <if test="provCode != null and provCode !=0">
+            AND consultant.PROV_CODE =#{provCode}
+        </if>
+
+
+        <if test="cityCode != null and cityCode !=0">
+            AND consultant.CITY_CODE=#{cityCode}
+        </if>
+
+
+        <if test="areaCode != null and areaCode !=0">
+            AND consultant.AREA_CODE=#{areaCode}
+        </if>
+        <if test="consultantId != null and consultantId !=0">
+            AND consultant.user_id !=#{consultantId}
+        </if>
+		 <if test="userIds != null and userIds !=''">
+            AND user.id IN (${userIds})
+        </if>
+    </select>
+
+
+    <select id="listConsultant" resultMap="userResultVOMap">
+        SELECT
+        u.*,
+        common.ID AS "labelId",
+        common.VAL AS "labelVal"
+        FROM
+        (
+        SELECT
+        user.ID AS "id",
+        easemob_id AS "easemobId",
+        user.REAL_NAME AS "realName",
+        CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+        consultant.send_word AS "sendWord",
+        consultant.PROV_NAME AS "provName",
+        consultant.PROV_CODE AS "provCode",
+        consultant.CITY_NAME AS "cityName",
+        consultant.CITY_CODE AS "cityCode",
+        consultant.AREA_NAME AS "areaName",
+        consultant.AREA_CODE AS "areaCode",
+        consultant.ADDR_DETAIL AS "addrDetail",
+        consultant.brief_introduction AS "content",
+        consultant.IS_DELETE,
+        consultant.STATUS,
+        consultant.CONSULTATION_FEE AS "consultationFee",
+		consultant.sort AS "sort",
+		consultant.title AS "title",
+		consultant.working_seniority AS "workingSeniority",
+		consultant.accumulative_case AS "accumulativeCase"
+        FROM
+        consultant
+        LEFT JOIN
+        user
+        ON
+        consultant.user_id=user.id
+        WHERE
+        user.IS_DELETE=0
+        AND consultant.status=2
+        AND  user.status=2
+        <if test="consultationSex != null and consultationSex.length >0">
+            AND user.SEX in
+            <foreach collection="consultationSex" item="code" open="(" separator="," close=")" index="index">
+                #{code}
+            </foreach>
+        </if>
+        <if test="minPrice != null and minPrice != 0">
+            AND consultant.CONSULTATION_FEE <![CDATA[>=]]> #{minPrice}
+        </if>
+
+        <if test="maxPrice != null and maxPrice != 0">
+            AND consultant.CONSULTATION_FEE <![CDATA[<=]]> #{maxPrice}
+        </if>
+
+        <if test="consultationAge != null and consultationAge.length >0">
+            AND
+             <foreach collection="consultationAge" item="key" open=" (" separator=" OR " close=")" index="index">
+			   consultant.birth_date LIKE CONCAT(#{key},'%')
+            </foreach>
+        </if>
+
+
+        <if test="provCode != null and provCode !=0">
+            AND consultant.PROV_CODE =#{provCode}
+        </if>
+
+
+        <if test="cityCode != null and cityCode !=0">
+            AND consultant.CITY_CODE=#{cityCode}
+        </if>
+
+
+        <if test="areaCode != null and areaCode !=0">
+            AND consultant.AREA_CODE=#{areaCode}
+        </if>
+        <if test="consultantId != null and consultantId !=0">
+            AND consultant.user_id !=#{consultantId}
+        </if>
+         <if test="userIds != null and userIds !=''">
+            AND user.id IN (${userIds})
+        </if>
+			ORDER BY    sort DESC
+     	 LIMIT #{pageNum},#{pageSize} 
+       
+        ) u
+        LEFT JOIN
+        user_label
+        ON
+        user_label.USER_ID=u.ID
+        AND user_label.USER_LABEL_TYPE=2
+        AND user_label.IS_DELETE=0
+
+        LEFT JOIN
+        common
+        ON
+        common.ID=user_label.LABEL_ID
+		ORDER BY   u.sort DESC
+    </select>
+
+
+    <select id="countConsultantWd" resultType="int">
+        SELECT
+        count(*)
+        FROM
+        consultant
+        LEFT JOIN
+        user
+        ON
+        consultant.user_id=user.id
+        WHERE
+        user.IS_DELETE=0
+        AND consultant.STATUS=2
+        <if test="wd != null and wd !=''">
+            AND user.REAL_NAME LIKE "%${wd}%"
+        </if>
+        <if test="userId != null and userId !=0">
+            AND user.id !=#{userId}
+        </if>
+    </select>
+
+
+    <select id="listConsultantWd" resultMap="userResultVOMap">
+        SELECT
+        u.*,
+        common.ID AS "labelId",
+        common.VAL AS "labelVal"
+        FROM
+        (
+        SELECT
+        user.ID AS "id",
+        user.REAL_NAME AS "realName",
+        easemob_id AS "easemobId",
+        CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+        consultant.PROV_NAME AS "provName",
+        consultant.PROV_CODE AS "provCode",
+        consultant.CITY_NAME AS "cityName",
+        consultant.CITY_CODE AS "cityCode",
+        consultant.AREA_NAME AS "areaName",
+        consultant.AREA_CODE AS "areaCode",
+        consultant.ADDR_DETAIL AS "addrDetail",
+        consultant.brief_introduction AS "content",
+        consultant.IS_DELETE,
+        consultant.STATUS,
+        consultant.CONSULTATION_FEE AS "consultationFee",
+		consultant.title AS "title",
+		consultant.working_seniority AS "workingSeniority",
+		consultant.accumulative_case AS "accumulativeCase"
+        FROM
+        consultant
+        LEFT JOIN
+        user
+        ON
+        consultant.user_id=user.id
+        WHERE
+        user.IS_DELETE=0
+        AND consultant.STATUS=2
+        AND  user.status=2
+        <if test="wd != null and wd !=''">
+            AND user.REAL_NAME LIKE "%${wd}%"
+        </if>
+        <if test="userId != null and userId !=0">
+            AND user.id !=#{userId}
+        </if>
+        LIMIT #{pageNum},#{pageSize}
+        ) u
+        LEFT JOIN
+        user_label
+        ON
+        user_label.USER_ID=u.ID
+        AND user_label.USER_LABEL_TYPE=2
+        AND user_label.IS_DELETE=0
+
+        LEFT JOIN
+        common
+        ON
+        common.ID=user_label.LABEL_ID
+
+    </select>
+
+
+    <select id="countCollectionConsultant" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		user_collection
+		LEFT JOIN
+		user
+		ON
+		user_collection.USER_ID=user.ID
+		WHERE
+		user_collection.IS_DELETE=0
+		AND user.IS_DELETE=0
+		AND user.STATUS=2
+		AND user_collection.USER_ID=#{userId}
+
+	</select>
+
+
+    <select id="listCollectionConsultant" resultMap="userResultVOMap">
+		SELECT
+		u.*,
+		common.ID AS "labelId",
+		common.VAL AS "labelVal"
+		FROM
+		(
+		SELECT
+		user.ID AS "id",
+		user.REAL_NAME AS "realName",
+		consultant.brief_introduction AS "content",
+		easemob_id AS "easemobId",
+		CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+		consultant.PROV_NAME AS "provName",
+		consultant.PROV_CODE AS "provCode",
+		consultant.CITY_NAME AS "cityName",
+		consultant.CITY_CODE AS "cityCode",
+		consultant.AREA_NAME AS "areaName",
+		consultant.AREA_CODE AS "areaCode",
+		consultant.ADDR_DETAIL AS "addrDetail",
+		consultant.IS_DELETE,
+		consultant.STATUS,
+		consultant.USER_TYPE,
+		consultant.CONSULTATION_FEE AS "consultationFee",
+		consultant.send_word AS "sendWord",
+		consultant.title AS "title",
+		consultant.working_seniority AS "workingSeniority",
+		consultant.accumulative_case AS "accumulativeCase"
+		FROM
+		consultant,user
+		WHERE
+		consultant.user_id=user.id
+		AND user.is_delete=0
+		AND user.status=2
+		AND consultant.status=2
+		AND user.id IN(
+			SELECT
+			user_collection.COLLECTION_ID
+			FROM
+			user_collection
+			WHERE
+			user_collection.USER_ID=#{userId}
+		)
+		 LIMIT #{pageNum},#{pageSize}
+		) u
+		LEFT JOIN
+		user_label
+		ON
+			user_label.USER_ID=u.ID
+			AND user_label.USER_LABEL_TYPE=2
+       		AND user_label.IS_DELETE=0
+
+		LEFT JOIN
+		common
+		ON
+		common.ID=user_label.LABEL_ID
+
+	</select>
+
+
+    <select id="getConsultant" resultMap="aboutConsultantVOMap">
+		SELECT
+		u.*,
+		common.ID AS "labelId",
+		common.VAL AS "labelVal"
+		FROM
+		(
+		SELECT
+		user.ID AS "id",
+		user.easemob_id AS "easemobId",
+		user.REAL_NAME AS "realName",
+		CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+		consultant.PROV_NAME AS "provName",
+		consultant.PROV_CODE AS "provCode",
+		consultant.CITY_NAME AS "cityName",
+		consultant.CITY_CODE AS "cityCode",
+		consultant.AREA_NAME AS "areaName",
+		consultant.AREA_CODE AS "areaCode",
+		consultant.ADDR_DETAIL AS "addrDetail",
+		consultant.brief_introduction AS "content",
+		consultant.IS_DELETE,
+		consultant.STATUS,
+		consultant.SEND_WORD AS "sendWord"
+		FROM
+		consultant
+		LEFT JOIN
+		user
+		ON
+		consultant.user_id=user.id
+		) u
+		LEFT JOIN
+		user_label
+		ON
+		user_label.USER_ID=u.ID
+		AND (
+		user_label.USER_LABEL_TYPE=0
+		OR user_label.USER_LABEL_TYPE=2)
+
+		LEFT JOIN
+		common
+		ON
+		common.ID=user_label.LABEL_ID
+		WHERE
+		u.IS_DELETE=0
+		AND u.STATUS=2
+		AND u.ID=#{id}
+
+	</select>
+
+    <select id="listAll" resultMap="userResultMap">
+        SELECT
+        <include refid="userColumns"/>
+        FROM user
+        <include refid="userJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <insert id="insertBatch">
+        INSERT INTO user(
+        UPDATE_TIME,
+        INSERT_TIME,
+        IS_DELETE,
+        USER_NAME,
+        PWD,
+        REAL_NAME,
+        HEAD_IMG,
+        SEX,
+        AGE,
+        STATUS
+        )
+        VALUES
+        <foreach collection="list" item="user" separator=",">
+            (
+            NOW(),
+            NOW(),
+            #{user.isDelete},
+            #{user.userName},
+            #{user.pwd},
+            #{user.realName},
+            #{user.headImg},
+            #{user.sex},
+            #{user.age},
+            #{user.status}
+            )
+        </foreach>
+    </insert>
+
+    <update id="logicDeleteById">
+		UPDATE  user SET
+		IS_DELETE=1
+		WHERE
+		IS_DELETE=0
+		AND ID = #{id}
+	</update>
+
+    <update id="updatePwd">
+		UPDATE  user SET
+		PWD = #{arg1}
+		WHERE
+		IS_DELETE=0
+		AND ID = #{arg0}
+	</update>
+
+
+    <update id="userUpdateVO">
+		UPDATE user SET
+		UPDATE_TIME = NOW(),
+		REAL_NAME = #{realName},
+		HEAD_IMG = #{headImg},
+		SEX = #{sex}
+		WHERE
+		is_delete=0
+		AND id = #{id}
+	</update>
+
+
+    <select id="getPriceVO" resultType="com.kuangji.paopao.vo.PriceVO">
+		SELECT
+		0 AS "minPrice",
+		IF(MAX(consultation_fee)=0,100,MAX(consultation_fee)) AS "maxPrice"
+
+		FROM
+			consultant
+		WHERE
+		is_delete=0
+		AND status=2
+	</select>
+
+    <select id="getExtVO" resultType="com.kuangji.paopao.vo.ExtVO">
+		SELECT
+			real_name AS "nickname",
+			CONCAT(user.HEAD_IMG,user.head_img_size)  AS "userphoto"
+		FROM
+			user
+		WHERE
+			is_delete=0
+		AND
+			id=#{id}
+
+	</select>
+
+
+    <select id="getUserforUpdate" resultType="com.kuangji.paopao.model.User">
+		SELECT
+			id,
+			user_name AS "userName",
+			account  AS "account",
+			cash_withdrawal_amount AS "cashWithdrawalAmount"
+		FROM
+			user 
+		WHERE
+			is_delete=0
+		AND
+			id=#{id}		
+			for update
+	</select>
+
+    <select id="listMemberVO" resultType="com.kuangji.paopao.admin.vo.MemberVO">
+        SELECT
+        *
+        FROM
+        member,user
+        WHERE
+        member.is_delete=0
+        AND member.user_id=user.id
+        <if test="userName != null and userName !=''">
+            AND user_name=#{userName}
+        </if>
+        <if test="realName != null and realName !=''">
+            AND real_name=#{realName}
+        </if>
+      ORDER BY  user.id DESC
+    </select>
+
+    <update id="updateAccount">
+         UPDATE user SET
+	        update_time = NOW(),
+	        account=account+#{account}
+        WHERE 
+        is_delete=0 
+        AND  id = #{id}
+        AND   account+#{account}>=0
+    </update>
+
+    <update id="updateCashWithdrawalAmount">
+        UPDATE 
+        	user
+        SET
+        	 update_time = now(),
+        	 account=account-#{amount},
+       		 cash_withdrawal_amount = cash_withdrawal_amount+#{amount}
+        WHERE 
+         	is_delete=0 
+        AND id = #{id}
+        AND cash_withdrawal_amount+#{amount}>=0
+    </update>
+   
+    <update id="thawAmount">
+        UPDATE 
+        	user
+        SET
+        	 update_time = now(),
+        	 account=account-#{amount},
+       		 cash_withdrawal_amount = cash_withdrawal_amount+#{amount}
+        WHERE 
+         	is_delete=0 
+        AND id = #{id}
+        AND  account=account-#{amount}>=0
+    </update>
+    
+      <update id="removeCashWithdrawalAmount">
+        UPDATE 
+        	user
+        SET
+        	 update_time = now(),
+       		 cash_withdrawal_amount = cash_withdrawal_amount-#{amount}
+        WHERE 
+         	is_delete=0 
+        AND id = #{id}
+        AND cash_withdrawal_amount-#{amount}>=0
+    </update>
+   
+   
+    <update id="adminRefuseCashWithdrawal">
+        UPDATE 
+        	user
+        SET
+        	 update_time = now(),
+       		 cash_withdrawal_amount =cash_withdrawal_amount-#{account},
+       		 account=account+#{account}
+        WHERE 
+         	is_delete=0 
+        AND id = #{userId}
+    </update>
+    <select id="listUser" resultType="com.kuangji.paopao.model.User">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM user
+      WHERE
+      	user.is_delete=0
+       <if test="userName !=null and userName!=''">
+     	 AND  user.user_name=#{userName}
+       </if>
+        
+       <if test="realName !=null and realName!=''">
+     	 AND  user.real_name=#{realName}
+       </if>
+       
+      ORDER BY  id DESC
+    </select>
+</mapper>

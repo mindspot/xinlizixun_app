@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/timestamp"
+        style="@style/chat_text_date_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.hyphenate.easeui.widget.EaseImageView
+            android:id="@+id/iv_userhead"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
+            app:ease_shape_type="round" />
+
+        <RelativeLayout
+            android:id="@+id/bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_userid"
+            android:layout_toRightOf="@id/iv_userhead"
+            android:background="@drawable/ease_chatfrom_bg">
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单已支付，请咨询师点击“确认”。"
+                    android:textColor="#ff333333"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="服务类型：语音类型"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_order_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="预约时间：2019-12-09 10:26"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ease_chat_order_confirm_shape"
+                    android:gravity="center"
+                    android:text="确认订单"
+                    android:textColor="#ffffffff"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_userid"
+            style="@style/chat_text_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/chat_nick_margin_left"
+            android:layout_toRightOf="@id/iv_userhead"
+            android:textSize="@dimen/chat_nick_text_size"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

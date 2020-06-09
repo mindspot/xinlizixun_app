@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    //release时需要把hyphenatechatsdk的依赖注释掉，sdk已经被打成jar包放在libs底下
+    //    //api project(':hyphenatechatsdk')
+    //api 'com.hyphenate:hyphenate-sdk:3.6.1'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.google.android.gms:play-services-base:11.4.0'
+    api 'com.android.support:appcompat-v7:28.0.0-alpha1'
+    api files('libs/hyphenatechat_3.6.6.jar')
+    api project(':Lib_Image')
+
+    api 'com.github.satyan:sugar:1.5'
+}

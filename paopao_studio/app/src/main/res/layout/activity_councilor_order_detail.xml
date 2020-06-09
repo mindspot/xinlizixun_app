@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/councilor_order_detail_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.order.CouncilorOrderDetailActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/councilor_order_detail_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottom_line_visible="true"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="订单详情" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
+
+                <ImageView
+                    android:id="@+id/councilor_order_detail_photo"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/councilor_order_detail_photo"
+                    android:textColor="#ff333333"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_service_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/councilor_order_detail_username"
+                    android:textColor="#ff9ddcaf"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_service_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/councilor_order_detail_username"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/councilor_order_detail_photo"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_chat"
+                    android:layout_width="70dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/common_theme_border_background_share"
+                    android:gravity="center"
+                    android:text="私聊"
+                    android:visibility="invisible"
+                    android:textColor="#ff9ddcaf"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单信息："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/theme_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单编号："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_order_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="案例数量："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_order_case_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="佣金比例："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_order_money_ratio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="督导方式："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_councilor_way"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="案例类型："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_councilor_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单总价："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_all_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="督导费用："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/councilor_order_detail_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <ui.MyListView
+                android:id="@+id/councilor_order_detail_councilor_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:divider="@null" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/councilor_order_detail_btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/councilor_order_detail_cancle_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/common_theme_border_background_share"
+            android:gravity="center"
+            android:text="取消订单"
+            android:textColor="#ff9ddcaf"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/councilor_order_detail_refuse_btn"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/common_gary_border_bold_background_share"
+            android:gravity="center"
+            android:text="拒单"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/councilor_order_detail_accept_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/common_theme_background_share"
+            android:gravity="center"
+            android:text="接单"
+            android:textColor="#ffffffff"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

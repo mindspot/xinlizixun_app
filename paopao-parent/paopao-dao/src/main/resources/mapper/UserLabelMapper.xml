@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.UserLabelMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.UserLabel">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="label_id" jdbcType="INTEGER" property="labelId"/>
+        <result column="user_label_type" jdbcType="BIT" property="userLabelType"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, user_id, label_id, user_label_type, insert_time, is_delete
+    </sql>
+
+    <resultMap id="userLabelResultMap" extends="BaseResultMap" type="com.kuangji.paopao.model.UserLabel">
+    </resultMap>
+    <select id="listLabelIdByUser" resultType="java.lang.Integer">
+    SELECT label_id FROM
+    user_label
+    WHERE
+    user_id = #{userId}
+    and
+    user_label_type = #{labelType}
+  </select>
+  <select id="listUserIdByUser" resultType="java.lang.Integer">
+    SELECT user_id FROM
+   	 user_label
+    WHERE
+    label_id in (${labelId})
+    group by user_id
+  </select>
+  
+
+    <sql id="userLabelColumns">
+    user_label.ID AS "id",
+    user_label.UPDATE_TIME AS "updateTime",
+    user_label.INSERT_TIME AS "insertTime",
+    user_label.IS_DELETE AS "isDelete",
+    user_label.USER_ID AS "userId",
+    user_label.LABEL_ID AS "labelId",
+    user_label.USER_LABEL_TYPE AS "userLabelType"
+  </sql>
+
+    <sql id="userLabelJoins">
+
+    </sql>
+
+    <select id="get" resultMap="userLabelResultMap">
+        SELECT
+        <include refid="userLabelColumns"/>
+        FROM user_label
+        <include refid="userLabelJoins"/>
+        <where>
+            IS_DELETE=0
+            AND user_label.ID = #{id}
+        </where>
+    </select>
+
+    <select id="list" resultMap="userLabelResultMap">
+        SELECT
+        <include refid="userLabelColumns"/>
+        FROM user_label
+        <include refid="userLabelJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="userLabelResultMap">
+        SELECT
+        <include refid="userLabelColumns"/>
+        FROM user_label
+        <include refid="userLabelJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+    <resultMap id="UserLabelInfoMap" extends="BaseResultMap" type="com.kuangji.paopao.dto.result.UserLabelInfo">
+        <association property="common" column="label_id"
+                     select="com.kuangji.paopao.mapper.CommonMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <select id="listUserLabelInfo" resultMap="UserLabelInfoMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM user_label
+        WHERE
+        user_id = #{userId}
+        and
+        user_label_type = #{labelType}
+    </select>
+
+    <insert id="insertBatch">
+        INSERT INTO user_label(
+        USER_ID,
+        LABEL_ID,
+        USER_LABEL_TYPE
+        )
+        VALUES
+        <foreach collection="list" item="userLabel" separator=",">
+            (
+            #{userLabel.userId},
+            #{userLabel.labelId},
+            #{userLabel.userLabelType}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="logicDeleteById">
+    UPDATE  user_label SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+</mapper>

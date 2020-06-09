@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultationSetMealOrderMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultationSetMealOrder">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="rece_time" jdbcType="TIMESTAMP" property="receTime" />
+    <result column="consultation_time" jdbcType="VARCHAR" property="consultationTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="coupon_id" jdbcType="INTEGER" property="couponId" />
+    <result column="consultation_number" jdbcType="INTEGER" property="consultationNumber" />
+    <result column="buy_date" jdbcType="DATE" property="buyDate" />
+    <result column="term_end_date" jdbcType="DATE" property="termEndDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, insert_time, is_delete, shop_id, goods_id, order_no, rece_time, consultation_time, 
+    status, coupon_id, consultation_number, buy_date, term_end_date
+  </sql>
+  
+  <select id="listConsultantSetMeal" resultType="com.kuangji.paopao.vo.SetMealVO">
+		SELECT
+		mall_goods.GOODS_NAME AS "goodsName",
+		consultation_set_meal_order.CONSULTATION_NUMBER AS "consultationNumber",
+		consultation_set_meal_order.BUY_DATE AS "buyDate",
+		consultation_set_meal_order.TERM_END_DATE AS "termEndDate",
+		user.real_name as "consultantName",
+		_user.real_name  as "userName",
+		CONCAT("pu",_user.id) AS "easemobUserId"
+		FROM
+			consultation_set_meal_order,mall_goods,user,user _user
+		WHERE
+			mall_goods.IS_DELETE=0
+		AND consultation_set_meal_order.shop_id=user.id
+		AND consultation_set_meal_order.user_id=_user.id
+		AND  mall_goods.ID=consultation_set_meal_order.GOODS_ID	
+		AND mall_goods.GOODS_CLASS=6
+		AND consultation_set_meal_order.shop_id=#{userId}
+		AND  consultation_set_meal_order.CONSULTATION_NUMBER >0
+	</select>
+
+    <resultMap id="consultationSetMealOrderResultMap"
+               type="com.kuangji.paopao.model.ConsultationSetMealOrder">
+        <id column="id" property="id" />
+        <result column="insertTime" property="insertTime" />
+        <result column="updateTime" property="updateTime" />
+        <result column="isDelete" property="isDelete" />
+        <result column="shopId" property="shopId" />
+        <result column="goodsId" property="goodsId" />
+        <result column="userId" property="userId" />
+        <result column="orderNo" property="orderNo" />
+        <result column="receTime" property="receTime" />
+        <result column="consultationTime" property="consultationTime" />
+        <result column="status" property="status" />
+        <result column="consultationNumber" property="consultationNumber" />
+        <result column="buyDate" property="buyDate" />
+        <result column="termEndDate" property="termEndDate" />
+
+
+
+    </resultMap>
+
+    <sql id="consultationSetMealOrderColumns">
+        consultation_set_meal_order.ID AS "id",
+        consultation_set_meal_order.INSERT_TIME AS "insertTime",
+        consultation_set_meal_order.UPDATE_TIME AS "updateTime",
+        consultation_set_meal_order.IS_DELETE AS "isDelete",
+        consultation_set_meal_order.SHOP_ID AS "shopId",
+        consultation_set_meal_order.GOODS_ID AS "goodsId",
+        consultation_set_meal_order.user_id AS "userId",
+        consultation_set_meal_order.ORDER_NO AS "orderNo",
+        consultation_set_meal_order.RECE_TIME AS "receTime",
+        consultation_set_meal_order.CONSULTATION_TIME AS "consultationTime",
+        consultation_set_meal_order.STATUS AS "status",
+        consultation_set_meal_order.CONSULTATION_NUMBER AS "consultationNumber",
+        consultation_set_meal_order.BUY_DATE AS "buyDate",
+        consultation_set_meal_order.TERM_END_DATE AS "termEndDate"
+    </sql>
+
+    <sql id="consultationSetMealOrderJoins">
+
+    </sql>
+
+    <select id="get" resultMap="consultationSetMealOrderResultMap">
+        SELECT
+        <include refid="consultationSetMealOrderColumns" />
+        FROM consultation_set_meal_order
+        <include refid="consultationSetMealOrderJoins" />
+        <where>
+            IS_DELETE=0
+            AND consultation_set_meal_order.ID = #{id}
+        </where>
+    </select>
+
+    <select id="list" resultMap="consultationSetMealOrderResultMap">
+        SELECT
+        <include refid="consultationSetMealOrderColumns" />
+        FROM consultation_set_meal_order
+        <include refid="consultationSetMealOrderJoins" />
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="consultationSetMealOrderResultMap">
+        SELECT
+        <include refid="consultationSetMealOrderColumns" />
+        FROM consultation_set_meal_order
+        <include refid="consultationSetMealOrderJoins" />
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <select id="listSetMeal" resultType="com.kuangji.paopao.vo.SetMealVO">
+        SELECT
+        CONCAT(user.real_name,"套餐卡") AS "goodsName",
+        consultation_set_meal_order.CONSULTATION_NUMBER AS "consultationNumber",
+        consultation_set_meal_order.BUY_DATE AS "buyDate",
+        consultation_set_meal_order.TERM_END_DATE AS "termEndDate",
+        user.real_name as "consultantName",
+        user.id as "consultantId",
+        _user.real_name  as "userName"
+        FROM
+        consultation_set_meal_order,mall_goods,user,user _user
+        WHERE
+        mall_goods.IS_DELETE=0
+        AND consultation_set_meal_order.shop_id=user.id
+        AND consultation_set_meal_order.user_id=_user.id
+        AND  mall_goods.ID=consultation_set_meal_order.GOODS_ID
+        AND mall_goods.GOODS_CLASS=6
+        AND consultation_set_meal_order.user_id=#{userId}
+        AND  consultation_set_meal_order.CONSULTATION_NUMBER >0
+    </select>
+
+
+    <select id="getSetMealConsultationOrder" resultMap="consultationSetMealOrderResultMap">
+        SELECT
+        <include refid="consultationSetMealOrderColumns" />
+        FROM consultation_set_meal_order
+        <where>
+            IS_DELETE=0
+            AND
+            consultation_set_meal_order.SHOP_ID = #{shopId}
+            AND
+            consultation_set_meal_order.GOODS_ID = #{goodsId}
+            AND
+            consultation_set_meal_order.user_id = #{userId}
+            AND
+            consultation_set_meal_order.STATUS=0
+            AND
+            consultation_set_meal_order.CONSULTATION_NUMBER>0
+            AND
+            consultation_set_meal_order.term_end_date <![CDATA[<=]]> DATE(CURDATE())
+
+        </where>
+    </select>
+
+    <select id="listSetMealConsultationOrder" resultMap="consultationSetMealOrderResultMap">
+        SELECT
+        <include refid="consultationSetMealOrderColumns" />
+        FROM consultation_set_meal_order
+        <where>
+            IS_DELETE=0
+            AND
+            consultation_set_meal_order.SHOP_ID = #{shopId}
+            AND
+            consultation_set_meal_order.user_id = #{userId}
+            AND
+            consultation_set_meal_order.STATUS=0
+            AND
+            consultation_set_meal_order.CONSULTATION_NUMBER>0
+            AND
+            consultation_set_meal_order.term_end_date <![CDATA[>=]]> DATE(CURDATE())
+        </where>
+    </select>
+
+
+
+    <select id="getOrderSetMeal" resultType="com.kuangji.paopao.vo.ConsultantOrderSetMealVO">
+        SELECT
+        consultation_set_meal_order.ID AS "id",
+        consultation_set_meal_order.CONSULTATION_NUMBER AS ResidualTimes,
+        mall_goods.SHOP_ID AS "shopId",
+        mall_goods.GOODS_CLASS AS "goodsClass",
+        mall_goods.ID AS "goodsId",
+        mall_trade_order_goods.ORDER_NO AS "orderNo"
+        FROM
+        mall_trade_order_goods
+
+        LEFT JOIN
+        mall_goods
+        ON
+        mall_trade_order_goods.GOODS_ID=mall_goods.ID
+        LEFT JOIN
+        consultation_set_meal_order
+        ON
+        consultation_set_meal_order.ORDER_NO=mall_trade_order_goods.ORDER_NO
+        WHERE
+        mall_goods.IS_DELETE=0
+        AND mall_goods.IS_DELETE=0
+        AND consultation_set_meal_order.ORDER_NO=#{orderNo}
+        AND mall_goods.GOODS_CLASS=6
+        AND mall_goods.UP_DOWN_FLAG=1
+        AND consultation_set_meal_order.user_id=#{userId}
+        AND consultation_set_meal_order.STATUS=0
+        LIMIT 1
+        FOR UPDATE ;
+    </select>
+
+
+
+    <update id="logicDeleteById">
+        UPDATE consultation_set_meal_order SET
+        IS_DELETE=1
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+
+
+    <update id="updateResidualTimes" parameterType="String">
+        UPDATE
+        consultation_set_meal_order SET
+        UPDATE_TIME = NOW(),
+        CONSULTATION_NUMBER = CONSULTATION_NUMBER-1
+        WHERE
+        IS_DELETE=0
+        AND
+        CONSULTATION_NUMBER>=1
+        AND ORDER_NO = #{id}
+    </update>
+
+
+    <update id="updateAddResidualTimes" parameterType="String">
+        UPDATE
+        consultation_set_meal_order SET
+        UPDATE_TIME = NOW(),
+        CONSULTATION_NUMBER = CONSULTATION_NUMBER+1
+        WHERE
+        IS_DELETE=0
+        AND ORDER_NO = #{id}
+    </update>
+</mapper>

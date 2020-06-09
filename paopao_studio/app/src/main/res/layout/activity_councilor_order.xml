@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/councilot_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.order.CouncilorOrderActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/councilot_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottom_line_visible="true"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="督导订单" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="订单信息"
+        android:textColor="#ff333333"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/councilor_order_info_background_share"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/councilot_activity_photo_img"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp" />
+
+                <TextView
+                    android:id="@+id/councilot_activity_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="李某XX"
+                    android:textColor="#ff333333"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <ui.MyListView
+                android:id="@+id/councilot_activity_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:divider="@null" />
+
+            <LinearLayout
+                android:id="@+id/councilot_activity_select_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选择案例："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/councilot_activity_select_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点击选择客户案例"
+                    android:textColor="@color/theme_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分佣比例："
+                    android:textColor="#ff333333"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/councilot_activity_select_way_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5%"
+                    android:textColor="@color/theme_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:text="注意：“分佣比例”为该笔订单总价的百分比，平台不收取中间任何费用。当督导师督导完毕时，该笔分佣全额划转给督导师。"
+            android:textColor="#ff999999"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center|right"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/councilot_activity_money_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ff333333"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/councilot_activity_old_money_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ff999999"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/councilot_activity_pay_text"
+            android:layout_width="100dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/common_theme_background_share"
+            android:gravity="center"
+            android:text="支付"
+            android:textColor="#ffffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

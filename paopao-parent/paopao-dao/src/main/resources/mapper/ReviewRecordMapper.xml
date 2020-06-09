@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ReviewRecordMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.ReviewRecord">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ref_id" jdbcType="INTEGER" property="refId" />
+    <result column="ref_type" jdbcType="BIT" property="refType" />
+    <result column="ref_type_name" jdbcType="VARCHAR" property="refTypeName" />
+    <result column="review_user_id" jdbcType="BIGINT" property="reviewUserId" />
+    <result column="review_user_name" jdbcType="VARCHAR" property="reviewUserName" />
+    <result column="review_remark" jdbcType="VARCHAR" property="reviewRemark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="review_dt" jdbcType="TIMESTAMP" property="reviewDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, ref_id, ref_type, ref_type_name, review_user_id, review_user_name, review_remark,
+    status, review_dt
+  </sql>
+  <select id="getLastReviewRecord" resultType="com.kuangji.paopao.model.consultant.ReviewRecord">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM
+    review_record
+    WHERE
+    ref_id = #{refId}
+    AND
+    ref_type = #{refType}
+    ORDER BY id DESC
+    limit 1
+  </select>
+</mapper>

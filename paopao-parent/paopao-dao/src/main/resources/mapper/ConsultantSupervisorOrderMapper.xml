@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantSupervisorOrderMapper">
+	<resultMap id="BaseResultMap"
+		type="com.kuangji.paopao.model.ConsultantSupervisorOrder">
+		<!-- WARNING - @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+		<result column="pay_status" jdbcType="BIT" property="payStatus" />
+		<result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+		<result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+		<result column="goods_amount" jdbcType="INTEGER" property="goodsAmount" />
+		<result column="order_amount" jdbcType="INTEGER" property="orderAmount" />
+		<result column="proportion" jdbcType="INTEGER" property="proportion" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="is_delete" jdbcType="BIT" property="isDelete" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbg.generated -->
+		id, order_no, pay_status, pay_time, order_status, goods_amount,
+		order_amount, proportion,
+		insert_time, update_time, is_delete
+	</sql>
+
+	<resultMap id="supervisorOrderVOMap" type="com.kuangji.paopao.vo.SupervisorOrderVO">
+		<result column="orderNo" property="orderNo" />
+		<result column="orderStatus" property="orderStatus" />
+		<result column="supervisorId" property="orderNo" />
+		<result column="orderStatus" property="orderStatus" />
+		<result column="realName" property="realName" />
+		<result column="headImg" property="headImg" />
+		<result column="headImgSize" property="headImgSize" />
+		<collection property="listConsultantSupervisorOrderDetailsVO" javaType="java.util.ArrayList"
+			ofType="com.kuangji.paopao.vo.ConsultantSupervisorOrderDetailsVO">
+			<result column="mallTradOrderNo" property="mallTradOrderNo" />
+			<result column="consultantId" property="consultantId" />
+		</collection>
+	</resultMap>
+
+	<resultMap id="supervisorOrderDetailsVO" type="com.kuangji.paopao.vo.SupervisorOrderDetailsVO">
+		<result column="orderNo" property="orderNo" />
+		<result column="createTime" property="createTime" />
+		<result column="workType" property="workType" />
+		<result column="goodsAmount" property="goodsAmount" />
+		<result column="orderAmount" property="orderAmount" />
+		<result column="orderStatus" property="orderStatus" />
+		<result column="coupon" property="coupon" />
+		<result column="proportion" property="proportion" />
+		<result column="consultantId" property="consultantId" />
+		<result column="easemobId" property="easemobId" />
+		<result column="headImg" property="headImg" />
+		<result column="headImgSize" property="headImgSize" />
+		<result column="realName" property="realName" />
+		
+		
+		<collection property="listConsultantSupervisorOrderDetailsVO" javaType="java.util.ArrayList"
+			ofType="com.kuangji.paopao.vo.ConsultantSupervisorOrderDetailsVO">
+			<result column="mallTradOrderNo" property="mallTradOrderNo" />
+			<result column="consultantId" property="consultantId" />
+		</collection>
+	</resultMap>
+
+
+	<update id="supervisorOrderConfirm">
+		UPDATE consultant_supervisor_order SET
+		update_time =
+		NOW(),
+		order_status=2
+		WHERE
+		is_delete=0
+		AND order_no = #{orderNo}
+		AND
+		supervisor_id=#{supervisorId}
+		AND order_status=0
+	</update>
+
+
+
+	<update id="supervisorOrderEnd">
+		UPDATE consultant_supervisor_order SET
+		update_time =
+		NOW(),
+		order_status=10,
+		pay_status=1
+		WHERE
+		is_delete=0
+		AND order_no =
+		#{orderNo}
+		AND supervisor_id=#{supervisorId}
+		AND order_status=2
+	</update>
+
+	<update id="supervisorOrderRefuse">
+		UPDATE consultant_supervisor_order SET
+		update_time =
+		NOW(),
+		order_status=-2
+		WHERE
+		is_delete=0
+		AND order_no = #{orderNo}
+		AND
+		supervisor_id=#{supervisorId}
+		AND order_status=0
+	</update>
+
+
+	<update id="supervisorOrderCancel">
+		UPDATE consultant_supervisor_order SET
+		update_time =
+		NOW(),
+		order_status=-1
+		WHERE
+		is_delete=0
+		AND order_no = #{orderNo}
+		AND
+		consultant_id=#{consultantId}
+		AND order_status !=10
+	</update>
+
+
+	<select id="countOrderByConsultantId"  parameterType="java.lang.Integer"
+            resultType="Integer">
+
+		SELECT
+			count(*)
+
+		FROM
+			consultant_supervisor_order
+		WHERE
+			consultant_supervisor_order.is_delete=0
+		AND
+			consultant_supervisor_order.consultant_id=#{consultantId}
+		<if test="types != null and types.length >0">
+				AND  consultant_supervisor_order.order_status in 
+			 <foreach collection="types" item = "type" open="(" separator="," close=")" index="index">
+           		 #{type}
+       	</foreach>	
+       	</if>
+	</select>
+
+
+	<select id="listOrderByConsultantId" resultMap="supervisorOrderVOMap">
+		SELECT
+			_c.id,
+			_c.order_no AS "orderNO",
+			_c.order_status AS "orderStatus",
+			_c.supervisor_id AS "consultantId",
+			user.real_name AS "realName",
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+		    user.head_img_size AS "headImgSize",
+			consultant_supervisor_order_details.mall_trad_order_no  AS "mallTradOrderNo"
+			
+		FROM(
+			SELECT
+			consultant_supervisor_order.id,
+			consultant_supervisor_order.order_no,
+			consultant_supervisor_order.order_status,
+			consultant_supervisor_order.supervisor_id
+		FROM
+			consultant_supervisor_order
+		WHERE
+			consultant_supervisor_order.is_delete=0	
+		AND  consultant_supervisor_order.consultant_id=#{consultantId}
+		<if test="types != null and types.length >0">
+				AND  consultant_supervisor_order.order_status in 
+			 <foreach collection="types" item = "type" open="(" separator="," close=")" index="index">
+           		 #{type}
+       		</foreach>
+       	</if>
+       		ORDER BY  consultant_supervisor_order.id DESC
+			LIMIT #{pageNum},#{pageSize}
+		) _c
+		LEFT JOIN
+			consultant_supervisor_order_details
+		ON	
+		        order_no=consultant_supervisor_order_details.supervisor_order_no
+		LEFT JOIN
+			mall_trade_order
+		ON
+			consultant_supervisor_order_details.mall_trad_order_no=mall_trade_order.order_no
+		LEFT JOIN
+			user
+		ON
+			_c.supervisor_id=user.id
+		
+		ORDER BY  _c.id	DESC
+			
+	</select>
+	
+
+	<select id="countOrderBySupervisorId"  parameterType="java.lang.Integer"
+            resultType="Integer">
+
+		SELECT
+			count(*)
+
+		FROM
+			consultant_supervisor_order
+		WHERE
+			consultant_supervisor_order.is_delete=0
+		AND
+			consultant_supervisor_order.supervisor_id=#{supervisorId}
+		<if test="types != null and types.length >0">
+				AND  consultant_supervisor_order.order_status in 
+			 <foreach collection="types" item = "type" open="(" separator="," close=")" index="index">
+           		 #{type}
+       		</foreach>
+       	</if>
+	</select>
+
+
+	<select id="listOrderBySupervisorId" resultMap="supervisorOrderVOMap">
+		SELECT
+			_c.id,
+			_c.order_no AS "orderNO",
+			_c.order_status AS "orderStatus",
+			_c.consultant_id AS "consultantId",
+			user.real_name AS "realName",
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+		    user.head_img_size AS "headImgSize",
+			consultant_supervisor_order_details.mall_trad_order_no  AS "mallTradOrderNo"
+			
+		FROM(
+			SELECT
+			 consultant_supervisor_order.id,
+			 consultant_supervisor_order.order_no,
+			 consultant_supervisor_order.order_status,
+			 consultant_supervisor_order.consultant_id
+		
+		FROM
+			consultant_supervisor_order
+
+		WHERE
+			consultant_supervisor_order.is_delete=0
+		AND
+			consultant_supervisor_order.supervisor_id=#{supervisorId}
+			<if test="types != null and types.length >0">
+				AND  consultant_supervisor_order.order_status in 
+			 <foreach collection="types" item = "type" open="(" separator="," close=")" index="index">
+           		 #{type}
+       		</foreach>
+       		</if>	
+       		ORDER BY  consultant_supervisor_order.id DESC
+			LIMIT #{pageNum},#{pageSize}
+			
+		)_c
+		LEFT JOIN
+			consultant_supervisor_order_details
+		ON	
+		        order_no=consultant_supervisor_order_details.supervisor_order_no
+		LEFT JOIN
+			mall_trade_order
+		ON
+			consultant_supervisor_order_details.mall_trad_order_no=mall_trade_order.order_no
+		LEFT JOIN
+			user
+		ON
+			_c.consultant_id=user.id
+		ORDER BY  _c.id	DESC
+	</select>
+	
+	
+	<select id="getSupervisorOrderDetailsVO" resultMap="supervisorOrderDetailsVO">
+		SELECT 
+			consultant_supervisor_order.order_no AS "orderNo",
+			consultant_supervisor_order.pay_time AS "createTime",
+			consultant_supervisor_order.proportion AS "proportion",
+			consultant_supervisor_order.order_status AS "orderStatus",
+			6 AS "workType",
+			consultant_supervisor_order.goods_amount AS "goodsAmount",
+			"无" AS "coupon",
+			consultant_supervisor_order.order_amount AS "orderAmount",
+			consultant_supervisor_order_details.mall_trad_order_no  AS "mallTradOrderNo",
+			_user.ID AS "consultantId",
+			user.easemob_id AS "easemobId",
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+			user.head_img_size AS "headImgSize",
+			user.real_name AS "realName"
+		FROM
+		
+			consultant_supervisor_order
+		LEFT JOIN
+			consultant_supervisor_order_details
+		ON	
+		        consultant_supervisor_order.order_no=consultant_supervisor_order_details.supervisor_order_no
+		LEFT JOIN
+			mall_trade_order
+		ON
+			consultant_supervisor_order_details.mall_trad_order_no=mall_trade_order.order_no
+		LEFT JOIN
+				user
+		ON
+				user.id=consultant_supervisor_order.supervisor_id	
+		
+		LEFT JOIN
+				user _user
+		ON
+				_user.id=consultant_supervisor_order.consultant_id		
+								
+		WHERE 
+			consultant_supervisor_order.is_delete=0
+			AND consultant_supervisor_order.order_no=#{orderNo}
+		
+	</select>
+	
+	
+	
+	<select id="getLaunchSupervisorOrderDetailsVO" resultMap="supervisorOrderDetailsVO">
+		SELECT 
+			consultant_supervisor_order.order_no AS "orderNo",
+			consultant_supervisor_order.pay_time AS "createTime",
+			consultant_supervisor_order.proportion AS "proportion",
+			consultant_supervisor_order.order_status AS "orderStatus",
+			6 AS "workType",
+			consultant_supervisor_order.goods_amount AS "goodsAmount",
+			"无" AS "coupon",
+			consultant_supervisor_order.order_amount AS "orderAmount",
+			consultant_supervisor_order_details.mall_trad_order_no  AS "mallTradOrderNo",
+			user.ID AS "consultantId",
+			user.`easemob_id`  AS "easemobId",
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+			user.head_img_size AS "headImgSize",
+			user.real_name AS "realName"
+		FROM
+		
+			consultant_supervisor_order,consultant_supervisor_order_details,user,mall_trade_order
+											
+		WHERE 
+			consultant_supervisor_order.is_delete=0
+			AND user.id=consultant_supervisor_order.consultant_id
+			AND  consultant_supervisor_order.order_no=consultant_supervisor_order_details.supervisor_order_no
+			AND consultant_supervisor_order_details.mall_trad_order_no=mall_trade_order.order_no
+			AND consultant_supervisor_order.order_no=#{orderNo}
+		
+	</select>
+	
+	<select id="listOrder" resultType="com.kuangji.paopao.vo.ConsultantSupervisorOrderVO">
+	SELECT 
+			consultant_supervisor_order.order_no AS "orderNo",
+			consultant_supervisor_order.insert_time AS "createTime",
+			user.id AS "consultantId",
+			user.`easemob_id`  AS "easemobId",
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+			user.head_img_size AS "headImgSize",
+			user.real_name AS "realName",
+			consultant_supervisor_order.pay_status AS "payStatus",
+			consultant_supervisor_order.order_status AS "orderStatus"
+		FROM
+			consultant_supervisor_order,user
+				
+		WHERE 
+			consultant_supervisor_order.is_delete=0
+			AND user.id=consultant_supervisor_order.consultant_id
+			AND consultant_supervisor_order.consultant_id=#{consultantId}
+			AND consultant_supervisor_order.supervisor_id=#{supervisorId}
+            AND consultant_supervisor_order.order_status in (2,10)
+            ORDER BY  consultant_supervisor_order.id	DESC
+	</select>
+	
+	<select id="listSupervisorOrder" resultType="com.kuangji.paopao.admin.vo.SupervisorOrderVO">
+		SELECT 
+			consultant_supervisor_order.id,
+			consultant_supervisor_order.order_no AS "orderNo",
+			consultant_supervisor_order.pay_time AS "payTime",
+			user.real_name AS "consultantRealName",
+			_user.real_name AS "supervisorRealName",
+			consultant_supervisor_order.pay_status AS "payStatus",
+			consultant_supervisor_order.order_status AS "orderStatus",
+			consultant_supervisor_order.goods_amount AS "goodsAmount",
+			consultant_supervisor_order.order_amount AS "orderAmount",
+			consultant_supervisor_order.proportion AS "proportion"
+		FROM
+		
+			consultant_supervisor_order,user,user _user
+	
+							
+		WHERE 
+			consultant_supervisor_order.is_delete=0
+		AND 	user.id=consultant_supervisor_order.consultant_id	
+		AND  	_user.id=consultant_supervisor_order.supervisor_id
+		<if test="userIds !=null and userIds.size>0">
+            AND user.id in
+           <foreach collection="userIds" item="userId" open="(" separator="," close=")" index="index">
+               #{userId}
+           </foreach>
+        </if>
+		
+		<if test="userName !=null and  userName !=''">
+		AND	user.user_name=#{consultantUserName}
+		</if>
+		<if test="consultantUserName !=null and  consultantUserName !=''">
+		AND	_user.user_name=#{userName}
+		</if>
+		<if test="orderTime !=null and  orderTime !='' and  orderTime !='Invalid date'">
+			AND	consultant_supervisor_order.pay_time >=#{orderTime}
+		</if>
+		
+		ORDER BY consultant_supervisor_order.id DESC
+		
+	</select>
+	
+</mapper>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.MallGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.MallGoods">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        <result column="goods_class" jdbcType="INTEGER" property="goodsClass"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_main_img" jdbcType="VARCHAR" property="goodsMainImg"/>
+        <result column="sell_price" jdbcType="INTEGER" property="sellPrice"/>
+        <result column="line_price" jdbcType="INTEGER" property="linePrice"/>
+        <result column="cost_rate" jdbcType="DECIMAL" property="costRate"/>
+        <result column="cost_price" jdbcType="INTEGER" property="costPrice"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="sell_point_text" jdbcType="VARCHAR" property="sellPointText"/>
+        <result column="share_text" jdbcType="VARCHAR" property="shareText"/>
+        <result column="buy_remark" jdbcType="VARCHAR" property="buyRemark"/>
+        <result column="up_down_flag" jdbcType="BIT" property="upDownFlag"/>
+        <result column="expires" jdbcType="BIT" property="expires"/>
+        <result column="goods_link" jdbcType="VARCHAR" property="goodsLink"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kuangji.paopao.model.MallGoods">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="goods_detail" jdbcType="LONGVARCHAR" property="goodsDetail"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, shop_id, goods_class, is_delete, goods_name, goods_main_img, sell_price, line_price,
+        cost_rate, cost_price, stock, sell_point_text, share_text, buy_remark, up_down_flag, expires,
+        goods_link, insert_time
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        goods_detail
+    </sql>
+
+    <update id="deleteSetInByShopId">
+        UPDATE  mall_goods SET
+        IS_DELETE=1
+        WHERE
+       	shop_id = #{shopId}
+    </update>
+
+    <update id="upDownByShopId">
+        UPDATE  mall_goods SET
+        up_down_flag=1
+        WHERE
+         IS_DELETE=0
+       AND	shop_id = #{shopId}
+    </update>
+
+
+    <update id="upLoweByShopId">
+        UPDATE  mall_goods SET
+        up_down_flag=0
+        WHERE
+         IS_DELETE=0
+       AND	shop_id = #{shopId}
+    </update>
+    <resultMap id="mallGoodsResultMap" type="com.kuangji.paopao.model.MallGoods">
+        <id column="id" property="id"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="shopId" property="shopId"/>
+        <result column="goodsClass" property="goodsClass"/>
+        <result column="goodsName" property="goodsName"/>
+        <result column="goodsMainImg" property="goodsMainImg"/>
+        <result column="sellPrice" property="sellPrice"/>
+        <result column="linePrice" property="linePrice"/>
+        <result column="costRate" property="costRate"/>
+        <result column="costPrice" property="costPrice"/>
+        <result column="stock" property="stock"/>
+        <result column="sellPointText" property="sellPointText"/>
+        <result column="shareText" property="shareText"/>
+        <result column="buyRemark" property="buyRemark"/>
+        <result column="goodsDetail" property="goodsDetail"/>
+        <result column="upDownFlag" property="upDownFlag"/>
+        <result column="goodsLink" property="goodsLink"/>
+        <result column="expires" property="expires"/>
+
+
+    </resultMap>
+
+
+    <sql id="mallGoodsColumns">
+        mall_goods.ID AS "id",
+        mall_goods.INSERT_TIME AS "insertTime",
+        mall_goods.UPDATE_TIME AS "updateTime",
+        mall_goods.IS_DELETE AS "isDelete",
+        mall_goods.SHOP_ID AS "shopId",
+        mall_goods.GOODS_CLASS AS "goodsClass",
+        mall_goods.GOODS_NAME AS "goodsName",
+        mall_goods.GOODS_MAIN_IMG AS "goodsMainImg",
+        mall_goods.SELL_PRICE AS "sellPrice",
+        mall_goods.LINE_PRICE AS "linePrice",
+        mall_goods.COST_RATE AS "costRate",
+        mall_goods.COST_PRICE AS "costPrice",
+        mall_goods.STOCK AS "stock",
+        mall_goods.SELL_POINT_TEXT AS "sellPointText",
+        mall_goods.SHARE_TEXT AS "shareText",
+        mall_goods.BUY_REMARK AS "buyRemark",
+        mall_goods.GOODS_DETAIL AS "goodsDetail",
+        mall_goods.UP_DOWN_FLAG AS "upDownFlag",
+        mall_goods.GOODS_LINK AS "goodsLink",
+        mall_goods.expires AS "expires"
+
+    </sql>
+
+    <sql id="mallGoodsJoins">
+
+    </sql>
+
+    <select id="get" resultMap="mallGoodsResultMap">
+        SELECT
+        <include refid="mallGoodsColumns"/>
+        FROM mall_goods
+        <include refid="mallGoodsJoins"/>
+        <where>
+            IS_DELETE=0
+            AND mall_goods.ID = #{id}
+        </where>
+    </select>
+
+    <select id="list" resultMap="mallGoodsResultMap">
+        SELECT
+        <include refid="mallGoodsColumns"/>
+        FROM mall_goods
+        <include refid="mallGoodsJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+    <select id="listConsultantService" resultType="com.kuangji.paopao.vo.MallGoodsConsultantServiceVO">
+
+        SELECT
+        mall_goods.ID AS "id",
+        mall_goods.GOODS_NAME AS "goodsName",
+        mall_goods.SELL_PRICE AS "sellPrice",
+        mall_goods.GOODS_CLASS AS "goodsClass",
+        mall_goods.SELL_POINT_TEXT AS "mode",
+        mall_goods.STOCK AS "stock",
+        mall_goods.SHARE_TEXT AS "shareText"
+
+        FROM mall_goods
+
+        WHERE
+        mall_goods.IS_DELETE=0
+        AND mall_goods.SHOP_ID=#{shopId}
+        AND mall_goods.UP_DOWN_FLAG=1
+    </select>
+
+
+    <select id="listAll" resultMap="mallGoodsResultMap">
+        SELECT
+        <include refid="mallGoodsColumns"/>
+        FROM mall_goods
+        <include refid="mallGoodsJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+    <insert id="insertBatch">
+        INSERT INTO mall_goods(
+        SHOP_ID,
+        GOODS_CLASS,
+        GOODS_NAME,
+        SELL_PRICE,
+        STOCK,
+        SELL_POINT_TEXT,
+        SHARE_TEXT,
+        GOODS_DETAIL,
+        expires
+        )
+        VALUES
+        <foreach collection="list" item="mallGoods" separator=",">
+            (
+            #{mallGoods.shopId},
+            #{mallGoods.goodsClass},
+            #{mallGoods.goodsName},
+            #{mallGoods.sellPrice},
+            #{mallGoods.stock},
+            #{mallGoods.sellPointText},
+            #{mallGoods.shareText},
+            #{mallGoods.goodsDetail},
+            #{mallGoods.expires}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="logicDeleteById">
+        UPDATE mall_goods SET
+        IS_DELETE=1
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+    <update id="logicDelete">
+        UPDATE  mall_goods SET
+        IS_DELETE=1
+        WHERE
+       	shop_id = #{shopId}
+    </update>
+    <update id="batchLogisticDelete">
+         UPDATE  mall_goods SET
+        IS_DELETE=1
+        WHERE
+       	id in
+        <foreach collection="idList" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </update>
+    <select id="minSellPriceOne" resultType="java.lang.Integer">
+      SELECT
+       MIN(sell_price)
+        FROM mall_goods
+      WHERE
+            IS_DELETE=0 AND
+         mall_goods.shop_id=#{shopId}
+   </select>
+    <select id="countMallGoods" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM mall_goods
+        WHERE
+            IS_DELETE=0
+        AND id = #{id}
+        AND shop_id = #{shopId}
+        AND  goods_class = #{goodsClass}
+        AND  goods_name = #{goodsName}
+        AND  sell_price = #{sellPrice}
+        AND stock = #{stock}
+        AND sell_point_text = #{sellPointText}
+        AND share_text = #{shareText}
+        AND up_down_flag = 1
+    </select>
+    <select id="listMallGoodsByShopId" resultType="java.lang.Integer">
+         SELECT
+        id
+        FROM mall_goods
+        WHERE
+         IS_DELETE=0
+        AND shop_id = #{shopId}
+    </select>
+
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/input_case_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="module.order.InputCaseActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/input_case_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottom_line_visible="true"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:right_button_text="完成"
+        app:title_text="案例" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F7F7F7"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/common_white_background_share"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/input_case_activity_input"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/input_case_background_share"
+                android:gravity="left|top"
+                android:hint="请输入内容"
+                android:maxLength="300"
+                android:padding="10dp"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ui.MyGridView
+                android:id="@+id/input_case_activity_gridView"
+                android:layout_width="wrap_content"
+                android:layout_height="78dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:horizontalSpacing="20dp"
+                android:numColumns="4" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.MallTradeOrderMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.MallTradeOrder">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="order_type" jdbcType="INTEGER" property="orderType"/>
+        <result column="order_from" jdbcType="INTEGER" property="orderFrom"/>
+        <result column="oper_name" jdbcType="VARCHAR" property="operName"/>
+        <result column="order_time" jdbcType="TIMESTAMP" property="orderTime"/>
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        <result column="buyer_id" jdbcType="INTEGER" property="buyerId"/>
+        <result column="pay_type" jdbcType="INTEGER" property="payType"/>
+        <result column="pay_status" jdbcType="BIT" property="payStatus"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus"/>
+        <result column="comment_status" jdbcType="BIT" property="commentStatus"/>
+        <result column="goods_amount" jdbcType="INTEGER" property="goodsAmount"/>
+        <result column="logistics_amount" jdbcType="INTEGER" property="logisticsAmount"/>
+        <result column="discount_amount" jdbcType="INTEGER" property="discountAmount"/>
+        <result column="order_amount" jdbcType="INTEGER" property="orderAmount"/>
+        <result column="is_invoice" jdbcType="BIT" property="isInvoice"/>
+        <result column="send_time" jdbcType="TIMESTAMP" property="sendTime"/>
+        <result column="complete_time" jdbcType="TIMESTAMP" property="completeTime"/>
+        <result column="buyer_remarks" jdbcType="VARCHAR" property="buyerRemarks"/>
+        <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo"/>
+        <result column="transaction_id" jdbcType="VARCHAR" property="transactionId"/>
+        <result column="order_detail" jdbcType="VARCHAR" property="orderDetail"/>
+        <result column="seller_remarks" jdbcType="VARCHAR" property="sellerRemarks"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+        <result column="is_read" jdbcType="BIT" property="isRead"/>
+
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kuangji.paopao.model.MallTradeOrder">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="ext" jdbcType="LONGVARCHAR" property="ext"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, order_no, order_type, order_from, oper_name, order_time, shop_id, buyer_id, pay_type,
+        pay_status, pay_time, order_status, comment_status, goods_amount, logistics_amount,
+        discount_amount, order_amount, is_invoice, send_time, complete_time, buyer_remarks,
+        out_trade_no, transaction_id, order_detail, seller_remarks, insert_time, is_delete,is_read
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        ext
+    </sql>
+    <resultMap id="mallTradeOrderResultMap" type="com.kuangji.paopao.model.MallTradeOrder">
+        <id column="id" property="id"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="orderType" property="orderType"/>
+        <result column="orderFrom" property="orderFrom"/>
+        <result column="operName" property="operName"/>
+        <result column="orderTime" property="orderTime"/>
+        <result column="shopId" property="shopId"/>
+        <result column="buyerId" property="buyerId"/>
+        <result column="payType" property="payType"/>
+        <result column="payStatus" property="payStatus"/>
+        <result column="payTime" property="payTime"/>
+        <result column="orderStatus" property="orderStatus"/>
+        <result column="commentStatus" property="commentStatus"/>
+        <result column="goodsAmount" property="goodsAmount"/>
+        <result column="logisticsAmount" property="logisticsAmount"/>
+        <result column="discountAmount" property="discountAmount"/>
+        <result column="orderAmount" property="orderAmount"/>
+        <result column="isInvoice" property="isInvoice"/>
+        <result column="sendTime" property="sendTime"/>
+        <result column="completeTime" property="completeTime"/>
+        <result column="buyerRemarks" property="buyerRemarks"/>
+        <result column="outTradeNo" property="outTradeNo"/>
+        <result column="transactionId" property="transactionId"/>
+        <result column="orderDetail" property="orderDetail"/>
+        <result column="sellerRemarks" property="sellerRemarks"/>
+        <result column="ext" property="ext"/>
+    </resultMap>
+
+    <sql id="mallTradeOrderColumns">
+		mall_trade_order.ID AS "id",
+		mall_trade_order.UPDATE_TIME AS "updateTime",
+		mall_trade_order.INSERT_TIME AS "insertTime",
+		mall_trade_order.IS_DELETE AS "isDelete",
+		mall_trade_order.ORDER_NO AS "orderNo",
+		mall_trade_order.ORDER_TYPE AS "orderType",
+		mall_trade_order.ORDER_FROM AS "orderFrom",
+		mall_trade_order.OPER_NAME AS "operName",
+		mall_trade_order.ORDER_TIME AS "orderTime",
+		mall_trade_order.SHOP_ID AS "shopId",
+		mall_trade_order.BUYER_ID AS "buyerId",
+		mall_trade_order.PAY_TYPE AS "payType",
+		mall_trade_order.PAY_STATUS AS "payStatus",
+		mall_trade_order.PAY_TIME AS "payTime",
+		mall_trade_order.ORDER_STATUS AS "orderStatus",
+		mall_trade_order.COMMENT_STATUS AS "commentStatus",
+		mall_trade_order.GOODS_AMOUNT AS "goodsAmount",
+		mall_trade_order.LOGISTICS_AMOUNT AS "logisticsAmount",
+		mall_trade_order.DISCOUNT_AMOUNT AS "discountAmount",
+		mall_trade_order.ORDER_AMOUNT AS "orderAmount",
+		mall_trade_order.IS_INVOICE AS "isInvoice",
+		mall_trade_order.SEND_TIME AS "sendTime",
+		mall_trade_order.COMPLETE_TIME AS "completeTime",
+		mall_trade_order.BUYER_REMARKS AS "buyerRemarks",
+		mall_trade_order.OUT_TRADE_NO AS "outTradeNo",
+		mall_trade_order.TRANSACTION_ID AS "transactionId",
+		mall_trade_order.ORDER_DETAIL AS "orderDetail",
+		mall_trade_order.SELLER_REMARKS AS "sellerRemarks",
+		mall_trade_order.EXT AS "ext"
+	</sql>
+
+    <sql id="mallTradeOrderJoins">
+
+    </sql>
+    <select id="get" resultMap="mallTradeOrderResultMap">
+        SELECT
+        <include refid="mallTradeOrderColumns"/>
+        FROM mall_trade_order
+        <include refid="mallTradeOrderJoins"/>
+        <where>
+            IS_DELETE=0
+            AND mall_trade_order.ID = #{id}
+        </where>
+    </select>
+
+    <select id="getMallTradeOrderByOrderNo" resultType="com.kuangji.paopao.vo.MQTradeOrderVO">
+		SELECT
+		mall_trade_order.ORDER_NO AS "orderNo",
+		mall_trade_order.order_status AS "orderStatus",
+		mall_trade_order.SHOP_ID AS "shopId",
+		mall_trade_order.BUYER_ID AS "buyerId",
+		mall_trade_order.EXT AS "ext",
+		mall_trade_order_goods.GOODS_ID AS "goodsId",
+		mall_trade_order_goods.BUY_COUNT  AS "buyCount",
+		mall_trade_order_goods.COUPON_ID AS "couponId",
+		mall_goods.expires,
+		mall_goods.sell_point_text sellPointText
+		FROM
+		mall_trade_order,mall_trade_order_goods,mall_goods
+		WHERE
+		mall_trade_order.IS_DELETE=0
+		AND     mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+		AND     mall_goods.id= mall_trade_order_goods.goods_id
+		AND     mall_trade_order.ORDER_NO = #{orderNo}
+		LIMIT 1
+	</select>
+
+
+    <select id="list" resultMap="mallTradeOrderResultMap">
+        SELECT
+        <include refid="mallTradeOrderColumns"/>
+        FROM mall_trade_order
+        <include refid="mallTradeOrderJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+    <select id="listConsultantMallTradeOrder" resultType="com.kuangji.paopao.vo.MallTradeOrderVO">
+        SELECT
+        mall_trade_order.ID AS id,
+        mall_trade_order.ORDER_NO AS orderNo,
+        mall_trade_order.ORDER_TIME AS orderTime,
+        mall_trade_order.ORDER_AMOUNT AS orderAmount,
+        mall_trade_order.DISCOUNT_AMOUNT AS discountAmount,
+        mall_trade_order.ORDER_STATUS orderStatus,
+        mall_trade_order.EXT AS ext,
+        user.ID AS consultantId,
+        user.REAL_NAME AS realName,
+        CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        user.head_img_size AS "headImgSize",
+        user.easemob_id AS "easemobId",
+        mall_goods.GOODS_CLASS AS goodsClass,
+        mall_goods.SELL_POINT_TEXT AS goodsClassName,
+        mall_goods.SHARE_TEXT AS goodsTime,
+        mall_goods.STOCK AS stock,
+        mall_trade_order.PAY_STATUS AS payStatus
+
+        FROM
+        mall_trade_order
+        LEFT JOIN
+        user
+        ON
+        user.ID=mall_trade_order.SHOP_ID
+        LEFT JOIN
+        mall_trade_order_goods
+        ON
+        mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+        LEFT JOIN
+        mall_goods
+        ON
+        mall_goods.ID=mall_trade_order_goods.GOODS_ID
+        <where>
+            mall_trade_order.IS_DELETE=0
+            AND mall_trade_order.BUYER_ID=#{id}
+        </where>
+        ORDER BY mall_trade_order.ID DESC
+
+    </select>
+
+
+    <select id="listAll" resultMap="mallTradeOrderResultMap">
+        SELECT
+        <include refid="mallTradeOrderColumns"/>
+        FROM mall_trade_order
+        <include refid="mallTradeOrderJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+    <insert id="insertBatch">
+        INSERT INTO mall_trade_order(
+        ID,
+        UPDATE_TIME,
+        INSERT_TIME,
+        IS_DELETE,
+        ORDER_NO,
+        ORDER_TYPE,
+        ORDER_FROM,
+        OPER_NAME,
+        ORDER_TIME,
+        SHOP_ID,
+        BUYER_ID,
+        PAY_TYPE,
+        PAY_STATUS,
+        PAY_TIME,
+        ORDER_STATUS,
+        COMMENT_STATUS,
+        GOODS_AMOUNT,
+        LOGISTICS_AMOUNT,
+        DISCOUNT_AMOUNT,
+        ORDER_AMOUNT,
+        IS_INVOICE,
+        SEND_TIME,
+        COMPLETE_TIME,
+        BUYER_REMARKS,
+        OUT_TRADE_NO,
+        TRANSACTION_ID,
+        ORDER_DETAIL,
+        SELLER_REMARKS,
+        EXT
+        )
+        VALUES
+        <foreach collection="list" item="mallTradeOrder" separator=",">
+            (
+            #{mallTradeOrder.id},
+            NOW(),
+            NOW(),
+            #{mallTradeOrder.isDelete},
+            #{mallTradeOrder.orderNo},
+            #{mallTradeOrder.orderType},
+            #{mallTradeOrder.orderFrom},
+            #{mallTradeOrder.operName},
+            #{mallTradeOrder.orderTime},
+            #{mallTradeOrder.shopId},
+            #{mallTradeOrder.buyerId},
+            #{mallTradeOrder.payType},
+            #{mallTradeOrder.payStatus},
+            #{mallTradeOrder.payTime},
+            #{mallTradeOrder.orderStatus},
+            #{mallTradeOrder.commentStatus},
+            #{mallTradeOrder.goodsAmount},
+            #{mallTradeOrder.logisticsAmount},
+            #{mallTradeOrder.discountAmount},
+            #{mallTradeOrder.orderAmount},
+            #{mallTradeOrder.isInvoice},
+            #{mallTradeOrder.sendTime},
+            #{mallTradeOrder.completeTime},
+            #{mallTradeOrder.buyerRemarks},
+            #{mallTradeOrder.outTradeNo},
+            #{mallTradeOrder.transactionId},
+            #{mallTradeOrder.orderDetail},
+            #{mallTradeOrder.sellerRemarks},
+            #{mallTradeOrder.ext}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="logicDeleteById">
+		UPDATE  mall_trade_order SET
+		IS_DELETE=1
+		WHERE
+		IS_DELETE=0
+		AND ID = #{id}
+	</update>
+
+
+    <select id="listConsultantMallTradeOrderWork" resultType="com.kuangji.paopao.vo.ConsultantMallTradeOrderVO">
+		SELECT
+			mall_trade_order.id AS id,
+			mall_trade_order.order_no AS  orderNo,
+			mall_trade_order.order_time AS orderTime,
+			mall_trade_order.order_amount AS  orderAmount,
+			mall_trade_order.DISCOUNT_AMOUNT AS  discountAmount,
+			mall_trade_order.ORDER_STATUS orderStatus,
+			mall_trade_order.EXT AS ext,
+			user.ID AS memberId,
+			user.real_name AS realName,
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+       		user.head_img_size AS "headImgSize",
+			user.easemob_id AS "easemobId",
+			mall_goods.goods_class AS goodsClass,
+			mall_goods.SELL_POINT_TEXT AS goodsClassName,
+			mall_goods.SHARE_TEXT AS goodsTime,
+			mall_goods.STOCK AS stock,
+			mall_trade_order.pay_status AS  payStatus
+			
+		FROM
+			mall_trade_order
+		LEFT JOIN
+			user
+		ON
+			user.ID=mall_trade_order.buyer_id
+		LEFT JOIN
+			mall_trade_order_goods
+		ON
+			mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+		LEFT JOIN
+			mall_goods
+		ON
+			mall_goods.ID=mall_trade_order_goods.GOODS_ID
+		WHERE
+			mall_trade_order.IS_DELETE=0
+			AND  mall_trade_order.shop_id=#{consultantId}
+			AND  mall_trade_order.pay_status in(0,1)
+			AND  mall_trade_order.order_status in(0,1,2)
+		ORDER BY mall_trade_order.ID DESC
+		
+	</select>
+
+    <select id="listConsultantMallTradeOrderEnd" resultType="com.kuangji.paopao.vo.ConsultantMallTradeOrderVO">
+		SELECT
+			mall_trade_order.id AS id,
+			mall_trade_order.order_no AS  orderNo,
+			mall_trade_order.order_time AS orderTime,
+			mall_trade_order.order_amount AS  orderAmount,
+			mall_trade_order.DISCOUNT_AMOUNT AS  discountAmount,
+			mall_trade_order.ORDER_STATUS orderStatus,
+			mall_trade_order.EXT AS ext,
+			user.ID AS memberId,
+			user.real_name AS realName,
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        	user.head_img_size AS "headImgSize",
+			CONCAT("pu",user.id) AS "easemobId",
+			mall_goods.goods_class AS goodsClass,
+			mall_goods.SELL_POINT_TEXT AS goodsClassName,
+			mall_goods.SHARE_TEXT AS goodsTime,
+			mall_goods.STOCK AS stock,
+			mall_trade_order.pay_status AS  payStatus
+			
+		FROM
+			mall_trade_order
+		LEFT JOIN
+			user
+		ON
+			user.ID=mall_trade_order.buyer_id
+		LEFT JOIN
+			mall_trade_order_goods
+		ON
+			mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+		LEFT JOIN
+			mall_goods
+		ON
+			mall_goods.ID=mall_trade_order_goods.GOODS_ID
+		WHERE
+			mall_trade_order.IS_DELETE=0
+			AND  mall_trade_order.shop_id=#{consultantId}
+			AND  mall_trade_order.pay_status in(1,0)
+			AND  mall_trade_order.order_status in(-1,-2,10)
+		ORDER BY mall_trade_order.ID DESC
+		
+	</select>
+
+
+    <select id="getConsultantMallTradeOrderDetailsVO"
+            resultType="com.kuangji.paopao.vo.ConsultantMallTradeOrderDetailsVO">
+		SELECT
+			mall_trade_order.id AS id,
+			mall_trade_order.order_no AS  orderNo,
+			mall_trade_order.order_time AS orderTime,
+			mall_trade_order.order_amount AS  orderAmount,
+			mall_trade_order.goods_amount AS "goodsAmount",
+			mall_trade_order.ORDER_STATUS orderStatus,
+			mall_trade_order.EXT AS ext,
+			user.ID AS memberId,
+			user.real_name AS realName,
+		    CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        	user.head_img_size AS "headImgSize",
+			user.easemob_id AS "easemobId",
+			mall_goods.goods_class AS goodsClass,
+			mall_goods.SELL_POINT_TEXT AS goodsClassName,
+			mall_goods.SHARE_TEXT AS goodsTime,
+			mall_goods.STOCK AS stock,
+			mall_trade_order.member_case_id AS memberCaseId,
+			mall_trade_order.pay_status AS  payStatus,
+			_coupon.goods_name AS "couponName",
+			IFNULL(_coupon.goods_name, 0) AS "isCoupon"
+			
+		FROM
+			mall_trade_order
+		LEFT JOIN
+			user
+		ON
+			user.id=mall_trade_order.buyer_id
+		LEFT JOIN
+			mall_trade_order_goods
+		ON
+			mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+		LEFT JOIN
+			mall_goods
+		ON
+			mall_goods.ID=mall_trade_order_goods.GOODS_ID
+		LEFT JOIN
+				consultation_order
+		ON
+			consultation_order.order_no=mall_trade_order.order_no
+		LEFT JOIN
+				mall_goods _coupon
+		ON
+			_coupon.id=mall_trade_order_goods.coupon_id	
+		WHERE
+			mall_trade_order.IS_DELETE=0
+			AND  mall_trade_order.shop_id=#{consultantId}
+			AND  mall_trade_order.order_no=#{orderNo}
+			ORDER BY mall_trade_order.ID DESC
+			LIMIT 1
+	</select>
+
+    <select id="listConsultantMallTradeOrderDetailsVO"
+            resultType="com.kuangji.paopao.vo.ConsultantMallTradeOrderDetailsVO">
+		SELECT
+			mall_trade_order.id AS id,
+			mall_trade_order.order_no AS  orderNo,
+			mall_trade_order.order_time AS orderTime,
+			mall_trade_order.goods_amount AS  goodsAmount,
+			mall_trade_order.order_amount AS  orderAmount,
+			mall_trade_order.DISCOUNT_AMOUNT AS  discountAmount,
+			mall_trade_order.ORDER_STATUS orderStatus,
+			mall_trade_order.EXT AS ext,
+			user.ID AS memberId,
+			user.real_name AS realName,
+			CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+        	user.head_img_size AS "headImgSize",
+			user.easemob_id AS easemobId,
+			mall_goods.goods_class AS goodsClass,
+			mall_goods.SELL_POINT_TEXT AS goodsClassName,
+			mall_goods.SHARE_TEXT AS goodsTime,
+			mall_goods.STOCK AS stock,
+			mall_trade_order.member_case_id AS memberCaseId,
+			mall_trade_order.pay_status AS  payStatus,
+			if(mall_trade_order_goods.coupon_id=0,0,1) AS "isCouponId"
+			
+		FROM
+			mall_trade_order,user,mall_trade_order_goods,mall_goods
+	
+		WHERE
+			mall_trade_order.IS_DELETE=0
+			AND user.ID=mall_trade_order.buyer_id
+			AND mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+			AND mall_goods.ID=mall_trade_order_goods.GOODS_ID
+			AND  mall_trade_order.shop_id=#{consultantId}
+			AND  mall_trade_order.buyer_id=#{memberId}
+			AND  mall_trade_order.order_status in (1,2,10)
+			ORDER BY mall_trade_order.ID DESC
+	</select>
+
+
+    <select id="listConsultantMallTradeDiagnosis" resultType="com.kuangji.paopao.vo.ConsultantOrderDiagnosisVO">
+  
+	    SELECT
+	       consultant_order_diagnosis.id,
+	   	   consultant_order_diagnosis.content AS "content",
+	       consultant_order_diagnosis.order_no AS "orderNo",
+	       consultant_order_diagnosis.content_type AS "contentType",
+	       user.real_name AS "realName",
+	       user.update_time AS "updateTime"
+	 	FROM 
+			mall_trade_order 
+	 	LEFT JOIN
+			consultant_order_diagnosis
+		ON 
+			mall_trade_order.order_no=mall_trade_order.order_no
+		LEFT JOIN 
+		        user  
+		 ON     
+			user.id=  mall_trade_order.shop_id	
+	   WHERE
+	     	consultant_order_diagnosis.is_delete=0
+	     AND
+	     	mall_trade_order.is_delete=0
+	     AND
+	    	 consultant_order_diagnosis.order_no=#{orderNo}
+	     AND  	user.id=#{consultantId}
+	     GROUP BY   consultant_order_diagnosis.id	 
+	  
+    </select>
+
+    <select id="listConsultantWorkMemberMallTradeOrder"
+            resultType="com.kuangji.paopao.vo.ConsultantWorkMemberMallTradeOrderVO">
+		SELECT
+			mall_trade_order.ID AS id,
+			mall_trade_order.order_no AS "orderNo",
+			mall_goods.sell_point_text AS "goodsClassName",
+			user.ID AS "memberId",
+			user.real_name AS "realName",
+			user.HEAD_IMG AS "headImg",
+			mall_trade_order.ext AS "ext",
+			mall_trade_order.order_amount AS "orderAmount",
+			mall_trade_order.order_status AS "orderStatus"
+		FROM
+			mall_trade_order
+		LEFT JOIN
+			user
+		ON
+			user.ID=mall_trade_order.buyer_id
+		LEFT JOIN
+			mall_trade_order_goods
+		ON
+			mall_trade_order_goods.ORDER_NO=mall_trade_order.ORDER_NO
+		LEFT JOIN
+			mall_goods
+		ON
+			mall_goods.ID=mall_trade_order_goods.GOODS_ID
+		WHERE
+			mall_trade_order.IS_DELETE=0
+			AND  mall_trade_order.shop_id=#{consultantId}
+			AND  mall_trade_order.pay_status=1
+			AND  mall_trade_order.order_status=10
+			AND mall_trade_order.order_amount>0
+			ORDER BY mall_trade_order.ID DESC
+		
+	</select>
+
+
+    <select id="listMallTradeOrderByOrderNos"
+            resultType="com.kuangji.paopao.vo.ConsultationWorkSupervisorMallTradeOrderVO">
+
+        select
+        mall_trade_order.order_no AS "orderNo",
+        mall_trade_order.order_amount AS "orderAmount"
+        FROM
+        mall_trade_order
+        WHERE
+        mall_trade_order.IS_DELETE=0
+        AND mall_trade_order.order_status=10
+        AND mall_trade_order.shop_id=#{shopId}
+        AND mall_trade_order.order_no in
+        <foreach collection="orderNos" item="orderNo" open="(" separator="," close=")" index="index">
+            #{orderNo}
+        </foreach>
+
+    </select>
+
+
+    <update id="updateMallTradeOrderWrong">
+  	
+    UPDATE 
+    	mall_trade_order 
+    SET
+    	pay_time=now(),
+        order_status=-10
+    WHERE
+        IS_DELETE=0 
+        AND order_no= #{orderNo}
+  </update>
+
+
+    <update id="updateSetMealPaySuccess">
+  	
+    UPDATE 
+    	mall_trade_order 
+    SET
+    	pay_time=now(),
+        order_status=1,
+        pay_status=1
+    WHERE
+        IS_DELETE=0 
+        AND order_no= #{orderNo}
+  </update>
+
+
+    <update id="updateOrderRead">
+  	
+    UPDATE 
+    	mall_trade_order 
+    SET
+    	is_read=1
+    WHERE
+        IS_DELETE=0 
+        AND shop_id= #{consultantId}
+        AND is_read=0
+  </update>
+
+
+    <update id="updateOrderConfirm">
+  	
+    UPDATE 
+    	mall_trade_order 
+    SET
+    	update_time=now(),
+        order_status=2
+    WHERE
+        IS_DELETE=0
+        AND  order_status=1
+        AND pay_status=1
+        AND order_no= #{orderNo}
+        AND shop_id=#{consultantId}
+  </update>
+
+    <update id="updateOrderCancel">
+    UPDATE 
+    	mall_trade_order 
+    SET
+    	update_time=now(),
+        order_status=-2
+    WHERE
+        IS_DELETE=0
+        AND  order_status=0
+        AND pay_status=0
+        AND ext=#{ext}
+        AND order_no != #{orderNo}  
+  </update>
+
+
+    <select id="listConsultantTypeByOrderNos" resultType="String">
+        SELECT
+
+        member_case.consultant_type
+
+        FROM
+        mall_trade_order
+
+        LEFT JOIN
+
+        member_case
+        ON
+        mall_trade_order.is_delete=0
+        AND mall_trade_order.member_case_id=member_case.id
+        AND mall_trade_order.order_no in
+        <foreach collection="orderNos" item="orderNo" open="(" separator="," close=")" index="index">
+            #{orderNo}
+        </foreach>
+
+    </select>
+
+    <select id="getMallTradeOrderByOrder" resultType="com.kuangji.paopao.model.MallTradeOrder">
+   	SELECT 
+   		 mall_trade_order.id AS "id",
+  		 mall_trade_order.order_no AS "orderNo",
+		 mall_trade_order.order_amount AS "orderAmount",
+		 mall_trade_order.order_status AS "orderStatus",
+		 mall_trade_order.pay_status AS "payStatus",
+		 mall_trade_order.order_time  AS "orderTime",
+		 mall_trade_order.ext  AS "ext",
+		 mall_trade_order.shop_id  AS "shopId",
+		 mall_trade_order.buyer_id  AS "buyerId",
+		 mall_trade_order.order_type  AS "orderType"
+	  FROM
+		mall_trade_order
+	 WhERE
+		mall_trade_order.is_delete=0
+    	AND  mall_trade_order.order_no= #{orderNo}
+  </select>
+
+
+    <select id="listConsultantMallTradeOrderByGoodsClass" resultType="com.kuangji.paopao.admin.vo.MallTradeOrderVO">
+      SELECT
+        mall_trade_order.ID AS id,
+        mall_trade_order.ORDER_NO AS orderNo,
+        mall_trade_order.order_type AS orderType,
+        mall_trade_order.pay_type AS payType,
+        mall_trade_order.ORDER_TIME AS orderTime,
+        mall_trade_order.goods_amount AS goodsAmount,
+        mall_trade_order.order_amount AS orderAmount,
+        mall_trade_order.DISCOUNT_AMOUNT AS discountAmount,
+        mall_trade_order.ORDER_STATUS orderStatus,
+        mall_trade_order.EXT AS ext,
+        mall_trade_order.seller_remarks AS goodsClassName,
+        user.ID AS consultantId,
+        user.real_name AS consultantRealName,
+        _user.ID AS buyerId,
+        _user.real_name AS buyerRealName,
+        mall_trade_order.pay_status AS payStatus
+
+        FROM
+        mall_trade_order,user ,user _user
+        WHERE
+        mall_trade_order.is_delete=0
+        AND _user.ID=mall_trade_order.buyer_id
+        AND user.ID=mall_trade_order.SHOP_ID
+        <if test="userIds !=null and userIds.size>0">
+            AND user.ID in
+           <foreach collection="userIds" item="userId" open="(" separator="," close=")" index="index">
+               #{userId}
+           </foreach>
+        </if>
+        <if test="goodsClass !=null and  goodsClass !=0">
+            AND mall_trade_order.order_type=#{goodsClass}
+        </if>
+        <if test="userName !=null and  userName !=''">
+            AND _user.user_name=#{userName}
+        </if>
+        <if test="consultantUserName !=null and  consultantUserName !=''">
+            AND user.user_name=#{consultantUserName}
+        </if>
+        <if test="orderTime !=null and  orderTime !='' and  orderTime !='Invalid date'">
+            AND mall_trade_order.order_time >= #{orderTime}
+        </if>
+        <if test="orderStatus !=null">
+            AND mall_trade_order.order_status = #{orderStatus}
+        </if>
+        <if test="orderNo !=null and  orderNo !=''">
+            AND mall_trade_order.order_no like concat(#{orderNo},'%')
+        </if>
+        ORDER BY mall_trade_order.ID DESC
+
+    </select>
+    <update id="updateOrderPayStatus">
+        UPDATE  
+        	mall_trade_order 
+        SET
+ 			mall_trade_order.pay_status=1,
+ 			mall_trade_order.order_type=#{orderType},
+ 			mall_trade_order.out_trade_no=#{outTradeNo},
+ 			mall_trade_order.order_status=1,
+ 			mall_trade_order.pay_type=#{payType},
+ 			mall_trade_order.pay_time=now()
+        WHERE
+        IS_DELETE=0 
+        AND order_no = #{orderNo}
+    </update>
+    <select id="getSetMealInfo" resultType="com.kuangji.paopao.admin.vo.SetMealInfoVO">
+ 
+    SELECT
+			mall_trade_order.order_no AS "orderNo",
+			mall_trade_order.order_type AS "orderType",
+			mall_trade_order.order_from AS "orderFrom",
+			mall_trade_order.oper_name AS "operName",
+			mall_trade_order.order_time AS  "orderTime",
+			user.real_name AS "consultantRealName",
+			_user.real_name AS "memberRealName",
+			mall_trade_order.pay_type AS "payType",
+			mall_trade_order.pay_status AS "payStatus",
+			mall_trade_order.pay_time AS "payTime",
+			mall_trade_order.order_status AS "orderStatus",
+			mall_trade_order.goods_amount AS "goodsAmount",
+			mall_trade_order.discount_amount AS "discountAmount",
+			mall_trade_order.order_amount AS "orderAmount",
+			mall_trade_order.out_trade_no AS "outTradeNo",
+			mall_trade_order.order_detail AS "orderDetail",
+			mall_trade_order.ext AS "ext",
+			member_case.detailed_description AS "detailedDescription",
+			consultation_set_meal_order.consultation_number  AS "consultatioNumber",
+			member_case.consultant_type AS "consultantType",
+			member_case.is_consultant AS "isConsultant",
+			member_case.sex AS "sex"
+	FROM
+		mall_trade_order,consultation_set_meal_order,user,user _user,member_case
+	WHERE
+		mall_trade_order.is_delete=0
+		AND mall_trade_order.order_no=consultation_set_meal_order.order_no
+		AND mall_trade_order.id=#{id}
+		AND mall_trade_order.shop_id=user.id
+		AND mall_trade_order.buyer_id=_user.id
+		AND mall_trade_order.member_case_id=member_case.id
+		LIMIT 1
+    </select>
+
+
+    <select id="getOrderInfo" resultType="com.kuangji.paopao.admin.vo.OrderInfoVO">
+ 
+    SELECT
+			mall_trade_order.order_no AS "orderNo",
+			mall_trade_order.order_type AS "orderType",
+			mall_trade_order.order_from AS "orderFrom",
+			mall_trade_order.oper_name AS "operName",
+			mall_trade_order.order_time AS  "orderTime",
+			user.real_name AS "consultantRealName",
+			_user.real_name AS "memberRealName",
+			mall_trade_order.pay_type AS "payType",
+			mall_trade_order.pay_status AS "payStatus",
+			mall_trade_order.pay_time AS "payTime",
+			mall_trade_order.order_status AS "orderStatus",
+			mall_trade_order.goods_amount AS "goodsAmount",
+			mall_trade_order.discount_amount AS "discountAmount",
+			mall_trade_order.order_amount AS "orderAmount",
+			mall_trade_order.out_trade_no AS "outTradeNo",
+			mall_trade_order.order_detail AS "orderDetail",
+			mall_trade_order.ext AS "ext",
+			member_case.detailed_description AS "detailedDescription",
+			member_case.consultant_type AS "consultantType",
+			member_case.is_consultant AS "isConsultant",
+			member_case.sex AS "sex"
+	FROM
+		mall_trade_order,consultation_order,user,user _user,member_case
+	WHERE
+		mall_trade_order.is_delete=0
+		AND mall_trade_order.order_no=consultation_order.order_no
+		AND mall_trade_order.id=#{id}
+		AND mall_trade_order.shop_id=user.id
+		AND mall_trade_order.buyer_id=_user.id
+		AND mall_trade_order.member_case_id=member_case.id
+		LIMIT 1
+    </select>
+
+
+    <select id="getCountOrderEndByUserId" resultType="int">
+     
+		SELECT 
+				COUNT(*)
+		FROM 
+		 		mall_trade_order
+		WHERE 
+				mall_trade_order.is_delete=0
+		AND 
+			mall_trade_order.order_status=10
+		 
+		AND	mall_trade_order.buyer_id=#{userId}
+			
+   </select>
+
+</mapper>

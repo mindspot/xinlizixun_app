@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.PlatformWorkModeMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.PlatformWorkMode">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="work_val" jdbcType="VARCHAR" property="workVal" />
+    <result column="work_time" jdbcType="INTEGER" property="workTime" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="term_of_validity" jdbcType="INTEGER" property="termOfValidity" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, work_val, work_time, type, term_of_validity,  status, insert_time, 
+    is_delete
+  </sql>
+  
+  
+    <select id="listWork" resultMap="BaseResultMap">
+        SELECT
+       	id,	work_val, work_time, type, term_of_validity
+       		
+        FROM platform_work_mode 
+        
+        WHERE 
+       	   is_delete=0
+     	AND status=1
+     	AND id in
+     	<foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+    
+      <select id="listWorkLable" resultType="com.kuangji.paopao.vo.PlatformWorkModeVO">
+        SELECT
+       	id,	work_val, work_time, type, term_of_validity
+       		
+        FROM platform_work_mode 
+        
+        WHERE 
+       	   is_delete=0
+     	AND status=1
+     
+    </select>
+    <resultMap id="workResultMap" type="com.kuangji.paopao.model.PlatformWorkMode">
+        <id column="id" property="id"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="workVal" property="workVal"/>
+        <result column="workTime" property="workTime"/>
+        <result column="type" property="type"/>
+        <result column="termOfValidity" property="termOfValidity"/>
+        <result column="status" property="status"/>
+
+
+
+    </resultMap>
+
+    <sql id="workColumns">
+        work.ID AS "id",
+        work.UPDATE_TIME AS "updateTime",
+        work.INSERT_TIME AS "insertTime",
+        work.IS_DELETE AS "isDelete",
+        work.WORK_VAL AS "workVal",
+        work.WORK_TIME AS "workTime",
+        work.TYPE AS "type",
+        work.TERM_OF_VALIDITY AS "termOfValidity",
+        work.STATUS AS "status"
+
+    </sql>
+
+    <sql id="workJoins">
+
+    </sql>
+
+    <select id="get" resultMap="workResultMap">
+        SELECT
+        <include refid="workColumns" />
+        FROM platform_work_mode <include refid="workJoins" />
+        <where>
+            IS_DELETE=0
+            AND work.ID = #{id}
+
+        </where>
+    </select>
+
+    <select id="list" resultMap="workResultMap">
+        SELECT
+        <include refid="workColumns" />
+        FROM platform_work_mode <include refid="workJoins" />
+        <where>
+            IS_DELETE=0
+
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="workResultMap">
+        SELECT
+        <include refid="workColumns" />
+        FROM platform_work_mode <include refid="workJoins" />
+        <where>
+            IS_DELETE=0
+            AND  work.STATUS=1
+        </where>
+    </select>
+
+
+    <insert id="insertBatch">
+        INSERT INTO platform_work_mode(
+        ID,
+        UPDATE_TIME,
+        INSERT_TIME,
+        IS_DELETE,
+        WORK_VAL,
+        WORK_TIME,
+        TYPE,
+        TERM_OF_VALIDITY
+        )
+        VALUES
+        <foreach collection ="list" item="work" separator =",">
+            (
+            #{work.id},
+            NOW(),
+            NOW(),
+            #{work.isDelete},
+            #{work.workVal},
+            #{work.workTime},
+            #{work.type},
+            #{work.termOfValidity}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="updateWorkStatus">
+        UPDATE platform_work_mode SET
+        UPDATE_TIME = NOW(),
+        STATUS = #{status}
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+
+
+
+
+    <update id="logicDeleteById">
+        UPDATE  platform_work_mode SET
+        IS_DELETE=1
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+
+</mapper>

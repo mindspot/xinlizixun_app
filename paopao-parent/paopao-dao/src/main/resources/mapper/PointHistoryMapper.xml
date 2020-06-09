@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.PointHistoryMapper">
+	<resultMap id="BaseResultMap"
+		type="com.kuangji.paopao.model.consultant.PointHistory">
+		<!-- WARNING - @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="from_user_id" jdbcType="INTEGER" property="fromUserId" />
+		<result column="to_user_id" jdbcType="INTEGER" property="toUserId" />
+		<result column="point" jdbcType="INTEGER" property="point" />
+		<result column="balance_before" jdbcType="INTEGER" property="balanceBefore" />
+		<result column="balance" jdbcType="INTEGER" property="balance" />
+		<result column="point_type" jdbcType="BIT" property="pointType" />
+		<result column="handle_by" jdbcType="BIGINT" property="handleBy" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="create_by" jdbcType="BIGINT" property="createBy" />
+		<result column="create_dt" jdbcType="TIMESTAMP" property="createDt" />
+		<result column="modified_by" jdbcType="BIGINT" property="modifiedBy" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbg.generated -->
+		id, from_user_id, to_user_id, point, balance_before, balance,
+		point_type, handle_by,
+		remark, create_by, create_dt, modified_by
+	</sql>
+	<resultMap id="PointHistoryResultMap" extends="BaseResultMap"
+		type="com.kuangji.paopao.dto.result.PointHistoryResult">
+		<association property="fromUser" column="from_user_id"
+			select="com.kuangji.paopao.mapper.UserMapper.selectByPrimaryKey"></association>
+		<association property="toUser" column="to_user_id"
+			select="com.kuangji.paopao.mapper.UserMapper.selectByPrimaryKey"></association>
+	</resultMap>
+	<select id="listPointHistoryResult" resultMap="PointHistoryResultMap">
+		SELECT
+		<include refid="Base_Column_List"></include>
+		FROM
+		point_history
+		ORDER By id DESC
+	</select>
+
+	<select id="listPointHistory" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"></include>
+		FROM
+			point_history
+		WHERE
+			(point_history.from_user_id=0 AND point_history.to_user_id=#{userId})
+		OR
+			(point_history.from_user_id=#{userId} AND point_history.to_user_id=0)
+		ORDER By id DESC
+	</select>
+
+
+
+</mapper>

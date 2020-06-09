@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/order_select_time_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/global_white_color"
+    android:gravity="center|left"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/order_select_time_item_no_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/order_select_time_unselect_background_share"
+        android:gravity="center"
+        android:text="已满"
+        android:textColor="#ff999999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/order_select_time_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/common_theme_border_background_share"
+        android:gravity="center"
+        android:text="11:20"
+        android:textColor="@color/theme_color"
+        android:textSize="10sp" />
+</LinearLayout>

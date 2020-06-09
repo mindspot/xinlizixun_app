@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.TrainingExperienceMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.TrainingExperience">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="start_date" jdbcType="CHAR" property="startDate" />
+    <result column="end_date" jdbcType="CHAR" property="endDate" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="certificate_url" jdbcType="VARCHAR" property="certificateUrl" />
+    <result column="certifier" jdbcType="VARCHAR" property="certifier" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_dt" jdbcType="TIMESTAMP" property="createDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, consultant_id, organization, start_date, end_date, course_name, certificate_url, 
+    certifier, status, remark, create_dt
+  </sql>
+  <select id="listTrainingExperience" resultType="com.kuangji.paopao.model.consultant.TrainingExperience">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM
+    consultant_training_experience
+    WHERE
+    consultant_id = #{consultantId}
+  </select>
+
+  <insert id="insertBatch">
+    INSERT INTO consultant_training_experience(
+     consultant_id, organization, start_date, end_date, course_name, certificate_url,
+    certifier
+    )
+    VALUES
+    <foreach collection ="list" item="item" separator =",">
+      (
+      #{item.consultantId},
+      #{item.organization},
+      #{item.startDate},
+      #{item.endDate},
+      #{item.courseName},
+      #{item.certificateUrl},
+      #{item.certifier}
+      )
+    </foreach>
+  </insert>
+</mapper>

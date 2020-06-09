@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.UserCollectionMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.UserCollection">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="collection_id" jdbcType="INTEGER" property="collectionId" />
+    <result column="collection_type" jdbcType="TINYINT" property="collectionType" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, collection_id, collection_type, insert_time, is_delete
+  </sql>
+
+  <resultMap id="userCollectionResultMap" type="com.kuangji.paopao.model.UserCollection">
+    <id column="id" property="id" />
+    <result column="updateTime" property="updateTime" />
+    <result column="insertTime" property="insertTime" />
+    <result column="isDelete" property="isDelete" />
+    <result column="userId" property="userId" />
+    <result column="collectionId" property="collectionId" />
+    <result column="collectionType" property="collectionType" />
+
+
+
+  </resultMap>
+
+  <sql id="userCollectionColumns">
+    user_collection.ID AS "id",
+    user_collection.UPDATE_TIME AS "updateTime",
+    user_collection.INSERT_TIME AS "insertTime",
+    user_collection.IS_DELETE AS "isDelete",
+    user_collection.USER_ID AS "userId",
+    user_collection.COLLECTION_ID AS "collectionId",
+    user_collection.COLLECTION_TYPE AS "collectionType"
+  </sql>
+
+  <sql id="userCollectionJoins">
+
+  </sql>
+
+
+
+  <select id="get" resultMap="userCollectionResultMap">
+    SELECT
+    <include refid="userCollectionColumns" />
+    FROM user_collection
+    <include refid="userCollectionJoins" />
+    <where>
+      IS_DELETE=0
+      AND user_collection.ID = #{id}
+    </where>
+  </select>
+
+  <select id="getCollect" resultMap="userCollectionResultMap">
+    SELECT
+    <include refid="userCollectionColumns" />
+    FROM user_collection
+    <include refid="userCollectionJoins" />
+    <where>
+      user_collection.USER_ID=#{userId}
+      AND user_collection.COLLECTION_ID=#{shopId}
+    </where>
+  </select>
+
+  <select id="isCollected" resultType="boolean">
+    SELECT
+    COUNT(*)
+    FROM user_collection
+    <include refid="userCollectionJoins" />
+    <where>
+      user_collection.IS_DELETE=0
+      AND user_collection.USER_ID=#{userId}
+      AND user_collection.COLLECTION_ID=#{shopId}
+    </where>
+  </select>
+
+  <select id="list" resultMap="userCollectionResultMap">
+    SELECT
+    <include refid="userCollectionColumns" />
+    FROM user_collection
+    <include refid="userCollectionJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+
+  <select id="listAll" resultMap="userCollectionResultMap">
+    SELECT
+    <include refid="userCollectionColumns" />
+    FROM user_collection
+    <include refid="userCollectionJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+
+  <update id="logicDeleteById">
+    UPDATE user_collection SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+
+  <update id="deleteCollection">
+    DELETE
+    FROM
+    user_collection
+    WHERE
+    IS_DELETE=0
+    AND user_collection.USER_ID=#{userId}
+    AND user_collection.COLLECTION_ID=#{shopId}
+  </update>
+
+</mapper>

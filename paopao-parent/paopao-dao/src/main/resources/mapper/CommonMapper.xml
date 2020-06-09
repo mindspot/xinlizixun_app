@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.CommonMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.Common">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="val" jdbcType="VARCHAR" property="val"/>
+        <result column="val_code" jdbcType="INTEGER" property="valCode"/>
+        <result column="link" jdbcType="VARCHAR" property="link"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="clazz" jdbcType="VARCHAR" property="clazz"/>
+        <result column="lever" jdbcType="INTEGER" property="lever"/>
+        <result column="is_perms" jdbcType="INTEGER" property="isPerms"/>
+        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, val, val_code, link, icon, clazz, lever, is_perms, parent_id, type, sort, remarks,
+        insert_time, is_delete
+    </sql>
+
+    <resultMap id="commonResultMap" type="com.kuangji.paopao.model.Common">
+        <id column="id" property="id"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="val" property="val"/>
+        <result column="valCode" property="valCode"/>
+        <result column="link" property="link"/>
+        <result column="icon" property="icon"/>
+        <result column="clazz" property="clazz"/>
+        <result column="lever" property="lever"/>
+        <result column="isPerms" property="isPerms"/>
+        <result column="parentId" property="parentId"/>
+        <result column="type" property="type"/>
+        <result column="sort" property="sort"/>
+        <result column="remarks" property="remarks"/>
+
+    </resultMap>
+
+    <sql id="commonColumns">
+        common.ID AS "id",
+        common.UPDATE_TIME AS "updateTime",
+        common.INSERT_TIME AS "insertTime",
+        common.IS_DELETE AS "isDelete",
+        common.VAL AS "val",
+        common.VAL_CODE AS "valCode",
+        common.LINK AS "link",
+        common.ICON AS "icon",
+        common.CLAZZ AS "clazz",
+        common.LEVER AS "lever",
+        common.IS_PERMS AS "isPerms",
+        common.PARENT_ID AS "parentId",
+        common.TYPE AS "type",
+        common.SORT AS "sort",
+        common.REMARKS AS "remarks"
+    </sql>
+
+    <sql id="commonJoins">
+
+    </sql>
+
+    <select id="get" resultMap="commonResultMap">
+        SELECT
+        <include refid="commonColumns"/>
+        FROM common
+        <include refid="commonJoins"/>
+        <where>
+            IS_DELETE=0
+            AND common.ID = #{id}
+        </where>
+    </select>
+
+    <select id="getCommonByType" resultMap="commonResultMap">
+        SELECT
+        <include refid="commonColumns"/>
+        FROM common
+        <include refid="commonJoins"/>
+        <where>
+            IS_DELETE=0
+            AND TYPE=#{type}
+            LIMIT 1
+        </where>
+    </select>
+
+
+    <select id="listCommonByType" resultMap="commonResultMap">
+        SELECT
+        <include refid="commonColumns"/>
+        FROM common
+        <include refid="commonJoins"/>
+        <where>
+            IS_DELETE=0
+            AND TYPE=#{type}
+        </where>
+    </select>
+
+
+    <select id="list" resultMap="commonResultMap">
+        SELECT
+        <include refid="commonColumns"/>
+        FROM common
+        <include refid="commonJoins"/>
+        <where>
+            IS_DELETE=0
+            AND TYPE=#{type}
+            <if test="parentId!=0">
+                AND PARENT_ID =#{parentId}
+            </if>
+        </where>
+    </select>
+
+    <select id="listIndexCommon" resultMap="commonResultMap">
+       
+            SELECT
+            <include refid="commonColumns"/>
+            FROM common
+            WHERE
+            IS_DELETE=0
+             AND type IN
+             <foreach collection="list" open="(" close=")" separator="," item="value">
+          			 #{value}
+             </foreach>
+            ORDER BY sort 
+       
+    </select>
+
+
+    <select id="listAll" resultMap="commonResultMap">
+        SELECT
+        <include refid="commonColumns"/>
+        FROM common
+        <include refid="commonJoins"/>
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+    <insert id="insertBatch">
+        INSERT INTO common(
+        ID,
+        UPDATE_TIME,
+        INSERT_TIME,
+        IS_DELETE,
+        VAL,
+        VAL_CODE,
+        LINK,
+        ICON,
+        CLAZZ,
+        LEVER,
+        IS_PERMS,
+        PARENT_ID,
+        TYPE,
+        SORT,
+        REMARKS
+        )
+        VALUES
+        <foreach collection="list" item="common" separator=",">
+            (
+            #{common.id},
+            #{common.updateTime},
+            #{common.insertTime},
+            #{common.isDelete},
+            #{common.val},
+            #{common.valCode},
+            #{common.link},
+            #{common.icon},
+            #{common.clazz},
+            #{common.lever},
+            #{common.isPerms},
+            #{common.parentId},
+            #{common.type},
+            #{common.sort},
+            #{common.remarks}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="logicDeleteById">
+        UPDATE  common SET
+        IS_DELETE=1
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+    <select id="listCommon" resultMap="commonResultMap">
+        SELECT
+        id, val, val_code, link, lever, is_perms,type, parent_id
+        FROM common
+        WHERE
+        is_delete=0
+        AND id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+    <select id="listCommonName" resultType="String">
+        SELECT
+        val
+        FROM common
+        WHERE
+        is_delete=0
+        AND id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="listSetInCommon" resultType="com.kuangji.paopao.admin.vo.CommonVO$CommonLable">
+        SELECT
+        common.id AS "id",
+        common.val AS "val",
+        common.type AS "type",
+        user_label.label_id AS "labelId"
+        FROM
+        common
+        LEFT JOIN
+        user_label
+        ON
+        common.id=user_label.label_id
+        AND user_label.user_id=#{consultantId}
+        WHERE
+        common.type IN
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+        ORDER BY sort 
+    </select>
+
+</mapper>

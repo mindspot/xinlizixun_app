@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_city_popwindow_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:background="@color/global_white_color"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/select_city_popwindow_listview1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:divider="@null" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/global_line_color" />
+
+        <ListView
+            android:id="@+id/select_city_popwindow_listview2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:divider="@null" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/global_white_color"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/counsel_city_tip_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="没有我所在的城市？"
+            android:textColor="#ff999999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/select_city_popwindow_cancle_btn"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/common_theme_border_background_share"
+            android:gravity="center"
+            android:text="不限城市"
+            android:textColor="#ff9ddcaf"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/select_city_popwindow_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#66000000" />
+</LinearLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.MallTradeOrderDiscountMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.MallTradeOrderDiscount">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="un_discount_amount" jdbcType="INTEGER" property="unDiscountAmount" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="discount_amount" jdbcType="INTEGER" property="discountAmount" />
+    <result column="discount_rate" jdbcType="DECIMAL" property="discountRate" />
+    <result column="discount_type" jdbcType="INTEGER" property="discountType" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, order_no, un_discount_amount, is_delete, discount_amount, discount_rate, discount_type, 
+    type_name, insert_time
+  </sql>
+  <resultMap id="mallTradeOrderDiscountResultMap" type="com.kuangji.paopao.model.MallTradeOrderDiscount">
+    <id column="id" property="id"/>
+    <result column="isDelete" property="isDelete"/>
+    <result column="insertTime" property="insertTime"/>
+    <result column="updateTime" property="updateTime"/>
+    <result column="orderNo" property="orderNo"/>
+    <result column="unDiscountAmount" property="unDiscountAmount"/>
+    <result column="discountAmount" property="discountAmount"/>
+    <result column="discountRate" property="discountRate"/>
+    <result column="discountType" property="discountType"/>
+    <result column="typeName" property="typeName"/>
+
+
+
+  </resultMap>
+
+  <sql id="mallTradeOrderDiscountColumns">
+    mall_trade_order_discount.ID AS "id",
+    mall_trade_order_discount.IS_DELETE AS "isDelete",
+    mall_trade_order_discount.INSERT_TIME AS "insertTime",
+    mall_trade_order_discount.UPDATE_TIME AS "updateTime",
+    mall_trade_order_discount.ORDER_NO AS "orderNo",
+    mall_trade_order_discount.UN_DISCOUNT_AMOUNT AS "unDiscountAmount",
+    mall_trade_order_discount.DISCOUNT_AMOUNT AS "discountAmount",
+    mall_trade_order_discount.DISCOUNT_RATE AS "discountRate",
+    mall_trade_order_discount.DISCOUNT_TYPE AS "discountType",
+    mall_trade_order_discount.TYPE_NAME AS "typeName"
+  </sql>
+
+  <sql id="mallTradeOrderDiscountJoins">
+
+  </sql>
+
+  <select id="get" resultMap="mallTradeOrderDiscountResultMap">
+    SELECT
+    <include refid="mallTradeOrderDiscountColumns" />
+    FROM mall_trade_order_discount <include refid="mallTradeOrderDiscountJoins" />
+    <where>
+      IS_DELETE=0
+      AND mall_trade_order_discount.ID = #{id}
+    </where>
+  </select>
+
+  <select id="list" resultMap="mallTradeOrderDiscountResultMap">
+    SELECT
+    <include refid="mallTradeOrderDiscountColumns" />
+    FROM mall_trade_order_discount <include refid="mallTradeOrderDiscountJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+  <select id="listAll" resultMap="mallTradeOrderDiscountResultMap">
+    SELECT
+    <include refid="mallTradeOrderDiscountColumns" />
+    FROM mall_trade_order_discount <include refid="mallTradeOrderDiscountJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+
+
+  <insert id="insertBatch">
+    INSERT INTO mall_trade_order_discount(
+    ID,
+    IS_DELETE,
+    INSERT_TIME,
+    UPDATE_TIME,
+    ORDER_NO,
+    UN_DISCOUNT_AMOUNT,
+    DISCOUNT_AMOUNT,
+    DISCOUNT_RATE,
+    DISCOUNT_TYPE,
+    TYPE_NAME
+    )
+    VALUES
+    <foreach collection ="list" item="mallTradeOrderDiscount" separator =",">
+      (
+      #{mallTradeOrderDiscount.id},
+      #{mallTradeOrderDiscount.isDelete},
+      NOW(),
+      NOW(),
+      #{mallTradeOrderDiscount.orderNo},
+      #{mallTradeOrderDiscount.unDiscountAmount},
+      #{mallTradeOrderDiscount.discountAmount},
+      #{mallTradeOrderDiscount.discountRate},
+      #{mallTradeOrderDiscount.discountType},
+      #{mallTradeOrderDiscount.typeName}
+      )
+    </foreach>
+  </insert>
+
+
+
+  <update id="logicDeleteById">
+    UPDATE  mall_trade_order_discount SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+
+</mapper>

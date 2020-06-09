@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.CertificationMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.Certification">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="certificate_type" jdbcType="INTEGER" property="certificateType" />
+    <result column="certificate_type_name" jdbcType="VARCHAR" property="certificateTypeName" />
+    <result column="certificate_no" jdbcType="VARCHAR" property="certificateNo" />
+    <result column="certificate_age" jdbcType="TINYINT" property="certificateAge" />
+    <result column="certificate_url" jdbcType="VARCHAR" property="certificateUrl" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_dt" jdbcType="TIMESTAMP" property="createDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, consultant_id, certificate_type, certificate_type_name,certificate_no, certificate_age, certificate_url,
+    status, remark, create_dt
+  </sql>
+  <select id="listCertification" resultType="com.kuangji.paopao.model.consultant.Certification">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM
+    consultant_certification
+    WHERE
+    consultant_id = #{consultantId}
+  </select>
+  
+  
+   <select id="listQualifications" resultType="com.kuangji.paopao.vo.QualificationsVO">
+    SELECT
+	 certificate_type_name  AS qualificationsName,
+     CONCAT(certificate_url,certificate_url_size) AS "imgUrl",
+     certificate_url_size       imgUrlSize
+    FROM
+    	consultant_certification,user,consultant
+    WHERE
+    
+    	user.id = #{userId}
+    AND  consultant.id=consultant_certification.consultant_id
+    AND  user.id=consultant.user_id
+  </select>
+
+    <insert id="insertBatch">
+        INSERT INTO consultant_certification(
+        consultant_id, certificate_type, certificate_type_name,certificate_no, certificate_age, certificate_url
+        )
+        VALUES
+        <foreach collection ="list" item="item" separator =",">
+            (
+            #{item.consultantId},
+            #{item.certificateType},
+            #{item.certificateTypeName},
+            #{item.certificateNo},
+            #{item.certificateAge},
+            #{item.certificateUrl}
+            )
+        </foreach>
+    </insert>
+</mapper>

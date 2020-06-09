@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_sort_pop_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/select_sort_pop_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:background="@drawable/select_sort_pop_unselect_background_share"
+        android:gravity="center"
+        android:text="恋爱关系"
+        android:textColor="#ff999999"
+        android:textSize="12sp" />
+</LinearLayout>

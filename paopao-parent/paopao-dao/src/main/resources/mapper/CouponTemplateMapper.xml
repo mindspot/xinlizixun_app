@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.CouponTemplateMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.CouponTemplate">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="no" jdbcType="VARCHAR" property="no"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type" jdbcType="BIT" property="type"/>
+        <result column="max_amount" jdbcType="INTEGER" property="maxAmount"/>
+        <result column="actual_amount" jdbcType="INTEGER" property="actualAmount"/>
+        <result column="provide_qty" jdbcType="INTEGER" property="provideQty"/>
+        <result column="take_qty" jdbcType="INTEGER" property="takeQty"/>
+        <result column="used_qty" jdbcType="INTEGER" property="usedQty"/>
+        <result column="valid_type" jdbcType="BIT" property="validType"/>
+        <result column="valid_start_time" jdbcType="TIMESTAMP" property="validStartTime"/>
+        <result column="valid_end_time" jdbcType="TIMESTAMP" property="validEndTime"/>
+        <result column="valid_days" jdbcType="TINYINT" property="validDays"/>
+        <result column="limit_per_person" jdbcType="INTEGER" property="limitPerPerson"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_by" jdbcType="BIGINT" property="createBy"/>
+        <result column="create_dt" jdbcType="TIMESTAMP" property="createDt"/>
+        <result column="modified_by" jdbcType="BIGINT" property="modifiedBy"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, no, name, type, max_amount, actual_amount, provide_qty, take_qty, used_qty, valid_type,
+        valid_start_time, valid_end_time, valid_days, limit_per_person, url, status, remark,
+        create_by, create_dt, modified_by
+    </sql>
+    <update id="updateStatusByIds">
+        UPDATE
+        coupon_template
+        SET
+        status = #{status}
+        WHERE
+        id in (#{ids})
+    </update>
+    <select id="listCouponTemplate" resultType="com.kuangji.paopao.model.consultant.CouponTemplate">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        coupon_template
+        <where>
+            <if test="keywords != null and keywords != ''">
+                AND (`no` like concat("%",#{keywords},"%") OR `name` like concat("%",#{keywords},"%"))
+            </if>
+            <if test="status != null and status > 0 ">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="listByIds" resultType="com.kuangji.paopao.model.consultant.CouponTemplate">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        coupon_template
+        WHERE
+        id in (#{ids})
+    </select>
+</mapper>

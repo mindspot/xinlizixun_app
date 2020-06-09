@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/counsel_detail_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <View
+            android:layout_width="65dp"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/theme_color"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/counsel_detail_item_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个人介绍："
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/counsel_detail_item_content_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:paddingTop="5dp"
+        android:text="个人介绍atellus mollis orci, sed rhoncus pronin sapien nuncaccuan eget."
+        android:textColor="#ff666666"
+        android:textSize="12sp" />
+</LinearLayout>

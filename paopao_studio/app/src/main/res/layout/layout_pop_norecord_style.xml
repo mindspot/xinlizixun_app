@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_color">
+
+    <LinearLayout
+        android:id="@+id/lay_no_connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_no_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/common_icon_norecord_skin" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_no_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay_no_connect"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="您还没有任何信息记录～～"
+        android:textColor="@color/color_666666"
+        android:textSize="15sp" />
+</RelativeLayout>

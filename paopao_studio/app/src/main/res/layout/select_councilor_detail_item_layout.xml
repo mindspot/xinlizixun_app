@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_councilor_detail_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择案例："
+        android:textColor="#ff333333"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/select_councilor_detail_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="客户案例"
+        android:textColor="#666666"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/select_councilor_detail_remove_img"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:src="@mipmap/councilor_order_list_remove_icon" />
+</LinearLayout>

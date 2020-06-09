@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/disconver_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.ui.title.ToolBarTitleView
+        android:id="@+id/disconver_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="WHITEBG_BLACKTEXT"
+        app:left_button_drawable="@mipmap/common_title_back_icon_skin"
+        app:title_text="发现" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/theme_gray">
+
+            <com.common.webview.custom.XWebView
+                android:id="@+id/disconver_xWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+
+            <LinearLayout
+                android:id="@+id/disconver_dialog_view"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_dialog_progress_back"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/disconver_dialog_tagContent_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/disconver_load_view"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="15dp"
+                    app:SpinKit_Color="#FFF"
+                    app:SpinKit_Style="ThreeBounce" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

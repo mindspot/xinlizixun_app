@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.SupervisedExperienceMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.SupervisedExperience">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="supervisor" jdbcType="VARCHAR" property="supervisor" />
+    <result column="start_date" jdbcType="CHAR" property="startDate" />
+    <result column="end_date" jdbcType="CHAR" property="endDate" />
+    <result column="supervision_orientation" jdbcType="VARCHAR" property="supervisionOrientation" />
+    <result column="supervision_method" jdbcType="BIT" property="supervisionMethod" />
+    <result column="certificate_url" jdbcType="VARCHAR" property="certificateUrl" />
+    <result column="certifier" jdbcType="VARCHAR" property="certifier" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_dt" jdbcType="TIMESTAMP" property="createDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, consultant_id, supervisor, start_date, end_date, supervision_orientation, supervision_method, 
+    certificate_url, certifier, status, remark, create_dt
+  </sql>
+  <select id="listSupervisedExperience" resultType="com.kuangji.paopao.model.consultant.SupervisedExperience">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM
+    consultant_supervised_experience
+    WHERE
+    consultant_id = #{consultantId}
+  </select>
+</mapper>

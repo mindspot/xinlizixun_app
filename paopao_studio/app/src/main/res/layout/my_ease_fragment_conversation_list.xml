@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ease_fragment_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/ease_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:right_button_drawable="@mipmap/common_customer_service"
+        app:title_text="客户列表" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color2" />
+
+    <FrameLayout
+        android:id="@+id/fl_error_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
+
+    <com.hyphenate.easeui.widget.EaseConversationList
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null" />
+</LinearLayout>

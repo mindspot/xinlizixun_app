@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/councilor_list_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="86dp">
+
+    <ImageView
+        android:id="@+id/councilor_list_item_photo"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/councilor_list_item_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/councilor_list_item_photo"
+        android:text="李某"
+        android:textColor="#ff333333"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/councilor_list_item_service_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/councilor_list_item_username"
+        android:text="语音咨询"
+        android:textColor="#ff9ddcaf"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/councilor_list_item_service_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/councilor_list_item_service_type"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/councilor_list_item_photo"
+        android:text="2019-02-02 12：00-12:25"
+        android:textColor="#ff666666"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/councilor_list_item_service_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/councilor_list_item_arrows"
+        android:text="已完结"
+        android:textColor="#ff9ddcaf"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/councilor_list_item_arrows"
+        android:layout_width="9.5dp"
+        android:layout_height="18dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/common_right_arrows_icon" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="25dp"
+        android:background="@color/global_line_color" />
+
+</RelativeLayout>

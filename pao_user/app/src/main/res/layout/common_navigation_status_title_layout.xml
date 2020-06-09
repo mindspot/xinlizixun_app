@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/parentView_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/toolBar_v"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <RelativeLayout
+            android:id="@+id/title_rl"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/left_title_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/left_btn_iv"
+                    style="@style/Text.Title_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="标题左侧图标"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/common_title_back_icon_skin" />
+
+                <TextView
+                    android:id="@+id/left_btn_tv"
+                    style="@style/Text.Title_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/left_btn_iv"
+                    android:text="返回"
+                    android:textColor="@color/global_black_color"
+                    android:textSize="@dimen/title_other_text_size" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/cloose_btn_iv"
+                style="@style/Text.Title_Button"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/left_title_ll"
+                android:adjustViewBounds="true"
+                android:contentDescription="关闭图标"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/common_title_close_icon_skin" />
+
+            <TextView
+                android:id="@+id/title_tv"
+                style="@style/Text.Title"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="标题"
+                android:textColor="@color/global_black_color"
+                android:textSize="@dimen/title_text_size" />
+
+            <LinearLayout
+                android:id="@+id/right_title_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/right_btn_tv"
+                    style="@style/Text.Title_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:text="更多"
+                    android:textColor="@color/global_black_color"
+                    android:textSize="@dimen/title_other_text_size" />
+
+                <ImageView
+                    android:id="@+id/right_btn_iv"
+                    style="@style/Text.Title_Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:contentDescription="标题右侧图标"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+
+            <ui.bar.WebViewProgressBar
+                android:id="@+id/progress_bar_h"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="3dp"
+                android:progressDrawable="@drawable/progressbar_horizontal" />
+
+            <View
+                android:id="@+id/bottom_line_v"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/global_line_color" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantSupervisorOrderDiagnosisUpdateMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultantSupervisorOrderDiagnosisUpdate">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="diagnosis_time" jdbcType="TIMESTAMP" property="diagnosisTime" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, order_no, diagnosis_time, insert_time, update_time, is_delete
+  </sql>
+</mapper>

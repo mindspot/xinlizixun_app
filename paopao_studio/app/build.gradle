@@ -1,0 +1,162 @@
+apply plugin: 'com.android.application'
+android {
+
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+
+    defaultConfig {
+        applicationId 'com.paopao.paopaostudio'// apk的包名
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86'
+            //abiFilters 'armeabi-v7a', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //必须要保证所有的flavor 都属于同一个维度
+        flavorDimensions "default"
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    android {
+        lintOptions { disable 'MissingTranslation', 'ExtraTranslation' }
+    }
+
+    dexOptions {
+        //最大堆内存
+        javaMaxHeapSize "8g"
+        //是否支持大工程模式
+        jumboMode = true
+        //预编译
+        preDexLibraries = true
+        //线程数
+        threadCount = 8
+    }
+
+    //添加我们的签名文件配置
+    signingConfigs {
+        release {
+            storeFile file { "paopao.jks" }
+            storePassword "paopao123456"
+            keyAlias "paopao"
+            keyPassword "paopao123456"
+            v2SigningEnabled true
+        }
+
+        debug {
+            storeFile file { "paopao.jks" }
+            storePassword "paopao123456"
+            keyAlias "paopao"
+            keyPassword "paopao123456"
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            //混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+
+            signingConfig signingConfigs.release
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "Boolean", "IS_RELLEASE", "false"
+        }
+
+        release {
+            //混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+
+            signingConfig signingConfigs.release
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "Boolean", "IS_RELLEASE", "true"
+        }
+    }
+
+    productFlavors {
+        offical {}
+        officalTest{}
+        yyb {}
+    }
+
+    productFlavors.each { flavor ->
+        flavor.manifestPlaceholders = [
+                APP_SCHEME       : "paopaostudio",
+                APP_HOST         : "com.paopao.paopaostudio",
+                MTA_CHANNEL_VALUE: flavor.name,
+                APP_NAME         : flavor.name == "yyb"?"@string/app_name_yyb":"@string/app_name",
+                EASEMOB_APPKEY   : flavor.name == "officalTest" ? "1118200217010246#pao" : "1118200217010246#paopaostudio"
+        ]
+        flavor.buildConfigField "String", "CHANNEL_PREFIX", "\"paopaostudio\""// 渠道号
+        flavor.buildConfigField "String", "APP_SCHEME", "\"paopaostudio\""
+        flavor.buildConfigField "String", "APP_HOST", "\"com.paopao.paopaostudio\""
+        flavor.buildConfigField "String", "USER_AGENT", "\"paopaostudio\""
+        // 分享
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "paopao_studio" + "_v" +
+                    defaultConfig.versionName + "_" + defaultConfig.versionCode + "_" + variant.productFlavors[0].name + "_" +
+                    new Date().format("yyyy-MM-dd") + "_" + buildType.name +
+                    ".apk"
+        }
+    }
+
+    compileOptions {//使用JAVA8解析  invokedynamic requires --min-sdk-version >= 26
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: 'alipaySdk-15.7.3-20200217092932', ext: 'aar')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
+    })
+    //butterKnife注解
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    // 侧滑返回
+    implementation 'me.imid.swipebacklayout.lib:library:1.3.0'
+    // 加载刷新库
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    // Android渠道打包工具Gradle插件
+    implementation 'com.mcxiaoke.packer-ng:helper:2.0.0'
+    //屏幕适配
+    implementation 'me.jessyan:autosize:0.9.5'
+    //网络状态管理
+    implementation 'com.github.Bakumon:StatusLayoutManager:1.0.4'
+    //banner
+    implementation 'com.xhb:xbanner:1.5.1'
+    //tablayout
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'
+    api project(':easeui')
+    api project(':umeng')
+    implementation project(':hmspush')
+    // meizu push
+    implementation 'com.meizu.flyme.internet:push-internal:3.7.0@aar'
+    //选择器
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+}

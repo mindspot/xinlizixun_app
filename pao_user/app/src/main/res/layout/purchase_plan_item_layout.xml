@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/purchase_plan_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/theme_background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/purchase_plan_item_background_layout"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@mipmap/purchase_plan_one_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="17dp">
+
+            <TextView
+                android:id="@+id/purchase_plan_item_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="XXX季度套餐卡"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/purchase_plan_item_yue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剩余11次"
+                android:textColor="#ffffffff"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/purchase_plan_item_datetime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:text="有效期：2019/3/2 — 2019/6/2"
+            android:textColor="#ffffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

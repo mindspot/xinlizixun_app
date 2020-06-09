@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.PlatformWorkingTimeMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.PlatformWorkingTime">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="consultant_work_start" jdbcType="VARCHAR" property="consultantWorkStart"/>
+        <result column="consultant_work_end" jdbcType="VARCHAR" property="consultantWorkEnd"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, consultant_work_start, consultant_work_end, status, insert_time, is_delete
+    </sql>
+
+
+    <select id="get" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM platform_working_time
+        <where>
+            is_delete=0
+            AND id= #{id}
+        </where>
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM platform_working_time
+        <where>
+            is_delete=0
+        </where>
+    </select>
+
+    <select id="listWorkingUserTime" resultType="com.kuangji.paopao.vo.PlatformWorkingTimeVO">
+     SELECT
+        t_pwt.id  AS "platformWorkingTimeId",
+        t_pwt.CONSULTANT_WORK_START AS "consultantWorkStart",
+        t_pwt.CONSULTANT_WORK_END AS "consultantWorkEnd",
+        IFNULL(t_cs.status,t_pwt.status)  AS `status`
+        FROM
+        platform_working_time as t_pwt
+        LEFT JOIN
+        consultant_schedule as t_cs
+        ON
+        t_pwt.ID=t_cs.PLATFORM_WORKING_TIME_ID
+        AND t_cs.user_id=#{userId}
+        AND t_cs.IS_DELETE=0
+        WHERE
+        t_pwt.IS_DELETE=0
+  </select>
+
+    <insert id="insertBatch">
+        INSERT INTO platform_working_time(
+        consultant_work_start,
+        consultant_work_end,
+        status
+        )
+        VALUES
+        <foreach collection="list" item="platformWorkingTime"
+                 separator=",">
+            (
+            #{platformWorkingTime.consultantWorkStart},
+            #{platformWorkingTime.consultantWorkEnd},
+            #{platformWorkingTime.status}
+            )
+        </foreach>
+    </insert>
+
+    <update id="logicDeleteById">
+    UPDATE platform_working_time SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+
+</mapper>

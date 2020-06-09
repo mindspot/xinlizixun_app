@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.PublishMaterialMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.PublishMaterial">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="consultant_id" jdbcType="INTEGER" property="consultantId"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="material_name" jdbcType="VARCHAR" property="materialName"/>
+        <result column="publish_site" jdbcType="VARCHAR" property="publishSite"/>
+        <result column="publish_time" jdbcType="CHAR" property="publishTime"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_dt" jdbcType="TIMESTAMP" property="createDt"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, consultant_id, type, material_name, publish_site, publish_time, status, remark,
+        create_dt
+    </sql>
+    <select id="listPublishBook" resultType="com.kuangji.paopao.model.consultant.PublishMaterial">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        consultant_publish_material
+        WHERE
+        consultant_id = #{consultantId}
+        AND
+        type = 1
+    </select>
+    <select id="listPublishPaper" resultType="com.kuangji.paopao.model.consultant.PublishMaterial">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        consultant_publish_material
+        WHERE
+        consultant_id = #{consultantId}
+        AND
+        type = 2
+    </select>
+</mapper>

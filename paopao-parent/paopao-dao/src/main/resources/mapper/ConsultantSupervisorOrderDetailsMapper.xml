@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantSupervisorOrderDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultantSupervisorOrderDetails">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="supervisor_order_no" jdbcType="VARCHAR" property="supervisorOrderNo" />
+    <result column="mall_trad_order_no" jdbcType="VARCHAR" property="mallTradOrderNo" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, supervisor_order_no, mall_trad_order_no, insert_time, update_time, is_delete
+  </sql>
+  
+    <insert id="insertBatch">
+        INSERT INTO consultant_supervisor_order_details(
+            UPDATE_TIME,
+            INSERT_TIME,
+            IS_DELETE,
+            supervisor_order_no,
+            mall_trad_order_no
+        )
+        VALUES
+        <foreach collection ="list" item="detail" separator =",">
+        (
+            NOW(),
+            NOW(),
+            0,
+            #{detail.supervisorOrderNo},
+            #{detail.mallTradOrderNo}
+        )
+        </foreach>
+    </insert>
+  
+</mapper>

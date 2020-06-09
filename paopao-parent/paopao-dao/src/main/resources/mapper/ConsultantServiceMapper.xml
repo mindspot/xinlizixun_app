@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantServiceMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultantModelService">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+        <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+        <result column="goods_class" jdbcType="INTEGER" property="goodsClass" />
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+        <result column="goods_main_img" jdbcType="VARCHAR" property="goodsMainImg" />
+        <result column="sell_price" jdbcType="INTEGER" property="sellPrice" />
+        <result column="line_price" jdbcType="INTEGER" property="linePrice" />
+        <result column="cost_rate" jdbcType="DECIMAL" property="costRate" />
+        <result column="cost_price" jdbcType="INTEGER" property="costPrice" />
+        <result column="stock" jdbcType="INTEGER" property="stock" />
+        <result column="sell_point_text" jdbcType="VARCHAR" property="sellPointText" />
+        <result column="share_text" jdbcType="VARCHAR" property="shareText" />
+        <result column="buy_remark" jdbcType="VARCHAR" property="buyRemark" />
+        <result column="up_down_flag" jdbcType="BIT" property="upDownFlag" />
+        <result column="goods_link" jdbcType="VARCHAR" property="goodsLink" />
+        <result column="expires" jdbcType="INTEGER" property="expires" />
+        <result column="operate_type" jdbcType="BIT" property="operateType" />
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+        <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kuangji.paopao.model.ConsultantModelService">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="goods_detail" jdbcType="LONGVARCHAR" property="goodsDetail" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, goods_id, shop_id, goods_class, goods_name, goods_main_img, sell_price, line_price,
+        cost_rate, cost_price, stock, sell_point_text, share_text, buy_remark, up_down_flag,
+        goods_link, expires, operate_type, insert_time, is_delete
+    </sql>
+    <sql id="Blob_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        goods_detail
+    </sql>
+    <resultMap id="consultantServiceVOMap" type="com.kuangji.paopao.admin.vo.ConsultantServiceVO">
+
+        <association property="user" column="shop_id"
+                     select="com.kuangji.paopao.mapper.UserMapper.selectByPrimaryKey"/>
+    </resultMap>
+
+
+    <select id="listConsultantService" resultMap="consultantServiceVOMap">
+		  SELECT 
+			consultant_service.shop_id
+		    FROM 
+				consultant_service
+		WHERE 
+		consultant_service.is_delete=0
+	  <if test="userIds != null and userIds.size >0">
+            AND consultant_service.shop_id in
+           <foreach collection="userIds" item="userId" open="(" separator="," close=")" index="index">
+               #{userId}
+           </foreach>
+      </if>
+		GROUP BY  shop_id
+		ORDER BY  consultant_service.id DESC	
+			
+  </select>
+
+    <insert id="insertBatch">
+        INSERT INTO consultant_service(
+        goods_id,
+        shop_id,
+        goods_class,
+        goods_name,
+        sell_price,
+        stock,
+        sell_point_text,
+        share_text,
+        goods_detail,
+        expires,
+        operate_type
+        )
+        VALUES
+        <foreach collection="list" item="mallGoods" separator=",">
+            (
+            #{mallGoods.goodsId},
+            #{mallGoods.shopId},
+            #{mallGoods.goodsClass},
+            #{mallGoods.goodsName},
+            #{mallGoods.sellPrice},
+            #{mallGoods.stock},
+            #{mallGoods.sellPointText},
+            #{mallGoods.shareText},
+            #{mallGoods.goodsDetail},
+            #{mallGoods.expires},
+            #{mallGoods.operateType}
+            )
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.CouponMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.Coupon">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="template_id" jdbcType="INTEGER" property="templateId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type" jdbcType="BIT" property="type"/>
+        <result column="term_start_date" jdbcType="TIMESTAMP" property="termStartDate"/>
+        <result column="term_end_date" jdbcType="TIMESTAMP" property="termEndDate"/>
+        <result column="amount_limit" jdbcType="INTEGER" property="amountLimit"/>
+        <result column="amount" jdbcType="INTEGER" property="amount"/>
+        <result column="redeem_code" jdbcType="VARCHAR" property="redeemCode"/>
+        <result column="use_notice" jdbcType="VARCHAR" property="useNotice"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="create_by" jdbcType="INTEGER" property="createBy"/>
+        <result column="create_dt" jdbcType="TIMESTAMP" property="createDt"/>
+        <result column="modified_by" jdbcType="INTEGER" property="modifiedBy"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, template_id, name, type, term_start_date, term_end_date,amount_limit, amount, redeem_code,
+        use_notice, status, user_id, create_by, create_dt, modified_by
+    </sql>
+    <select id="getToCollectCoupon" resultType="com.kuangji.paopao.model.consultant.Coupon">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        coupon
+        WHERE
+        status = 0
+        and template_id = #{templateId}
+        AND redeem_code = #{redeemCode}
+    </select>
+    <resultMap id="ResultMap" extends="BaseResultMap"
+               type="com.kuangji.paopao.dto.result.CouponResult">
+        <association property="user" column="user_id"
+                     select="com.kuangji.paopao.mapper.UserMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <select id="listCoupon" resultMap="ResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        coupon
+    </select>
+
+</mapper>

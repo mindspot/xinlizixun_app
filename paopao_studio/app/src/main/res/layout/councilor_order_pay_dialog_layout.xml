@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/councilor_order_pay_dialog_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/common_circle_background_share"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="确认支付"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:text="督导费用会在账户余额扣除，划转到平台账户；当订单完成，督导师点击督导完毕时，该余额自动划转到督导师账户；若您取消订单或督导师拒绝订单，该订单费用返回原账户余额。"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center|bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/councilor_order_pay_dialog_cancle"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/common_gary_border_background_share"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/councilor_order_pay_dialog_pay_btn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/common_theme_background_share"
+                android:gravity="center"
+                android:text="确认支付"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

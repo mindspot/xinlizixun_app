@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.MemberCaseMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.MemberCase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="is_consultant" jdbcType="BIT" property="isConsultant" />
+    <result column="consultant_type" jdbcType="VARCHAR" property="consultantType" />
+    <result column="detailed_description" jdbcType="VARCHAR" property="detailedDescription" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="oper_name" jdbcType="VARCHAR" property="operName" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, is_delete, is_consultant, consultant_type, detailed_description, sex, 
+    age, oper_name, insert_time
+  </sql>
+  
+   <select id="listMemberCaseVO" resultType="com.kuangji.paopao.vo.MemberCaseVO">
+       SELECT
+       	  member_case.insert_time AS "insertTime",
+		  member_case.id AS id, 
+		  user_id  AS  userId, 
+		  is_consultant  AS  isConsultant, 
+		  consultant_type AS consultantType,
+		  detailed_description AS detailedDescription,
+		  member_case.sex AS sex, 
+		  member_case.age AS age,
+		  member_case.oper_name AS operName,
+	      _user.real_name AS  consultatName,
+	      mall_trade_order.ext  AS consultationTime
+    FROM 
+       		member_case 
+    LEFT JOIN
+			mall_trade_order	
+	ON 
+		mall_trade_order.buyer_id=member_case.user_id
+	LEFT JOIN
+	       	user _user
+	ON
+	        _user.id=mall_trade_order.shop_id
+    WHERE
+		member_case.is_delete=0
+   	AND
+		user_id=#{userId}
+	AND  	
+		mall_trade_order.order_status =10
+      			
+       
+    </select>
+
+    <resultMap id="memberCaseResultMap" type="com.kuangji.paopao.model.MemberCase">
+        <id column="id" property="id"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="userId" property="userId"/>
+        <result column="isConsultant" property="isConsultant"/>
+        <result column="consultantType" property="consultantType"/>
+        <result column="detailedDescription" property="detailedDescription"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="operName" property="operName"/>
+
+
+
+    </resultMap>
+
+    <sql id="memberCaseColumns">
+        member_case.ID AS "id",
+        member_case.INSERT_TIME AS "insertTime",
+        member_case.UPDATE_TIME AS "updateTime",
+        member_case.IS_DELETE AS "isDelete",
+        member_case.USER_ID AS "userId",
+        member_case.IS_CONSULTANT AS "isConsultant",
+        member_case.CONSULTANT_TYPE AS "consultantType",
+        member_case.DETAILED_DESCRIPTION AS "detailedDescription",
+        member_case.SEX AS "sex",
+        member_case.AGE AS "age",
+        member_case.OPER_NAME AS "operName"
+    </sql>
+
+    <sql id="memberCaseJoins">
+
+    </sql>
+
+    <select id="get" resultMap="memberCaseResultMap">
+        SELECT
+        <include refid="memberCaseColumns" />
+        FROM member_case <include refid="memberCaseJoins" />
+        <where>
+            IS_DELETE=0
+            AND member_case.ID = #{id}
+        </where>
+    </select>
+
+    <select id="getLastMemberCase" resultMap="memberCaseResultMap">
+        SELECT
+        <include refid="memberCaseColumns" />
+        FROM member_case <include refid="memberCaseJoins" />
+        <where>
+            IS_DELETE=0
+            AND member_case.USER_ID = #{userId}
+            ORDER BY  ID DESC
+            LIMIT 1
+        </where>
+    </select>
+
+
+    <select id="list" resultMap="memberCaseResultMap">
+        SELECT
+        <include refid="memberCaseColumns" />
+        FROM member_case <include refid="memberCaseJoins" />
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="memberCaseResultMap">
+        SELECT
+        <include refid="memberCaseColumns" />
+        FROM member_case <include refid="memberCaseJoins" />
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+
+    <insert id="insertBatch">
+        INSERT INTO member_case(
+        ID,
+        INSERT_TIME,
+        UPDATE_TIME,
+        IS_DELETE,
+        USER_ID,
+        IS_CONSULTANT,
+        CONSULTANT_TYPE,
+        DETAILED_DESCRIPTION,
+        SEX,
+        AGE,
+        OPER_NAME
+        )
+        VALUES
+        <foreach collection ="list" item="memberCase" separator =",">
+            (
+            #{memberCase.id},
+            NOW(),
+            NOW(),
+            #{memberCase.isDelete},
+            #{memberCase.userId},
+            #{memberCase.isConsultant},
+            #{memberCase.consultantType},
+            #{memberCase.detailedDescription},
+            #{memberCase.sex},
+            #{memberCase.age},
+            #{memberCase.operName}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="logicDeleteById">
+        UPDATE  member_case SET
+        IS_DELETE=1
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+</mapper>

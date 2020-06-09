@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/emptyClickLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_customer" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="没加载到数据呢"
+                android:textColor="#999999"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

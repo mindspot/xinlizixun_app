@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultationOrderMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultationOrder">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="rece_time" jdbcType="TIMESTAMP" property="receTime" />
+    <result column="consultation_time" jdbcType="VARCHAR" property="consultationTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="coupon_id" jdbcType="INTEGER" property="couponId" />
+    <result column="consultation_number" jdbcType="INTEGER" property="consultationNumber" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, shop_id, goods_id, is_delete, order_no, rece_time, consultation_time, 
+    status, coupon_id, consultation_number, insert_time
+  </sql>
+
+  <resultMap id="consultationOrderResultMap" type="com.kuangji.paopao.model.ConsultationOrder">
+    <id column="id" property="id" />
+    <result column="insertTime" property="insertTime" />
+    <result column="updateTime" property="updateTime" />
+    <result column="isDelete" property="isDelete" />
+    <result column="shopId" property="shopId" />
+    <result column="userId" property="userId" />
+    <result column="orderNo" property="orderNo" />
+    <result column="receTime" property="receTime" />
+    <result column="consultationTime" property="consultationTime" />
+    <result column="status" property="status" />
+    <result column="couponId" property="couponId" />
+    <result column="consultationNumber" property="consultationNumber" />
+    <result column="goodsId" property="goodsId" />
+
+  </resultMap>
+
+  <sql id="consultationOrderColumns">
+    consultation_order.ID AS "id",
+    consultation_order.INSERT_TIME AS "insertTime",
+    consultation_order.UPDATE_TIME AS "updateTime",
+    consultation_order.IS_DELETE AS "isDelete",
+    consultation_order.SHOP_ID AS "shopId",
+    consultation_order.USER_ID AS "userId",
+    consultation_order.ORDER_NO AS "orderNo",
+    consultation_order.RECE_TIME AS "receTime",
+    consultation_order.CONSULTATION_TIME AS "consultationTime",
+    consultation_order.STATUS AS "status",
+    consultation_order.CONSULTATION_NUMBER AS "consultationNumber",
+    consultation_order.GOODS_ID AS "goodsId"
+  </sql>
+
+  <sql id="consultationOrderJoins">
+
+  </sql>
+  <select id="get" resultMap="consultationOrderResultMap">
+    SELECT
+    <include refid="consultationOrderColumns" />
+    FROM consultation_order
+    <include refid="consultationOrderJoins" />
+    <where>
+      IS_DELETE=0
+      AND consultation_order.ID = #{id}
+    </where>
+  </select>
+
+
+
+
+
+  <select id="list" resultMap="consultationOrderResultMap">
+    SELECT
+    <include refid="consultationOrderColumns" />
+    FROM consultation_order
+    <include refid="consultationOrderJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+  <select id="listAll" resultMap="consultationOrderResultMap">
+    SELECT
+    <include refid="consultationOrderColumns" />
+    FROM consultation_order
+    <include refid="consultationOrderJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+
+
+  <update id="updateStatus">
+    UPDATE consultation_order SET
+    UPDATE_TIME = NOW(),
+    STATUS=-1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{arg0}
+  </update>
+
+
+
+  <update id="logicDeleteById">
+    UPDATE consultation_order SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+</mapper>

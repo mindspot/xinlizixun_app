@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feedback_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.main.center.FeedbackActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/feedback_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottom_line_visible="true"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="建议与反馈" />
+
+    <EditText
+        android:id="@+id/feedback_activity_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/feedback_input_background_share"
+        android:gravity="left"
+        android:hint="感谢您留下宝贵的意见"
+        android:padding="15dp"
+        android:textColor="@color/color_333333"
+        android:textColorHint="#ff999999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/feedback_activity_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/common_theme_background_share"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
+</LinearLayout>

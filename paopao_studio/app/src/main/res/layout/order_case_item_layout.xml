@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/order_case_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/global_white_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/order_case_item_case_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/order_case_list_item_background_share" />
+
+        <TextView
+            android:id="@+id/order_case_item_case_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/order_case_item_case_arrows"
+            android:layout_width="18.5dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_down_arrows_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_case_item_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/order_case_detail_item_background_share"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/order_case_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="客户详情"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_case_item_userinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/order_case_item_yes_or_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/order_case_item_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/order_case_item_describe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/order_case_item_counselor_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/order_case_item_counselor_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_case_item_counselor_describe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/order_case_item_counselor_image_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/order_case_item_counselor_one_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <ImageView
+                android:id="@+id/order_case_item_counselor_two_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp" />
+
+            <ImageView
+                android:id="@+id/order_case_item_counselor_three_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

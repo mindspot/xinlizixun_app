@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">泡泡工作台</string>
+    <string name="app_name_yyb">泡泡心理咨询</string>
+    <string name="call_version_inconsistent">通话协议版本不一致</string>
+    <string name="have_connected_with">已经和对方建立连接</string>
+    <string name="network_unstable">网络不稳定</string>
+    <string name="no_call_data">没有通话数据</string>
+    <string name="switch_camera">切换摄像头</string>
+    <string name="work_plan_custom_time"><u>点击可修改默认排班</u></string>
+    <string name="withdraw_record"><u>提现记录</u></string>
+
+</resources>

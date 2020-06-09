@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_color">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottom_line_visible="false"
+        app:defult_style="WHITEBG_BLACKTEXT"
+        app:left_button_drawable="@mipmap/common_title_back_icon_skin"
+        app:right_button_drawable="@mipmap/common_share_icon" />
+
+    <RelativeLayout
+        android:id="@+id/rl_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"
+        android:background="@color/theme_gray">
+
+        <common.webview.custom.XWebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/dialog_view"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_dialog_progress_back"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_tag_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/load_view"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="15dp"
+                app:SpinKit_Color="#FFF"
+                app:SpinKit_Style="ThreeBounce" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

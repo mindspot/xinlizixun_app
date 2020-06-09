@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/userinfo_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.main.center.UserInfoActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/userinfo_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:right_button_text="保存"
+        app:right_button_text_color="@color/theme_color"
+        app:title_text="修改个人资料" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color2" />
+
+    <LinearLayout
+        android:id="@+id/userinfo_activity_photo_layout"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="头像"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/userinfo_activity_photo"
+            android:layout_width="46dp"
+            android:layout_height="46dp" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/userinfo_activity_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="45dp"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="昵称"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userinfo_activity_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/userinfo_activity_sign_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="45dp"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="签名"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userinfo_activity_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:text=""
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color2" />
+
+    <LinearLayout
+        android:id="@+id/userinfo_activity_sex_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="性别"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userinfo_activity_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/userinfo_activity_hunyin_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="婚姻状态"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userinfo_activity_hunyin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未婚"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/userinfo_activity_zhiye_lauout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="45dp"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="职业"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userinfo_activity_zhiye"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:text=""
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/service_dialog_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="156dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/common_circle_background_share"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="欢迎致电泡泡心理客服热线"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/service_dialog_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务电话："
+                android:textColor="#ff666666"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/service_dialog_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="服务时间：早8:00--凌晨1:00"
+                android:textColor="#ff666666"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center|bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/service_dialog_cancle"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/common_gary_border_background_share"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/service_dialog_call_btn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/common_theme_background_share"
+                android:gravity="center"
+                android:text="电话咨询"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

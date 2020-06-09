@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_councilor_list_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="86dp">
+
+        <ImageView
+            android:id="@+id/common_councilor_list_photo"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/common_councilor_list_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="督导师姓名"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <ui.FlowLayout
+                android:id="@+id/common_councilor_list_flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/common_councilor_list_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="32dp"
+            android:text="已申请"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="9.5dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="33dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="25dp"
+        android:background="@color/global_line_color" />
+
+</LinearLayout>

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_userinfo_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.order.OrderUserInfoActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/order_time_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottom_line_visible="true"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="咨询预约" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#F7FEF8"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3.5dp"
+                android:text="选择时间"
+                android:textColor="#ffd9d9d9"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="34dp"
+                android:background="#ffd9d9d9" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/common_order_step_yuan_share" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="填写信息"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="34dp"
+                android:background="@color/theme_color" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:src="@mipmap/common_order_step_userinfo_icon" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3.5dp"
+                android:text="付款"
+                android:textColor="#ffd9d9d9"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="34dp"
+                android:background="#ffd9d9d9" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/common_order_step_yuan_share" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3.5dp"
+                android:text="咨询师确认"
+                android:textColor="#ffd9d9d9"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="34dp"
+                android:background="#ffd9d9d9" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/common_order_step_yuan_share" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="* "
+                    android:textColor="#ffed4b4b"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是否接受过心理咨询"
+                    android:textColor="@color/color_333333"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_userinfo_activity_radio_yes_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/order_userinfo_activity_radio_yes_img"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:paddingRight="15dp"
+                    android:src="@mipmap/common_radio_unselect_icon" />
+
+                <TextView
+                    android:id="@+id/order_userinfo_activity_radio_yes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_userinfo_activity_radio_no_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/order_userinfo_activity_radio_no_img"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:paddingRight="15dp"
+                    android:src="@mipmap/common_radio_unselect_icon" />
+
+                <TextView
+                    android:id="@+id/order_userinfo_activity_radio_no_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="否"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="* "
+                    android:textColor="#ffed4b4b"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="咨询问题"
+                    android:textColor="@color/color_333333"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <ui.MyGridView
+                android:id="@+id/order_userinfo_activity_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:horizontalSpacing="5dp"
+                android:numColumns="3"
+                android:verticalSpacing="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="* "
+                    android:textColor="#ffed4b4b"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="详细描述"
+                    android:textColor="@color/color_333333"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/order_userinfo_activity_detail_edit"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/common_gary_border_background_share"
+                android:gravity="left|top"
+                android:hint="请写清楚您需要的帮助，及其您想要达成的效果，咨询师会根据您叙述的情况，制定相应的个人方案。"
+                android:maxLength="200"
+                android:padding="10dp"
+                android:textColor="@color/color_333333"
+                android:textColorHint="#ffdfdfdf"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="* "
+                    android:textColor="#ffed4b4b"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个人信息"
+                    android:textColor="@color/color_333333"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名："
+                    android:textColor="#ff666666"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/order_userinfo_activity_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/common_gary_border_background_share"
+                    android:gravity="left|center"
+                    android:hint="请输入姓名"
+                    android:maxLength="6"
+                    android:padding="10dp"
+                    android:textColor="@color/color_333333"
+                    android:textColorHint="#ffdfdfdf"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center|left">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别："
+                    android:textColor="#ff666666"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/order_userinfo_activity_sex_man_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/order_userinfo_activity_sex_man_img"
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:paddingBottom="7dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="7dp"
+                        android:src="@mipmap/common_radio_unselect_icon" />
+
+                    <TextView
+                        android:id="@+id/order_userinfo_activity_sex_man_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="男"
+                        android:textColor="#ff666666"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/order_userinfo_activity_sex_woman_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:gravity="center|left"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/order_userinfo_activity_sex_woman_img"
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:paddingBottom="7dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="7dp"
+                        android:src="@mipmap/common_radio_unselect_icon" />
+
+                    <TextView
+                        android:id="@+id/order_userinfo_activity_sex_woman_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="女"
+                        android:textColor="#ff666666"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄："
+                    android:textColor="#ff666666"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/order_userinfo_activity_age_edit"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/common_gary_border_background_share"
+                    android:gravity="left|center"
+                    android:hint="请输入年龄"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:padding="10dp"
+                    android:textColor="@color/color_333333"
+                    android:textColorHint="#ffdfdfdf"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/order_userinfo_activity_next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/theme_color"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
+</LinearLayout>

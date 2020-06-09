@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_councilor_order_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.order.councilor.MyCouncilorOrderActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/my_councilor_order_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_title_back_icon_skin"
+        app:title_text="订单列表" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color" />
+
+    <ListView
+        android:id="@+id/my_councilor_order_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null" />
+</LinearLayout>

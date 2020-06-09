@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.DictAreaMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.DictArea">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="area_type" jdbcType="BIT" property="areaType" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="is_last" jdbcType="BIT" property="isLast" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_author" jdbcType="VARCHAR" property="createAuthor" />
+    <result column="update_author" jdbcType="VARCHAR" property="updateAuthor" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, area_code, area_type, area_name, parent_id, is_last, create_time, create_author, 
+    update_author, is_delete
+  </sql>
+
+  <resultMap id="dictAreaResultMap" type="com.kuangji.paopao.model.DictArea">
+    <id column="id" property="id"/>
+    <result column="isDelete" property="isDelete"/>
+    <result column="createTime" property="createTime"/>
+    <result column="updateTime" property="updateTime"/>
+    <result column="createAuthor" property="createAuthor"/>
+    <result column="updateAuthor" property="updateAuthor"/>
+    <result column="areaCode" property="areaCode"/>
+    <result column="areaType" property="areaType"/>
+    <result column="areaName" property="areaName"/>
+    <result column="parentId" property="parentId"/>
+    <result column="isLast" property="isLast"/>
+
+
+
+  </resultMap>
+
+  <sql id="dictAreaColumns">
+    dict_area.ID AS "id",
+    dict_area.IS_DELETE AS "isDelete",
+    dict_area.CREATE_TIME AS "createTime",
+    dict_area.UPDATE_TIME AS "updateTime",
+    dict_area.CREATE_AUTHOR AS "createAuthor",
+    dict_area.UPDATE_AUTHOR AS "updateAuthor",
+    dict_area.AREA_CODE AS "areaCode",
+    dict_area.AREA_TYPE AS "areaType",
+    dict_area.AREA_NAME AS "areaName",
+    dict_area.PARENT_ID AS "parentId",
+    dict_area.IS_LAST AS "isLast"
+  </sql>
+
+  <sql id="dictAreaJoins">
+
+  </sql>
+
+  <select id="get" resultMap="dictAreaResultMap">
+    SELECT
+    <include refid="dictAreaColumns" />
+    FROM dict_area <include refid="dictAreaJoins" />
+    <where>
+      IS_DELETE=0
+      AND dict_area.ID = #{id}
+    </where>
+  </select>
+
+  <select id="list" resultMap="dictAreaResultMap">
+    SELECT
+    <include refid="dictAreaColumns" />
+    FROM dict_area <include refid="dictAreaJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+  <select id="listAll" resultMap="dictAreaResultMap">
+    SELECT
+    <include refid="dictAreaColumns" />
+    FROM dict_area <include refid="dictAreaJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+
+  <insert id="insertBatch">
+    INSERT INTO dict_area(
+    ID,
+    IS_DELETE,
+    CREATE_TIME,
+    UPDATE_TIME,
+    CREATE_AUTHOR,
+    UPDATE_AUTHOR,
+    AREA_CODE,
+    AREA_TYPE,
+    AREA_NAME,
+    PARENT_ID,
+    IS_LAST
+    )
+    VALUES
+    <foreach collection ="list" item="dictArea" separator =",">
+      (
+      #{dictArea.id},
+      #{dictArea.isDelete},
+      #{dictArea.createTime},
+      #{dictArea.updateTime},
+      #{dictArea.createAuthor},
+      #{dictArea.updateAuthor},
+      #{dictArea.areaCode},
+      #{dictArea.areaType},
+      #{dictArea.areaName},
+      #{dictArea.parentId},
+      #{dictArea.isLast}
+      )
+    </foreach>
+  </insert>
+
+  <update id="logicDeleteById">
+    UPDATE  dict_area SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+</mapper>

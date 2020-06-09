@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.user.time.NewCustomTimeActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/custom_time_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_title_back_icon_skin"
+        app:title_text="自定义排班" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="本页面的设置为每日默认排班时间表；灰色为休息时间，白色为接单时间。"
+        android:textColor="#ff666666"
+        android:textSize="15sp" />
+
+    <ui.MyGridView
+        android:id="@+id/work_plan_activity_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/work_plan_time_gridview_background_share"
+        android:numColumns="3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:text="点击保存后，排班设置实时生效；您之前的排班将被重置。系统将重新为您生成新的“排班表”。可返回工作安排界面查看详情。"
+        android:textColor="#ff666666"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/custom_time_activity_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/common_theme_background_share"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
+</LinearLayout>

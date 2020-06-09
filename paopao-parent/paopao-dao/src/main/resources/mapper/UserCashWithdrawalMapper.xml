@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.UserCashWithdrawalMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.UserCashWithdrawal">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_card_id" jdbcType="INTEGER" property="userCardId" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="cash_time" jdbcType="TIMESTAMP" property="cashTime" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_card_id, amount, cash_time, insert_time, update_time, is_delete
+  </sql>
+  
+  
+  <select id="listUserCashWithdrawalVO" resultType="com.kuangji.paopao.admin.vo.UserCashWithdrawalVO">
+        
+	SELECT
+       	user_cash_withdrawal.id AS "id",
+       	user.id AS "userId",
+       	user.user_name AS "userName",
+       	user.type AS "type",
+       	user.real_name AS "realName",
+       	user_cash_withdrawal.amount AS "amount",
+       	user_cash_withdrawal.cash_time AS "cashTime",
+       	user_cash_withdrawal.cash_type	AS "cashType",
+       	user_card.card_type	AS "cardType",
+       	user_cash_withdrawal.real_name AS "cardRealName",
+       	user_cash_withdrawal.pay_account	AS "payAccount",
+       	user_cash_withdrawal.account_now AS  accountNow,
+       	user_cash_withdrawal.cash_withdrawal_amount_now AS  cashWithdrawalAmountNow
+       	
+    FROM 
+        user_cash_withdrawal,user,user_card
+    WHERE 
+        user_cash_withdrawal.is_delete=0
+        AND  user_cash_withdrawal.user_id=user.id
+        AND  user_card.id=user_cash_withdrawal.user_card_id
+        AND  user_card.user_id=user.id
+        <if test="userName != null and userName !=''">
+        AND user.user_name=#{userName}
+        </if>
+         <if test="alipayAccount != null and alipayAccount !=''">
+        AND user_cash_withdrawal.pay_account=#{alipayAccount}
+        </if>
+        <if test="cashTime != null and cashTime !='' and cashTime !='Invalid date'">
+        AND user_cash_withdrawal.cash_time >= #{cashTime}
+        </if>
+         <if test="type != null">
+        AND user.type = #{type}
+        </if>
+     ORDER BY user_cash_withdrawal.id DESC
+    </select>
+</mapper>

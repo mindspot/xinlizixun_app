@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_artivles_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="137dp"
+    android:background="@mipmap/home_artivles_background_icon"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/home_artivles_item_background_share"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home_artivles_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="2"
+                android:maxLines="2"
+                android:text="惩罚(自我伤害)"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/home_artivles_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="2"
+                android:text="以痛苦抵消痛苦-浅谈自我惩罚(自我伤害)以痛苦抵消痛苦-浅谈自我惩罚(自我伤害)"
+                android:textColor="#ff999999"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/home_artivles_item_image"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</LinearLayout>

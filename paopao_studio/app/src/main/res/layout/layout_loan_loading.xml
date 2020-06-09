@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_progress_back"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/load_view"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:SpinKit_Color="#FFF"
+        app:SpinKit_Style="ThreeBounce" />
+
+</LinearLayout>

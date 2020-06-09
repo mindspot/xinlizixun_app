@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_artivles_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/fragment_artivles_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:title_text="文章" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/global_line_color" />
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/fragment_artivles_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:paddingLeft="10dp"
+        app:tl_tab_padding="10dp"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="@color/theme_color"
+        app:tl_textUnselectColor="@color/color_999999"
+        app:tl_textsize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/global_line_color" />
+
+    <ui.viewpager.SuperViewPager
+        android:id="@+id/fragment_artivles_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

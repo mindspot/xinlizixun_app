@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/balance_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.balance.BalanceActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/order_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="余额" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:text="余额(元)"
+        android:textColor="#ff666666"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/balance_activity_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:textColor="#ff9ddcaf"
+        android:textSize="36sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/balance_activity_tixian_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/cash_withdrawal" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:text="提现"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="9.5dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/balance_activity_addcard_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/bind_bank_card" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:text="绑卡"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="9.5dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/balance_activity_consumption_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/balance_record_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:text="余额记录"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="9.5dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+</LinearLayout>

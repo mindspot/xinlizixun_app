@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">AndroidFrameWrok</string>
+	
+    <!-- sweetAlert -->
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    
+    <!-- PullToRefreshView -->
+    <string name="xlistview_header_hint_normal">信用让生活更美好</string>
+    <string name="xlistview_header_hint_ready">信用让生活更美好</string>
+    <string name="xlistview_header_hint_loading">信用让生活更美好</string>
+    <string name="xlistview_header_last_time">刷新时间：</string>
+    <string name="xlistview_footer_hint_normal">信用让生活更美好</string>
+    <string name="xlistview_footer_hint_ready">信用让生活更美好</string>
+</resources>

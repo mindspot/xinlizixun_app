@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.paopao.paopaouser">
+
+    <uses-sdk tools:overrideLibrary="com.xybt.lib.image" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 必须的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 悬浮窗权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- bugly start -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- bugly end -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- 魅族推送配置 start -->
+    <!-- 兼容 flyme5.0 以下版本，魅族内部集成 pushSDK 必填，不然无法收到消息 -->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+
+    <permission
+        android:name="${applicationId}.push.permission.MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.push.permission.MESSAGE" />
+    <!-- 兼容 flyme3.0 配置权限 -->
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+    <!-- 魅族推送配置 end -->
+
+
+    <!-- Oppo推送配置 start -->
+    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE" />
+    <!-- Oppo推送配置 end -->
+
+
+    <!-- Mi推送配置 start -->
+    <permission
+        android:name="${applicationId}.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE" />
+    <!-- Mi推送配置 end -->
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:name="module.app.MyApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/applogo"
+        android:label="${APP_NAME}"
+        android:networkSecurityConfig="@xml/network_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup,android:label">
+
+        <!-- 全面屏适配 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="667" />
+        <meta-data
+            android:name="MTA_CHANNEL"
+            android:value="${MTA_CHANNEL_VALUE}" />
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="${EASEMOB_APPKEY}" />
+
+        <activity
+            android:name="module.start.StartActivity"
+            android:alwaysRetainTaskState="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="${APP_HOST}"
+                    android:pathPrefix="/openapp"
+                    android:scheme="${APP_SCHEME}" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="common.webview.page.WebViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <!-- ****************************友盟分享 START**************************** -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent101563652" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false" />
+        <uses-library android:name="android.test.runner" />
+        <!-- ****************************友盟分享 END**************************** -->
+
+
+        <!-- ****************************支付 START**************************** -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- ****************************支付 END**************************** -->
+
+
+        <!-- *****************************推送 START******************************* -->
+        <!-- 华为 HMS Config -->
+        <!--
+            接入HMSSDK PUSH模块需要注册，第三方相关 :接收Push消息（注册、Push消息、Push连接状态）广播，
+                此receiver类需要开发者自己创建并继承com.huawei.hms.support.api.push.PushReceiver类，
+                参考示例代码中的类：com.huawei.hmsagent.HuaweiPushRevicer
+        -->
+        <receiver android:name="receiver.HMSPushReceiver">
+            <intent-filter>
+
+                <!-- 必须,用于接收 TOKEN -->
+                <action android:name="com.huawei.android.push.intent.REGISTRATION" />
+                <!-- 必须，用于接收消息 -->
+                <action android:name="com.huawei.android.push.intent.RECEIVE" />
+                <!-- 可选，用于点击通知栏或通知栏上的按钮后触发 onEvent 回调 -->
+                <action android:name="com.huawei.android.push.intent.CLICK" />
+                <!-- 可选，查看 PUSH 通道是否连接，不查看则不需要 -->
+                <action android:name="com.huawei.intent.action.PUSH_STATE" />
+            </intent-filter>
+        </receiver>
+        <!-- huawei push end -->
+        <!-- VIVO推送配置 start -->
+        <service
+            android:name="com.vivo.push.sdk.service.CommandClientService"
+            android:exported="true" />
+
+        <activity
+            android:name="com.vivo.push.sdk.LinkProxyClientActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 推送配置项 -->
+        <meta-data
+            android:name="com.vivo.push.api_key"
+            android:value="9b74dbfc-55c4-4441-9d0a-561ff21addc7" />
+        <meta-data
+            android:name="com.vivo.push.app_id"
+            android:value="11025" />
+
+        <receiver android:name="com.hyphenate.push.platform.vivo.EMVivoMsgReceiver">
+            <intent-filter>
+
+                <!-- 接收 push 消息 -->
+                <action android:name="com.vivo.pushclient.action.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <!-- VIVO推送配置 end -->
+
+
+        <!-- MEIZU推送配置 start -->
+        <receiver android:name="com.hyphenate.push.platform.meizu.EMMzMsgReceiver">
+            <intent-filter>
+
+                <!-- 接收 push 消息 -->
+                <action android:name="com.meizu.flyme.push.intent.MESSAGE" />
+                <!-- 接收 register 消息 -->
+                <action android:name="com.meizu.flyme.push.intent.REGISTER.FEEDBACK" />
+                <!-- 接收 unregister 消息 -->
+                <action android:name="com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK" />
+                <!-- 兼容低版本 Flyme3 推送服务配置 -->
+                <action android:name="com.meizu.c2dm.intent.REGISTRATION" />
+                <action android:name="com.meizu.c2dm.intent.RECEIVE" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+        <!-- MEIZU推送配置 end -->
+
+
+        <!-- Oppo推送配置 start -->
+        <service
+            android:name="com.coloros.mcssdk.PushService"
+            android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE">
+            <intent-filter>
+                <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE" />
+            </intent-filter>
+        </service>
+        <!-- Oppo推送配置 end -->
+
+
+        <!-- Mi推送配置 start -->
+        <service
+            android:name="com.xiaomi.push.service.XMPushService"
+            android:enabled="true"
+            android:process=":pushservice" />
+        <service
+            android:name="com.xiaomi.push.service.XMJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":pushservice" /> <!-- 注：此service必须在3.0.1版本以后（包括3.0.1版本）加入 -->
+
+        <service
+            android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
+            android:enabled="true" /> <!-- 注：此service必须在2.2.5版本以后（包括2.2.5版本）加入 -->
+        <receiver
+            android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.xiaomi.push.service.receivers.PingReceiver"
+            android:exported="false"
+            android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.hyphenate.push.platform.mi.EMMiMsgReceiver">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR" />
+            </intent-filter>
+        </receiver>
+        <!-- Mi推送配置 end -->
+        <!-- *****************************推送 END******************************* -->
+        <activity
+            android:name="module.main.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="module.main.center.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.InputActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.PurchasePlanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.OrderInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.CouponActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.CollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.user.ChangePassCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.user.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.counsel.search.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.counsel.search.SearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.counsel.detail.CounselDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.order.OrderTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.order.OrderBuyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.order.OrderUserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="im.chat.ChatActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="permission.PermissionActivity"
+            android:theme="@style/PermissionNoDisplay" />
+        <activity
+            android:name="im.menu.VoiceCallActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+        <activity
+            android:name="im.menu.VideoCallActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+
+        <!-- 开机自启动服务 -->
+        <receiver android:name="receiver.StartServiceReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="module.balance.AddCardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.balance.BalanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.balance.BalanceRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.balance.CardListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.balance.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.ServicePhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="module.main.center.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="module.main.center.ConsumeRecordActivity"></activity>
+    </application>
+
+</manifest>

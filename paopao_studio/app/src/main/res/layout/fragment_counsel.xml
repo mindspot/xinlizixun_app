@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_counsel_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical">
+
+    <ui.title.ToolBarTitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="NO_TITLE_BLCAK" />
+
+    <LinearLayout
+        android:id="@+id/fragment_counsel_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/counsel_search_background_share"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@mipmap/counsel_search_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="搜索你感兴趣的内容/咨询师"
+            android:textColor="#ff999999"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_counsel_question_layout"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#FAFEFB"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_counsel_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/fragment_counsel_sort_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_counsel_sort_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="类别"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/fragment_counsel_sort_arrows_icon"
+                android:layout_width="10dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/counsel_down_arrows_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_counsel_city_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_counsel_city_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="城市"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/fragment_counsel_city_arrows_icon"
+                android:layout_width="10dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/counsel_down_arrows_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_counsel_time_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/fragment_counsel_time_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/fragment_counsel_time_arrrows_icon"
+                android:layout_width="10dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/counsel_down_arrows_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_counsel_filtrate_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_counsel_filtrate_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="筛选"
+                android:textColor="@color/color_333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/fragment_counsel_filtrate_icon"
+                android:layout_width="11dp"
+                android:layout_height="9.5dp"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/counsel_filtrate_icon" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fragment_counsel_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/fragment_counsel_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlDragRate="1"
+        app:srlHeaderHeight="80dp"
+        app:srlHeaderMaxDragRate="1.3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/common_empty_layout" />
+
+            <ListView
+                android:id="@+id/fragment_counsel_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null" />
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

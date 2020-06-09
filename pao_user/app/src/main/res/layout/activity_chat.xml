@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="im.chat.ChatActivity">
+
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/chat_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:right_button_text_color="@color/theme_color"
+        app:title_text="用户" />
+
+    <FrameLayout
+        android:id="@+id/chat_activity_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+</LinearLayout>

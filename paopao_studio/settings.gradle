@@ -1,0 +1,1 @@
+include ':app', ':Framework', ':Lib_Image', ':takephoto', ':umeng', ':easeui', ':hmspush'

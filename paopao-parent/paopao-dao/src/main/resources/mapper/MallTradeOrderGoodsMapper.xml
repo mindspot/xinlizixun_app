@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.MallTradeOrderGoodsMapper">
+	<resultMap id="BaseResultMap" type="com.kuangji.paopao.model.MallTradeOrderGoods">
+		<!-- WARNING - @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+		<result column="shop_id" jdbcType="INTEGER" property="shopId" />
+		<result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+		<result column="goods_class" jdbcType="INTEGER" property="goodsClass" />
+		<result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+		<result column="goods_attrs" jdbcType="VARCHAR" property="goodsAttrs" />
+		<result column="goods_img" jdbcType="VARCHAR" property="goodsImg" />
+		<result column="sell_price" jdbcType="INTEGER" property="sellPrice" />
+		<result column="cost_price" jdbcType="INTEGER" property="costPrice" />
+		<result column="buy_price" jdbcType="INTEGER" property="buyPrice" />
+		<result column="buy_count" jdbcType="INTEGER" property="buyCount" />
+		<result column="buy_amount" jdbcType="INTEGER" property="buyAmount" />
+		<result column="discount_rate" jdbcType="DECIMAL" property="discountRate" />
+		<result column="discount_amount" jdbcType="INTEGER" property="discountAmount" />
+		<result column="coupon_id" jdbcType="INTEGER" property="couponId" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="is_delete" jdbcType="BIT" property="isDelete" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- WARNING - @mbg.generated -->
+		id, order_no, shop_id, goods_id, goods_class, goods_name, goods_attrs,
+		goods_img,
+		sell_price, cost_price, buy_price, buy_count, buy_amount, discount_rate,
+		discount_amount,
+		coupon_id, insert_time, is_delete
+	</sql>
+	<resultMap id="mallTradeOrderGoodsResultMap" type="com.kuangji.paopao.model.MallTradeOrderGoods">
+		<id column="id" property="id" />
+		<result column="updateTime" property="updateTime" />
+		<result column="insertTime" property="insertTime" />
+		<result column="isDelete" property="isDelete" />
+		<result column="orderNo" property="orderNo" />
+		<result column="shopId" property="shopId" />
+		<result column="goodsId" property="goodsId" />
+		<result column="goodsClass" property="goodsClass" />
+		<result column="goodsName" property="goodsName" />
+		<result column="goodsAttrs" property="goodsAttrs" />
+		<result column="goodsImg" property="goodsImg" />
+		<result column="sellPrice" property="sellPrice" />
+		<result column="costPrice" property="costPrice" />
+		<result column="buyPrice" property="buyPrice" />
+		<result column="buyCount" property="buyCount" />
+		<result column="buyAmount" property="buyAmount" />
+		<result column="discountRate" property="discountRate" />
+		<result column="discountAmount" property="discountAmount" />
+
+
+
+	</resultMap>
+
+	<sql id="mallTradeOrderGoodsColumns">
+		mall_trade_order_goods.ID AS "id",
+		mall_trade_order_goods.UPDATE_TIME AS "updateTime",
+		mall_trade_order_goods.INSERT_TIME AS "insertTime",
+		mall_trade_order_goods.IS_DELETE AS "isDelete",
+		mall_trade_order_goods.ORDER_NO AS "orderNo",
+		mall_trade_order_goods.SHOP_ID AS "shopId",
+		mall_trade_order_goods.GOODS_ID AS "goodsId",
+		mall_trade_order_goods.GOODS_CLASS AS "goodsClass",
+		mall_trade_order_goods.GOODS_NAME AS "goodsName",
+		mall_trade_order_goods.GOODS_ATTRS AS "goodsAttrs",
+		mall_trade_order_goods.GOODS_IMG AS "goodsImg",
+		mall_trade_order_goods.SELL_PRICE AS "sellPrice",
+		mall_trade_order_goods.COST_PRICE AS "costPrice",
+		mall_trade_order_goods.BUY_PRICE AS "buyPrice",
+		mall_trade_order_goods.BUY_COUNT AS "buyCount",
+		mall_trade_order_goods.BUY_AMOUNT AS "buyAmount",
+		mall_trade_order_goods.DISCOUNT_RATE AS "discountRate",
+		mall_trade_order_goods.DISCOUNT_AMOUNT AS "discountAmount"
+	</sql>
+
+	<sql id="mallTradeOrderGoodsJoins">
+
+	</sql>
+
+	<select id="get" resultMap="mallTradeOrderGoodsResultMap">
+		SELECT
+		<include refid="mallTradeOrderGoodsColumns" />
+		FROM mall_trade_order_goods
+		<include refid="mallTradeOrderGoodsJoins" />
+		<where>
+			IS_DELETE=0
+			AND mall_trade_order_goods.ID = #{id}
+		</where>
+	</select>
+
+
+
+
+	<select id="list" resultMap="mallTradeOrderGoodsResultMap">
+		SELECT
+		<include refid="mallTradeOrderGoodsColumns" />
+		FROM mall_trade_order_goods
+		<include refid="mallTradeOrderGoodsJoins" />
+		<where>
+			IS_DELETE=0
+		</where>
+	</select>
+
+
+
+
+	<select id="getBuyGoods" resultMap="mallTradeOrderGoodsResultMap"
+			parameterType="com.kuangji.paopao.order.vo.BaseOrderFormVO$BuyGoodsFormVO">
+		SELECT
+		_g.SHOP_ID AS shopId,
+		_g.ID AS goodsId,
+		_g.GOODS_CLASS AS goodsClass,
+		_g.sell_point_text AS goodsAttrs,
+		_g.GOODS_NAME AS goodsName,
+		_g.GOODS_MAIN_IMG AS goodsImg,
+		_g.SELL_PRICE AS sellPrice,
+		_g.COST_PRICE AS costPrice,
+		_g.SELL_PRICE AS buyPrice,
+		_g.STOCK buyCount,
+		_g.SELL_PRICE buyAmount
+		FROM
+		mall_goods _g
+		WHERE
+		_g.ID
+		=#{goodsId,jdbcType=BIGINT}
+		AND
+		_g.SHOP_ID=#{shopId,jdbcType=BIGINT}
+		AND
+		_g.UP_DOWN_FLAG = 1
+		AND
+		_g.IS_DELETE = 0
+	</select>
+
+
+
+
+
+	<select id="listAll" resultMap="mallTradeOrderGoodsResultMap">
+		SELECT
+		<include refid="mallTradeOrderGoodsColumns" />
+		FROM mall_trade_order_goods
+		<include refid="mallTradeOrderGoodsJoins" />
+		<where>
+			IS_DELETE=0
+		</where>
+	</select>
+
+
+	<insert id="insertBatch">
+		INSERT INTO mall_trade_order_goods(
+		ID,
+		UPDATE_TIME,
+		INSERT_TIME,
+		IS_DELETE,
+		ORDER_NO,
+		SHOP_ID,
+		GOODS_ID,
+		GOODS_CLASS,
+		GOODS_NAME,
+		GOODS_ATTRS,
+		GOODS_IMG,
+		SELL_PRICE,
+		COST_PRICE,
+		BUY_PRICE,
+		BUY_COUNT,
+		BUY_AMOUNT,
+		DISCOUNT_RATE,
+		DISCOUNT_AMOUNT,
+		COUPON_ID
+		)
+		VALUES
+		<foreach collection="list" item="mallTradeOrderGoods"
+				 separator=",">
+			(
+			#{mallTradeOrderGoods.id},
+			NOW(),
+			NOW(),
+			#{mallTradeOrderGoods.isDelete},
+			#{mallTradeOrderGoods.orderNo},
+			#{mallTradeOrderGoods.shopId},
+			#{mallTradeOrderGoods.goodsId},
+			#{mallTradeOrderGoods.goodsClass},
+			#{mallTradeOrderGoods.goodsName},
+			#{mallTradeOrderGoods.goodsAttrs},
+			#{mallTradeOrderGoods.goodsImg},
+			#{mallTradeOrderGoods.sellPrice},
+			#{mallTradeOrderGoods.costPrice},
+			#{mallTradeOrderGoods.buyPrice},
+			#{mallTradeOrderGoods.buyCount},
+			#{mallTradeOrderGoods.buyAmount},
+			#{mallTradeOrderGoods.discountRate},
+			#{mallTradeOrderGoods.discountAmount},
+			#{mallTradeOrderGoods.couponId}
+			)
+		</foreach>
+	</insert>
+
+
+	<update id="updateSetMealBuyCount">
+		UPDATE
+
+		mall_trade_order_goods
+		SET
+		UPDATE_TIME = NOW(),
+
+		BUY_COUNT = BUY_COUNT+#{arg1}
+		WHERE
+		IS_DELETE=0
+		AND  ORDER_NO= #{arg0}
+	</update>
+
+
+	<update id="logicDeleteById">
+		UPDATE mall_trade_order_goods SET
+		IS_DELETE=1
+		WHERE
+		IS_DELETE=0
+		AND ID = #{id}
+	</update>
+	<select id="getGoodsByOrderNo" resultType="String">
+
+		SELECT
+
+			mall_goods.sell_point_text
+
+		FROM
+			mall_trade_order_goods
+
+		LEFT JOIN
+			mall_goods
+		ON
+			mall_trade_order_goods.goods_id=mall_goods.id
+
+		WHERE
+			mall_trade_order_goods.order_no=#{orderNo}
+			LIMIT 1
+	</select>
+
+
+</mapper>

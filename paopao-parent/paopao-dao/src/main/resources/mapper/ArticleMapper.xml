@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.Article">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="article_val" jdbcType="VARCHAR" property="articleVal" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_link" jdbcType="VARCHAR" property="articleLink" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="article_img" jdbcType="VARCHAR" property="articleImg" />
+    <result column="browse_volume" jdbcType="INTEGER" property="browseVolume" />
+    <result column="common_id" jdbcType="INTEGER" property="commonId" />
+    <result column="is_platform" jdbcType="INTEGER" property="isPlatform" />
+    <result column="user_id" jdbcType="INTEGER" property="publisherId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kuangji.paopao.model.Article">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, article_val, article_title, article_link, author, code, article_img, browse_volume, 
+    common_id, is_platform, user_id, status, sort, is_delete, insert_time
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    content
+  </sql>
+
+  <resultMap id="articleResultMap" type="com.kuangji.paopao.model.Article">
+    <id column="id" property="id"/>
+    <result column="updateTime" property="updateTime"/>
+    <result column="insertTime" property="insertTime"/>
+    <result column="isDelete" property="isDelete"/>
+    <result column="articleVal" property="articleVal"/>
+    <result column="articleTitle" property="articleTitle"/>
+    <result column="content" property="content"/>
+    <result column="articleLink" property="articleLink"/>
+    <result column="author" property="author"/>
+    <result column="code" property="code"/>
+    <result column="articleImg" property="articleImg"/>
+    <result column="browseVolume" property="browseVolume"/>
+    <result column="commonId" property="commonId"/>
+    <result column="isPlatform" property="isPlatform"/>
+    <result column="user_id" property="publisherId"/>
+    <result column="status" property="status"/>
+    <result column="sort" property="sort"/>
+
+  </resultMap>
+  <resultMap id="articleResultVOMap" extends="articleResultMap"
+             type="com.kuangji.paopao.vo.ArticleVO">
+    <result column="realName" property="realName"/>
+    <result column="headImg" property="headImg"/>
+  </resultMap>
+
+
+  <sql id="articleColumns">
+    article.ID AS "id",
+    article.UPDATE_TIME AS "updateTime",
+    article.INSERT_TIME AS "insertTime",
+    article.IS_DELETE AS "isDelete",
+    article.ARTICLE_VAL AS "articleVal",
+    article.ARTICLE_TITLE AS "articleTitle",
+    article.CONTENT AS "content",
+    article.ARTICLE_LINK  AS "articleLink",
+    article.AUTHOR AS "author",
+    article.CODE AS "code",
+    article.ARTICLE_IMG AS "articleImg",
+    (article.BROWSE_VOLUME+article.random_browse) AS "browseVolume",
+    article.COMMON_ID AS "commonId",
+    article.IS_PLATFORM AS "isPlatform",
+    article.user_id AS "publisherId",
+    article.STATUS AS "status",
+    article.SORT AS "sort"
+  </sql>
+
+  <sql id="articleJoins">
+
+  </sql>
+
+  <select id="getArticle" resultMap="articleResultVOMap">
+    SELECT
+    <include refid="articleColumns"/>
+    ,user.ID AS userId,user.REAL_NAME AS realName,user.HEAD_IMG AS headImg
+    FROM article
+    <include refid="articleJoins"/>
+    LEFT JOIN user
+    ON article.user_id=user.ID
+    AND user.IS_DELETE=0
+    AND user.STATUS=2
+    <where>
+      article.IS_DELETE=0
+      AND article.ID = #{id}
+      AND article.STATUS=2
+
+    </where>
+  </select>
+
+
+  <select id="getArticleByCode" resultMap="articleResultMap">
+    SELECT
+    id,
+    type AS "code",
+    val AS "content"
+    FROM common
+    <include refid="articleJoins"/>
+    <where>
+      IS_DELETE=0
+      AND common.type = #{code}
+      LIMIT 1
+    </where>
+  </select>
+   
+
+  <select id="listArticleVO" resultMap="articleResultVOMap">
+    SELECT
+  	 <include refid="articleColumns"/>,
+  	user.ID AS userId,
+    user.REAL_NAME AS realName,
+    user.HEAD_IMG AS headImg
+    FROM
+    article
+    LEFT JOIN
+    user
+    ON
+    article.user_id=user.ID
+    WHERE
+    article.IS_DELETE=0
+    AND article.STATUS=2
+    AND article.CODE = 1
+    UNION
+    SELECT
+    <include refid="articleColumns"/>,
+    user.ID AS userId,
+    user.REAL_NAME AS realName,
+    user.HEAD_IMG AS headImg
+    FROM article
+    LEFT JOIN user
+    ON
+    article.user_id=user.ID
+    AND user.IS_DELETE=0
+    AND user.STATUS=2
+    WHERE
+    article.IS_DELETE=0
+    AND article.STATUS=2
+    AND article.CODE = 0
+
+    <if test="commonId !=0">
+      AND common_id =#{commonId}
+    </if>
+    ORDER BY SORT 
+
+  </select>
+
+  <select id="listHotArticle" resultMap="articleResultVOMap">
+    SELECT
+    <include refid="articleColumns"/>
+    ,user.REAL_NAME AS realName,user.HEAD_IMG AS headImg
+    FROM article
+    LEFT JOIN user
+    ON
+    article.user_id=user.ID
+    AND user.IS_DELETE=0
+    AND user.STATUS=2
+    <where>
+      article.IS_DELETE=0
+      AND article.STATUS=2
+      AND article.CODE = 0
+      AND article_img !=""
+      ORDER BY article.SORT  LIMIT 0,10
+    </where>
+  </select>
+
+
+  <select id="listAll" resultMap="articleResultMap">
+    SELECT
+    <include refid="articleColumns"/>
+    FROM article
+    <include refid="articleJoins"/>
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+  <resultMap id="ArticleResultMap" extends="BaseResultMap"
+             type="com.kuangji.paopao.dto.result.ArticleResult">
+    <association property="common" column="common_id"
+                 select="com.kuangji.paopao.mapper.CommonMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <select id="listArticleResult" resultMap="ArticleResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM article
+    WHERE
+    IS_DELETE=0
+    <if test="title !=null and title !=''">
+     AND  article_val LIKE  '${title}%'
+    </if>
+    ORDER BY  id DESC
+  </select>
+
+
+  <insert id="insertBatch">
+    INSERT INTO article(
+    ID,
+    UPDATE_TIME,
+    INSERT_TIME,
+    IS_DELETE,
+    ARTICLE_VAL,
+    ARTICLE_TITLE,
+    CONTENT,
+    ARTICLE_LINK,
+    AUTHOR,
+    CODE,
+    ARTICLE_IMG,
+    BROWSE_VOLUME,
+    COMMON_ID,
+    IS_PLATFORM,
+    user_id,
+    STATUS,
+    SORT
+    )
+    VALUES
+    <foreach collection="list" item="article" separator=",">
+      (
+      #{article.id},
+      #{article.updateTime},
+      #{article.insertTime},
+      #{article.isDelete},
+      #{article.articleVal},
+      #{article.articleTitle},
+      #{article.content},
+      #{article.articleLink},
+      #{article.author},
+      #{article.code},
+      #{article.articleImg},
+      #{article.browseVolume},
+      #{article.commonId},
+      #{article.isPlatform},
+      #{article.publisherId},
+      #{article.status},
+      #{article.sort}
+      )
+    </foreach>
+  </insert>
+
+
+  <update id="logicDeleteById">
+    UPDATE article SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+  
+  
+  <update id="addArticleBrowseVolume">
+    UPDATE article SET
+   	browse_volume=browse_volume+#{browseVolume}
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+  
+  
+</mapper>

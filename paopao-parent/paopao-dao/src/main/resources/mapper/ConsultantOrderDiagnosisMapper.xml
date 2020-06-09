@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantOrderDiagnosisMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultantOrderDiagnosis">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="content_type" jdbcType="BIT" property="contentType" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kuangji.paopao.model.ConsultantOrderDiagnosis">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, order_no, content_type, insert_time, update_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    content
+  </sql>
+  <resultMap id="orderDiagnosisResultVOMap" type="com.kuangji.paopao.admin.vo.OrderDiagnosisVO">
+		
+		<result column="orderNo" property="orderNo" />
+		<result column="updateTime" property="updateTime" />
+	
+		<collection property="diagnosisVOs" javaType="java.util.ArrayList"
+			ofType="com.kuangji.paopao.admin.vo.OrderDiagnosisVO$DiagnosisVO">
+			<id column="content" property="content" />
+			<result column="contentType" property="contentType" />
+		</collection>
+	</resultMap>
+  
+  <insert id="insertBatch">
+		INSERT INTO consultant_order_diagnosis(
+		  order_no,content, content_type, insert_time, update_time, is_delete
+		
+		)
+		VALUES
+		<foreach collection="list" item="diagnosis" separator=",">
+			(
+			#{diagnosis.orderNo},
+			#{diagnosis.content},
+			#{diagnosis.contentType},
+			now(),
+			now(),
+			0
+			)
+		</foreach>
+	</insert>
+	
+	 <select id="getCaseDiagnosis"  resultMap="orderDiagnosisResultVOMap">
+	SELECT
+		consultant_order_diagnosis_update.order_no AS "orderNo",
+		consultant_order_diagnosis_update.diagnosis_time  AS "updateTime",
+		consultant_order_diagnosis.content AS "content",
+		consultant_order_diagnosis.content_type AS "contentType"
+	FROM
+		consultant_order_diagnosis_update,consultant_order_diagnosis	
+	WHERE
+	   consultant_order_diagnosis_update.is_delete=0
+	   AND consultant_order_diagnosis_update.order_no=consultant_order_diagnosis.order_no
+	   AND  consultant_order_diagnosis_update.order_no=#{orderNo}
+	</select>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_list_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.balance.CardListActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/card_list_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="绑卡列表" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/order_buy_pay_way_alipay_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/card_list_activity_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名：李某某"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/card_list_activity_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="账号：135****1311"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="9.5dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/global_line_color" />
+</LinearLayout>

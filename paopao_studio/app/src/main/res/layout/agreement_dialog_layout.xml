@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/agreement_dialog_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/common_circle_background_share"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务协议和隐私政策"
+            android:textColor="#ff333333"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/agreement_content_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center|left"
+            android:minHeight="50dp"
+            android:text="请您务必审慎阅读、充分理解“服务协议”和“隐私政策”各条款，包括但不限于：为了向您提供咨询服务、内容分享等服务，我们需要收集您的设备信息等个人信息。您可阅读《服务协议》和《隐私政策》了解详细信息。如您同意，请点击“同意”开始接受我们的服务。"
+            android:textColor="#ff666666"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center|bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/agreement_dialog_cancle"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/common_gary_border_background_share"
+                android:gravity="center"
+                android:text="暂不使用"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/agreement_dialog_call_btn"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/common_theme_background_share"
+                android:gravity="center"
+                android:text="同意"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

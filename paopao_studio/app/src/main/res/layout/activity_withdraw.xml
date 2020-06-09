@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/withdraw_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.balance.WithdrawActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/withdraw_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="提现" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="提现金额"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/withdraw_activity_record"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/withdraw_record"
+            android:textColor="#ff9ddcaf"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"
+            android:textColor="#ff333333"
+            android:textSize="36sp" />
+
+        <EditText
+            android:id="@+id/withdraw_activity_input_money"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:inputType="numberDecimal"
+            android:maxLength="8"
+            android:paddingLeft="10dp"
+            android:textColor="#ff333333"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/withdraw_activity_clear"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@mipmap/common_clear_edittext" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/withdraw_activity_yue_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="可用余额 0 元"
+            android:textColor="#ff999999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/withdraw_activity_allwithdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="全部提现"
+            android:textColor="#ff9ddcaf"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/withdraw_activity_code"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center|left"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:textColor="#333333"
+            android:textColorHint="#ff999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/withdraw_activity_getcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取验证码"
+            android:textColor="#ff9ddcaf"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/global_line_color" />
+
+    <TextView
+        android:id="@+id/withdraw_activity_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#ff666666"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/withdraw_activity_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/common_theme_background_share"
+        android:gravity="center"
+        android:text="提交申请"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
+</LinearLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.BookingTimeMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.BookingTime">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="userId" jdbcType="INTEGER" property="consultantId" />
+    <result column="consultant_work_start_time" jdbcType="VARCHAR" property="consultantWorkStartTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="consultant_work_end_time" jdbcType="VARCHAR" property="consultantWorkEndTime" />
+    <result column="sort_time" jdbcType="INTEGER" property="sortTime" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, consultant_work_start_time, is_delete, consultant_work_end_time, 
+    sort_time, code, insert_time
+  </sql>
+    <select id="get" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM booking_time
+        <where>
+            is_delete=0
+        </where>
+    </select>
+
+
+
+    <select id="listUserBookingTime" resultType="java.lang.Integer">
+        SELECT
+        id
+        FROM booking_time
+        <where>
+            is_delete=0
+            AND booking_time.user_id=#{userId}
+        </where>
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM booking_time
+        <where>
+            is_delete=0
+        </where>
+    </select>
+    <select id="listConsultantBookingTime" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM booking_time
+        <where>
+            is_delete=0
+            AND user_id = #{consultantId}
+        </where>
+    </select>
+    <insert id="insertBatch">
+        INSERT INTO booking_time(
+        un_key,
+        user_id,
+        consultant_work_date,
+        consultant_work_start_time,
+        consultant_work_end_time,
+        status
+        )
+        VALUES
+        <foreach collection="list" item="bookingTime" separator=",">
+            (
+            #{bookingTime.unKey},
+            #{bookingTime.consultantId},
+            #{bookingTime.consultantWorkDate},
+            #{bookingTime.consultantWorkStartTime},
+            #{bookingTime.consultantWorkEndTime},
+            #{bookingTime.timeType}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="deleteByConsultantId">
+        DELETE
+        FROM
+        booking_time
+        WHERE
+        is_delete=0
+        AND user_id=#{consultantId}
+
+    </update>
+    <select id="listUseBookingId" resultType="Integer">
+        SELECT
+        booking_time.id
+        FROM
+        booking_time
+        LEFT JOIN
+        consultant_schedule_status
+        ON consultant_work_start_time=consultant_schedule_status.SCHEDULE_START_TIME
+        AND booking_time.consultant_work_end_time=consultant_schedule_status.SCHEDULE_END_TIME
+        AND consultant_schedule_status.user_id=#{consultantId}
+        WHERE
+        booking_time.is_delete=0
+        AND booking_time.user_id=#{consultantId}
+        AND consultant_schedule_status.time_type in(0,2)
+        AND consultant_schedule_status.id IS NOT NULL
+    </select>
+   <select id="getUserMaxDate" resultType="Date">
+        SELECT
+		 Max(consultant_work_date)
+        FROM 
+       	 booking_time 
+        WHERE 
+       	   is_delete=0
+     	AND  user_id=#{userId}
+ 
+    </select>
+    
+</mapper>

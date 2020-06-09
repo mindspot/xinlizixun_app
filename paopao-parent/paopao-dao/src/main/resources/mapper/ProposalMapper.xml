@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ProposalMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.Proposal">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kuangji.paopao.model.Proposal">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, status, sort, insert_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    content
+  </sql>
+  <select id="listProposal" resultType="com.kuangji.paopao.admin.vo.ProposalVO">
+  
+	 SELECT
+			proposal.id AS "id",
+			user.real_name AS "realName",
+			proposal.content AS "content",
+			user.type  AS "type"
+	 FROM
+			proposal,user 
+     WHERE 
+		 proposal.is_delete=0	
+		 AND user.id=proposal.user_id
+		 <if test="type !=null">
+		  AND user.type=#{type}
+		 </if>
+		ORDER BY  	 proposal.id  DESC
+  </select>
+
+
+    <resultMap id="proposalResultMap" type="com.kuangji.paopao.model.Proposal">
+        <id column="id" property="id"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="insertTime" property="insertTime"/>
+        <result column="isDelete" property="isDelete"/>
+        <result column="content" property="content"/>
+        <result column="userId" property="userId"/>
+        <result column="status" property="status"/>
+        <result column="sort" property="sort"/>
+
+
+
+    </resultMap>
+
+    <sql id="proposalColumns">
+        proposal.ID AS "id",
+        proposal.UPDATE_TIME AS "updateTime",
+        proposal.INSERT_TIME AS "insertTime",
+        proposal.IS_DELETE AS "isDelete",
+        proposal.CONTENT AS "content",
+        proposal.USER_ID AS "userId",
+        proposal.STATUS AS "status",
+        proposal.SORT AS "sort"
+    </sql>
+
+    <sql id="proposalJoins">
+
+    </sql>
+
+    <select id="get" resultMap="proposalResultMap">
+        SELECT
+        <include refid="proposalColumns" />
+        FROM proposal <include refid="proposalJoins" />
+        <where>
+            IS_DELETE=0
+            AND proposal.ID = #{id}
+        </where>
+    </select>
+
+    <select id="list" resultMap="proposalResultMap">
+        SELECT
+        <include refid="proposalColumns" />
+        FROM proposal <include refid="proposalJoins" />
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="proposalResultMap">
+        SELECT
+        <include refid="proposalColumns" />
+        FROM proposal <include refid="proposalJoins" />
+        <where>
+            IS_DELETE=0
+        </where>
+    </select>
+
+
+
+    <insert id="insertBatch">
+        INSERT INTO proposal(
+        ID,
+        UPDATE_TIME,
+        INSERT_TIME,
+        IS_DELETE,
+        CONTENT,
+        USER_ID,
+        STATUS,
+        SORT
+        )
+        VALUES
+        <foreach collection ="list" item="proposal" separator =",">
+            (
+            #{proposal.id},
+            NOW(),
+            NOW(),
+            #{proposal.isDelete},
+            #{proposal.content},
+            #{proposal.userId},
+            #{proposal.status},
+            #{proposal.sort}
+            )
+        </foreach>
+    </insert>
+
+
+
+    <update id="logicDeleteById">
+        UPDATE  proposal SET
+        IS_DELETE=1
+        WHERE
+        IS_DELETE=0
+        AND ID = #{id}
+    </update>
+
+</mapper>

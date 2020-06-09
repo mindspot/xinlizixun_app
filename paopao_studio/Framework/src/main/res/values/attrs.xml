@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Rotate3dAnimation">
+        <attr name="rollType" format="enum">
+            <enum name="x" value="0" />
+            <enum name="y" value="1" />
+            <enum name="z" value="2" />
+        </attr>
+        <attr name="fromDeg" format="float" />
+        <attr name="toDeg" format="float" />
+        <attr name="pivotX" format="fraction" />
+        <attr name="pivotY" format="fraction" />
+    </declare-styleable>
+
+
+    <!-- 进度条中环形的宽度 -->
+    <declare-styleable name="CircleProgressView">
+        <attr name="circle_ring_stroke_width" format="dimension" />
+        <attr name="circle_hint_color" format="color" />
+        <attr name="circle_show_color" format="color" />
+        <attr name="circle_max_progress" format="integer" />
+        <attr name="circle_curr_progress" format="integer" />
+    </declare-styleable>
+
+    <!-- 百分比进度条中环形的宽度 -->
+    <declare-styleable name="CirclePercentView">
+        <attr name="circle_percent_ring_stroke_width" format="dimension" />
+        <attr name="circle_percent_hint_color" format="color" />
+        <attr name="circle_percent_show_color" format="color" />
+        <attr name="circle_percent_max_progress" format="integer" />
+        <attr name="circle_percent_curr_progress" format="integer" />
+    </declare-styleable>
+
+    <!-- 百分比进度条中半环形的宽度 -->
+    <declare-styleable name="SemiCirclePercentView">
+        <attr name="circle_semi_ring_stroke_width" format="dimension" />
+        <attr name="circle_semi_hint_color" format="color" />
+        <attr name="circle_semi_show_color" format="color" />
+        <attr name="circle_semi_curr_outer_color" format="color" />
+        <attr name="circle_semi_curr_inner_circle_color" format="color" />
+        <attr name="circle_semi_max_progress" format="integer" />
+        <attr name="circle_semi_curr_progress" format="integer" />
+        <attr name="circle_semi_curr_outer_width" format="dimension" />
+        <attr name="circle_semi_curr_inner_width" format="dimension" />
+        <attr name="circle_semi_curr_inner_interval_width" format="dimension" />
+    </declare-styleable>
+
+    <!-- 进度条中圆形的宽度 -->
+    <declare-styleable name="RoundProgressView">
+        <attr name="round_ring_stroke_width" format="dimension" />
+        <attr name="round_hint_color" format="color" />
+        <attr name="round_show_color" format="color" />
+        <attr name="round_text_color" format="color" />
+        <attr name="round_max_progress" format="integer" />
+        <attr name="round_curr_progress" format="integer" />
+        <attr name="round_has_end_pointer" format="boolean" />
+        <attr name="round_center_text" format="string|integer" />
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.VisitorMapper">
+   
+
+    <select id="listVisitorVO" resultType="com.kuangji.paopao.vo.VisitorVO">
+       SELECT
+		user.id userId,
+		user.easemob_id easemobId,
+		user.real_name realName,
+		CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+		user.head_img_size AS "headImgSize",
+		visitor.update_time  visitorTime
+	FROM	
+		visitor,user
+	WHERE
+		visitor.is_delete=0
+		AND visitor.user_id=user.id	
+		AND visitor.shop_id=#{shopId}
+		ORDER BY visitor.update_time DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,71 @@
+spring:
+  application:
+    name: PaoPao Web Client
+  redis:
+    key:
+      prefix:
+       authCode: "portal:authCode:"
+       orderId: "portal:orderId:"
+       beforeTheEndOrderCall : "portal:beforeTheEndOrderCall:"
+       orderCall : "portal:orderCall:" 
+       stopOrderCall : "portal:stopOrderCall:"
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/paopao?characterEncoding=UTF-8&useUnicode=true&useSSL=false&useAffectedRows=true&allowMultiQueries=true
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: paoPao&123
+      initial-size: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      timeBetweenEvictionRunsMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+mybatis:
+  type-aliases-package: com.kuangji.paopao.model
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+server:
+  port: 8087
+platform:
+  invitation-code: paopaoxinli
+  article-prefix-url: http://106.14.218.35:8097/#/article/
+  spread-url: http://106.14.218.35:8097/#/register/
+  inner-coupon-prefix-url: http://106.14.218.35:8097/#/web/coupon-template/collect/
+  inner-redeem-prefix-url: http://106.14.218.35:8097/#//web/coupon/redeem/
+  inner-activities-prefix-url: http://106.14.218.35:8097/#/promotional-activities/get/
+url: http://259w758b32.zicp.vip
+alipay:
+  dev: false #默认false,为true表示使用沙箱环境
+  sign-type: RSA2 #签名算法
+  app-id: 2021001144601251 #应用ID
+  private-key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCLFiYuqyocweRbxkqpe0vquj0kVCN3oSp200DYWQA53Pc2UHHLYxUzzJ5NtBDeQV5YfEI3GLTp8iy5buiQnLJqfWklnn32ry4kw6qX59FzOOp9BzBJVDVHOytU0+U60lJog8dSpV7kAyeSRC4LuoZ/lluvTuYglxRbsQ+wIty5RfOHtMOyjWDFUzWxJU1nJZUjCpUmRkRzAGqKBOr/myaNx/i0S+Uvridzdg3eOFSD7jU2K2iq5YGgh7ZNy6bXtmu45sfR1BCgDlL+wGODnf3OVWrXCoc/u9ls8tOucEkw1mpV/9WsvdfH7dCNcTcmb5VOcW75Xx5Bb9BwKcg7/c4bAgMBAAECggEAb5G94TPGXTkfkIrYu2k/NbRddXXU2ZK7uIOvgZyrNL9Oww/2qFr72AhseBJYcaDoKHzMtNupy/xK6hjQj6hS6l9daCLiEm7lyfH3N1Fqz025s79/eWMGNfR9xtcPC4dJObNzwZUMMEVjic4NTbU7TL91HoRgz4XBe+flmLnuauNDu7cIp3xP6pqfyL9LsX20/YoGqxMlefX1hHu2AD/0viJN7JLlVs9LE5U5g+a8ZEyYUM6NpoZ4frb0MOhRfDS/+Oq8Ftz4tQ0ELrejluqYeyNyneB1z1Alht6scvFOdtONnfrMUpDNarUENW9JBqPc6Jm6HTdgKN3w04xSN/R5UQKBgQDWszQAHP3meQxAw4dRKsFoNhiY4R1to24sIhUp4qpX8DLp9SERo5TVm0WMMsWIrsCTcXU13T4uNJX+/4ckP2Ee6eWHmSF98xrR5MWYY1qqCWK1JleguWQzAEaCpzpM9MHZz0tQ8lL8D5anzdYK1vcZNt9PT06+2NLBkeQpqizEOQKBgQCl12WLxWoLCaJNxHf01wsLdd+j/5Li/Ts+9r8PkUQXjBSmlOUnCH/nQlmrN3GHWK/WV/RgTzV4M2zl5NfS0bmoJ38sh99F7PanX31A6MmdSDzjvZGeRoqBEJfAKMc73/n+a7w5v8X7uHwEgvPrXWhySsvDADlvrUPEACTqkXPs8wKBgH/yq7qljGodGUA/RhUI9dm041O4VGFSVAXZCeO8QOfHLZBflSV95uSlc/zpBO8/tWQo6UEAaF4A2KLuhQsE+kwB99enWl5E0mbjfx4hl5ZdoYVzJCWUVjJOp7aVEhlqg1vaPXgv8WRlpdK6yCQNl5RfLxWEndj+Phs9ZkuuLp+BAoGAOJG/xqyhXoB7x5Ez5eWQk+kyTwu3vAvrMLAUPigsFOgohyYVAHqKvoTId3njFOrwl+nKpyt9rrHD/KtR30zAypYmcDcstvp8rF0LKZ/+XdMtSfX4/QdM6XeSe+6s/0SITvvK6dv7mcC1NQjCUU+8d/gBh1PFQ83TZsEx1n2lEHcCgYAL75nErxm/eWhRkre56swMVNR0PClnU8ExWEF5zgBZ8ukwbiMX2Xzm+kt03CRQSgnyyhVjiqVc+lFbtpx4YUX8A19QAgimQ/iFMEQxIMcdIBNOfZT1UaEfqFj0Cj7dQXKfmvnjJGeVR8PaU7tByBOqsFnLXK/nAY/eUzb7GZ8ejg==
+  alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi1cTPig4c0oX4Rc4asAa0qxiCEfw2Mvb0RWWww5QGdkDyjMXV3lQK77mt8gsadiVzXTFOZnHSDZV2QiHxO6mwP73b+bh8gTXNAbnL+AwBHHGys5/KX0PFDnhB1FL1AC5C0SZwyytlH14eSv2fPe0atagltKhVFSAsAL+rGz16omB2D+ggDEVJyQA4GNFaG94lPmiprBENgz91awO9OC1mab+t2A2CfoXYtjmh+GWCdmZhUXjhGW0hfDMMCQn8gp0imskRVAbtMrnnUaMRDC/wWfybzpSM23fDxshLCo0H4aqPRZJzp1FlFGBUoJkoSc8vQUCkNVeF5VyAkTNXWFQOwIDAQAB
+  notify-url: ${url}/alipay_callback
+wxpay:
+  dev: false
+  appID: wx67087df0ff842803
+  mchID: 1521090531
+  key: Kljhgfdsazxcvbnmpoiuytrewq123678
+  wxNotifyUrl: ${url}/wxpay_callback
+  spbillCreateIp: 123.12.12.123
+  nonceStr: 5K8264ILTKCH16CQ2502SI8ZNMTM67VS
+  tradeType: APP

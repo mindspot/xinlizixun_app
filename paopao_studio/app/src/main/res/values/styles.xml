@@ -1,0 +1,68 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </style>
+
+    <style name="Text">
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="Text.Title_Button" parent="@style/Text">
+
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Text.Title" parent="@style/Text">
+        <item name="android:textColor">@color/global_black_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <declare-styleable name="ToolBarTitleView">
+        <!--背景-->
+        <attr name="title_background" format="reference|integer|color" />
+        <!--标题-->
+        <attr name="title_text" format="string" />
+        <!--标题字体颜色-->
+        <attr name="title_text_color" format="color" />
+        <!--关闭按钮是否显示-->
+        <attr name="close_iv_visible" format="boolean" />
+        <!--关闭按钮是否显示-->
+        <attr name="bottom_line_visible" format="boolean" />
+        <!--右侧按钮文字-->
+        <attr name="right_button_text" format="string" />
+        <!--右侧按钮文字颜色-->
+        <attr name="right_button_text_color" format="color" />
+        <!--右侧按钮图标-->
+        <attr name="right_button_drawable" format="reference|integer" />
+        <!--左侧按钮文字-->
+        <attr name="left_button_text" format="string" />
+        <!--左侧按钮文字图标-->
+        <attr name="left_button_text_color" format="color" />
+        <!--左侧按钮图标-->
+        <attr name="left_button_drawable" format="reference|integer" />
+        <!--默认样式-->
+        <attr name="defult_style">
+            <enum name="WHITE" value="100" />
+            <enum name="IMG" value="101" />
+            <enum name="TRAN_WHITE" value="102" />
+            <enum name="TRAN_BLCAK" value="103" />
+            <enum name="THEME" value="104" />
+            <enum name="NO_TITLE_WHITE" value="105" />
+            <enum name="NO_TITLE_BLCAK" value="106" />
+            <enum name="WHITEBG_BLACKTEXT" value="107" />
+            <enum name="COLOR_WHITE" value="108" />
+            <enum name="COLOR_BLACK" value="109" />
+        </attr>
+    </declare-styleable>
+
+
+    <style name="PermissionNoDisplay" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantMapper">
+    <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.Consultant">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="birth_date" jdbcType="CHAR" property="birthDate"/>
+        <result column="prov_name" jdbcType="VARCHAR" property="provName"/>
+        <result column="prov_code" jdbcType="INTEGER" property="provCode"/>
+        <result column="city_name" jdbcType="VARCHAR" property="cityName"/>
+        <result column="city_code" jdbcType="INTEGER" property="cityCode"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="area_code" jdbcType="INTEGER" property="areaCode"/>
+        <result column="addr_detail" jdbcType="VARCHAR" property="addrDetail"/>
+        <result column="weixing" jdbcType="VARCHAR" property="weixing"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="mailbox" jdbcType="VARCHAR" property="mailbox"/>
+        <result column="send_word" jdbcType="VARCHAR" property="sendWord"/>
+        <result column="brief_introduction" jdbcType="VARCHAR" property="briefIntroduction"/>
+        <result column="consultation_fee" jdbcType="INTEGER" property="consultationFee"/>
+        <result column="user_type" jdbcType="BIT" property="userType"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="status" jdbcType="BIT" property="status"/>
+        <result column="invitation_code" jdbcType="VARCHAR" property="invitationCode"/>
+        <result column="working_seniority" jdbcType="REAL" property="workingSeniority"/>
+        <result column="accumulative_case" jdbcType="INTEGER" property="accumulativeCase"/>
+        <result column="spread_url" jdbcType="VARCHAR" property="spreadUrl"/>
+        <result column="face_address" jdbcType="VARCHAR" property="faceAddress"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id, user_id, birth_date, prov_name, prov_code, city_name, city_code, area_name, area_code,
+        addr_detail, weixing, phone, mailbox, send_word, brief_introduction, consultation_fee,
+        user_type, sort, status, invitation_code, working_seniority, accumulative_case, spread_url, 
+        face_address,title,insert_time,
+        is_delete
+    </sql>
+    <update id="updateSupervisor">
+        UPDATE consultant
+        SET invitation_code = ''
+        WHERE
+        invitation_code = #{invitationCode}
+        AND
+        user_type = 0
+    </update>
+    <update id="batchUpdateSupervisor">
+        UPDATE consultant
+        SET invitation_code = #{invitationCode}
+        WHERE
+        user_type = 0
+        AND
+        id in
+        <foreach collection="idList" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </update>
+    <select id="getConsultantUpdateVO" resultType="com.kuangji.paopao.vo.ConsultantUpdateVO">
+      SELECT
+      user.id AS "id",
+      CONCAT(user.HEAD_IMG,user.head_img_size) AS "headImg",
+	  user.head_img_size AS "headImgSize",
+      user.real_name AS "realName",
+      user.sex AS "sex",
+      user.account  AS "account",
+      consultant.send_word AS "sendWord",
+      brief_introduction  AS "content",
+      face_address AS faceAddress,
+      title AS title
+      FROM
+      consultant
+      LEFT JOIN
+      user
+      ON
+      user.id=consultant.user_id
+      WHERE
+      consultant.is_delete=0
+      AND
+      user.id=#{consultantId}
+    </select>
+
+    <resultMap id="settledInConsultantVOMap" type="com.kuangji.paopao.vo.SettledInConsultantVO">
+        <result column="headImg" property="headImg"/>
+        <result column="realName" property="realName"/>
+        <result column="sex" property="sex"/>
+        <result column="birthDate" property="birthDate"/>
+        <result column="provName" property="provName"/>
+        <result column="provCode" property="provCode"/>
+        <result column="cityName" property="cityName"/>
+        <result column="cityCode" property="cityCode"/>
+        <result column="areaName" property="areaName"/>
+        <result column="areaCode" property="areaCode"/>
+        <result column="addrDetail" property="addrDetail"/>
+        <result column="phone" property="phone"/>
+        <result column="weixing" property="weixing"/>
+        <result column="workingSeniority" property="workingSeniority"/>
+        <result column="accumulativeCase" property="accumulativeCase"/>
+        <result column="mailbox" property="mailbox"/>
+        <result column="sendWord" property="sendWord"/>
+        <result column="sendWord" property="sendWord"/>
+        <result column="invitationCode" property="invitationCode"/>
+        <result column="briefIntroduction" property="briefIntroduction"/>
+        <result column="userId" property="userId"/>
+        <collection property="cards" column="userId" ofType="com.kuangji.paopao.model.UserImage"
+                    select="com.kuangji.paopao.mapper.UserImageMapper.listIdCards"></collection>
+    </resultMap>
+    <select id="getSettledInConsultantVO" resultMap="settledInConsultantVOMap">
+        SELECT
+        user.head_img AS "headImg",
+        user.real_name AS "realName",
+        user.sex AS "sex",
+        consultant.birth_date  AS birthDate,
+        consultant.user_id AS userId,
+        consultant.prov_name AS "provName",
+        consultant.prov_code AS "provCode",
+        consultant.city_name AS "cityName",
+        consultant.city_code AS "cityCode",
+        consultant.area_name AS "areaName",
+        consultant.area_code AS "areaCode",
+        consultant.addr_detail AS "addrDetail",
+        consultant.brief_introduction AS  briefIntroduction,
+        consultant.phone as phone,
+        consultant.weixing AS "weixing",
+        consultant.mailbox AS "mailbox",
+        consultant.working_seniority AS workingSeniority,
+        consultant.accumulative_case AS accumulativeCase,
+        consultant.send_word AS "sendWord",
+        consultant.invitation_code AS invitationCode
+        FROM
+        consultant,`user`
+        WHERE
+        consultant.is_delete=0
+        AND consultant.user_id=`user`.id
+        AND consultant.user_id=#{userId}
+    </select>
+
+    <resultMap id="ConsultantInfoMap" extends="BaseResultMap" type="com.kuangji.paopao.dto.result.ConsultantInfo">
+        <association property="user" column="user_id"
+                     select="com.kuangji.paopao.mapper.UserMapper.selectByPrimaryKey"></association>
+        <association property="firstConsultantRate" column="id"
+                     select="com.kuangji.paopao.mapper.ConsultantRateMapper.getFirstConsultantRate"/>
+        <association property="nextConsultantRate" column="id"
+                     select="com.kuangji.paopao.mapper.ConsultantRateMapper.getSecondConsultantRate"/>
+        <collection property="cards" column="user_id" ofType="com.kuangji.paopao.model.UserImage"
+                    select="com.kuangji.paopao.mapper.UserImageMapper.listIdCards"></collection>
+        <collection property="educationExperienceList" column="id"
+                    ofType="com.kuangji.paopao.model.consultant.EducationExperience"
+                    select="com.kuangji.paopao.mapper.EducationExperienceMapper.listEducationExperience"></collection>
+        <collection property="certificationList" column="id" ofType="com.kuangji.paopao.model.consultant.Certification"
+                    select="com.kuangji.paopao.mapper.CertificationMapper.listCertification"></collection>
+        <collection property="trainingExperienceList" column="id"
+                    ofType="com.kuangji.paopao.model.consultant.TrainingExperience"
+                    select="com.kuangji.paopao.mapper.TrainingExperienceMapper.listTrainingExperience"></collection>
+        <collection property="supervisedExperienceList" column="id"
+                    ofType="com.kuangji.paopao.model.consultant.SupervisedExperience"
+                    select="com.kuangji.paopao.mapper.SupervisedExperienceMapper.listSupervisedExperience"></collection>
+        <collection property="publishBookList" column="id" ofType="com.kuangji.paopao.model.consultant.PublishMaterial"
+                    select="com.kuangji.paopao.mapper.PublishMaterialMapper.listPublishBook"></collection>
+        <collection property="publishPaperList" column="id" ofType="com.kuangji.paopao.model.consultant.PublishMaterial"
+                    select="com.kuangji.paopao.mapper.PublishMaterialMapper.listPublishPaper"></collection>
+        <collection property="targetPeopleList" column="{userId=user_id,labelType=peopleType}"
+                    ofType="com.kuangji.paopao.dto.result.UserLabelInfo"
+                    select="com.kuangji.paopao.mapper.UserLabelMapper.listUserLabelInfo"></collection>
+        <collection property="expertiseAreaList" column="{userId=user_id,labelType=areaType}"
+                    ofType="com.kuangji.paopao.dto.result.UserLabelInfo"
+                    select="com.kuangji.paopao.mapper.UserLabelMapper.listUserLabelInfo"></collection>
+        <collection property="platformWorkingTimeVOList" column="user_id"
+                    ofType="com.kuangji.paopao.vo.PlatformWorkingTimeVO"
+                    select="com.kuangji.paopao.mapper.PlatformWorkingTimeMapper.listWorkingUserTime"></collection>
+        <collection property="consultantList" column="user_id"
+                    ofType="com.kuangji.paopao.vo.PlatformWorkingTimeVO"
+                    select="com.kuangji.paopao.mapper.PlatformWorkingTimeMapper.listWorkingUserTime"></collection>
+    </resultMap>
+
+    <select id="getConsultantInfo" resultMap="ConsultantInfoMap">
+        SELECT
+        <include refid="Base_Column_List"></include>,
+        103 as peopleType,
+        2 as areaType
+        FROM
+        consultant
+        WHERE
+        id = #{consultantId}
+    </select>
+    <resultMap id="ConsultantResultMap" extends="BaseResultMap" type="com.kuangji.paopao.vo.consulant.ConsultantResult">
+        <association property="firstConsultantRate" column="id"
+                     select="com.kuangji.paopao.mapper.ConsultantRateMapper.getFirstConsultantRate"/>
+        <association property="nextConsultantRate" column="id"
+                     select="com.kuangji.paopao.mapper.ConsultantRateMapper.getSecondConsultantRate"/>
+        <association property="user" column="user_id"
+                     select="com.kuangji.paopao.mapper.UserMapper.selectByPrimaryKey"></association>
+    </resultMap>
+    <select id="listConsultantResult" resultMap="ConsultantResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        consultant
+        WHERE
+        status = 2
+        AND
+        user_type = 0
+        AND invitation_code = #{invitationCode}
+    </select>
+    <select id="listConsultantVO" resultMap="ConsultantResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM
+        consultant
+        where
+         is_delete=0
+        <if test="status != null">
+            AND status=#{status}
+        </if>
+        <if test="userIds !=null and userIds.size>0">
+            AND user_id IN
+           <foreach collection="userIds" item="userId" open="(" separator="," close=")" index="index">
+               #{userId}
+           </foreach>
+        </if>
+        <if test="userType != null">
+            AND user_type=#{userType}
+        </if>
+        <if test="invitationCode != null and invitationCode !=''">
+            AND invitation_code=#{invitationCode}
+        </if>
+        <if test="userName != null and userName !=''">
+            AND user_id in (select id from user where user_name=#{userName} )
+        </if>
+        <if test="realName != null and realName !=''">
+            AND user_id in (select id from user where real_name=#{realName} )
+        </if>
+        ORDER BY  id  desc 
+    </select>
+    <select id="getParentConsultant" resultType="com.kuangji.paopao.model.consultant.Consultant">
+         SELECT
+        t_p.*
+        FROM
+        consultant as t,consultant as t_p
+        where
+        t.`user_id` = #{consultantUserId} and t_p.`user_type`=1
+        and t.`invitation_code` = t_p.`invitation_code`
+    </select>
+    <select id="countSupervisor" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM
+        consultant
+        WHERE
+         status = 2
+        AND
+        user_type = 1
+        AND
+        invitation_code = #{invitationCode}
+    </select>
+    <select id="listSupervisorCode" resultType="java.lang.String">
+        SELECT invitation_code
+        FROM
+        consultant
+        WHERE
+         status = 2
+        AND
+        user_type = 1
+    </select>
+    <select id="getPlatformAccount" resultType="com.kuangji.paopao.model.User">
+        SELECT user.*
+        FROM
+        user,`consultant`
+        where
+        user.id = consultant.`user_id`
+        AND
+        consultant.`invitation_code` = #{invitationCode}
+        AND
+        consultant.`user_type` = 1
+    </select>
+
+</mapper>

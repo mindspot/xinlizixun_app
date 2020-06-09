@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.start.StartActivity">
+
+    <ImageView
+        android:id="@+id/start_activity_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/start_the_figure" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/start_activity_inpuit_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="请输入访问地址"
+            android:text="http://106.14.218.35:8087" />
+
+        <Button
+            android:id="@+id/start_activity_goto"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="访问" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/alertdialog_line" />
+
+    <TextView
+        android:id="@+id/start_activity_url_one"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="http://259w758b32.zicp.vip"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/alertdialog_line" />
+
+    <TextView
+        android:id="@+id/start_activity_url_three"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="http://pp.psyooo.com:8087"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+</LinearLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/work_plan_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.user.time.WorkPlanActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/work_plan_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_title_back_icon_skin"
+        app:right_button_drawable="@mipmap/common_help_center_icon"
+        app:title_text="工作安排" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/global_line_color" />
+
+    <TextView
+        android:id="@+id/work_plan_activity_custom_time_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/work_plan_custom_time"
+        android:textColor="#ff9ddcaf"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextSwitcher
+            android:id="@+id/work_plan_activity_select_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inAnimation="@anim/anim_in"
+            android:minWidth="80dp"
+            android:outAnimation="@anim/anim_out" />
+
+        <ImageView
+            android:id="@+id/work_plan_activity_select_date_img"
+            android:layout_width="25dp"
+            android:layout_height="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="2dp"
+            android:src="@mipmap/adjust" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/work_plan_activity_rest_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="休"
+            android:textColor="#ff666666"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/work_plan_activity_rest_img"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:paddingTop="2dp"
+            android:src="@mipmap/common_checkbox_unselect_icon" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:text="点击日期可自定义七天的排班"
+        android:textColor="#ff666666"
+        android:textSize="12sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ui.MyGridView
+                android:id="@+id/work_plan_activity_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/work_plan_time_gridview_background_share"
+                android:numColumns="3">
+
+            </ui.MyGridView>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/work_plan_activity_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/common_theme_background_share"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
+</LinearLayout>

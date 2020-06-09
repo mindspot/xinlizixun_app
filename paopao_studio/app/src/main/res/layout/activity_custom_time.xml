@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/custom_time_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.user.time.CustomTimeActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/custom_time_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_title_back_icon_skin"
+        app:title_text="自定义排班" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/custom_time_activity_one_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/custom_time_activity_one_chk"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:paddingRight="10dp"
+            android:src="@mipmap/common_checkbox_unselect_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:text="上午"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_one_left_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_one_left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#333333" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_one_right_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_one_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/custom_time_activity_two_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/custom_time_activity_two_chk"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:paddingRight="10dp"
+            android:src="@mipmap/common_checkbox_unselect_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:text="下午"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_two_left_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_two_left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#333333" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_two_right_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_two_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/custom_time_activity_three_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/custom_time_activity_three_chk"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:paddingRight="10dp"
+            android:src="@mipmap/common_checkbox_unselect_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:text="晚上"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_three_left_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_three_left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#333333" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_three_right_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_three_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/custom_time_activity_four_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/custom_time_activity_four_chk"
+            android:layout_width="28dp"
+            android:layout_height="18dp"
+            android:paddingRight="10dp"
+            android:src="@mipmap/common_checkbox_unselect_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:text="凌晨"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_four_left_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_four_left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#333333" />
+
+        <LinearLayout
+            android:id="@+id/custom_time_activity_four_right_layout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_time_item_gary_background_share"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_time_activity_four_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="42dp"
+                android:text="9:00"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/common_arrows_down_icon" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
+        android:text="本页面的设置为每日默认的排班时间；分别为排班的起始时间和结束时间，例如08:00-11:50表示早上08:00开始接单，11:50结束咨询。\n\n取消勾选，表示该时间段不接单。\n\n注意：点击保存后，排班设置实时生效；您之前的排班将被重置。系统将重新为您生成新的“排班表”。可返回工作安排界面查看详情。"
+        android:textColor="#ff666666"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/custom_time_activity_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/common_theme_background_share"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="theme_background_color">#F7F7F7</color>
+    <color name="repayment_black3_3">#333</color>
+
+    <color name="theme_color">#9DDCAF</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
+    <color name="global_black_color">#000000</color>
+    <color name="global_white_color">#ffffff</color>
+    <color name="global_line_color">#F0F0F0</color>
+    <color name="global_line_color2">#F7F7F7</color>
+    <color name="titlebar_toolbar_bg_color">#b2b2b2</color>
+    <color name="transparent">#00000000</color>
+    <color name="theme_gray">#b7b7b7</color>
+</resources>

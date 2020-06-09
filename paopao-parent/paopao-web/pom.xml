@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.kuangji</groupId>
+        <artifactId>paopao-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>paopao-web</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.kuangji</groupId>
+            <artifactId>paopao-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kuangji</groupId>
+            <artifactId>paopao-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kuangji</groupId>
+            <artifactId>paopao-biz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kuangji</groupId>
+            <artifactId>paopao-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kuangji</groupId>
+            <artifactId>paopao-model</artifactId>
+        </dependency>
+
+        <!--邮件报警包-->
+        <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.janino/janino -->
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>3.0.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.9.71.ALL</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>paopao-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    <mainClass>com.Application</mainClass>
+                    <layout>ZIP</layout>
+                    <executable>true</executable>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

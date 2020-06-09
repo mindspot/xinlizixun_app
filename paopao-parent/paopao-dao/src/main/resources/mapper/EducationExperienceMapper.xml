@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.EducationExperienceMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.consultant.EducationExperience">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="education_type" jdbcType="BIT" property="educationType" />
+    <result column="education_type_desc" jdbcType="VARCHAR" property="educationTypeDesc" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="certificate_url" jdbcType="VARCHAR" property="certificateUrl" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_dt" jdbcType="TIMESTAMP" property="createDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, consultant_id, education_type, education_type_desc, major, certificate_url, status, 
+    remark, create_dt
+  </sql>
+
+  <select id="listEducationExperience" resultType="com.kuangji.paopao.model.consultant.EducationExperience">
+    SELECT <include refid="Base_Column_List">
+  </include>
+    FROM  consultant_education_experience
+    WHERE
+    consultant_id = #{consultantId}
+  </select>
+
+  <insert id="insertBatch">
+    INSERT INTO consultant_education_experience(
+    consultant_id, education_type, education_type_desc, major, certificate_url
+    )
+    VALUES
+    <foreach collection ="list" item="item" separator =",">
+      (
+      #{item.consultantId},
+      #{item.educationType},
+      #{item.educationTypeDesc},
+      #{item.major},
+      #{item.certificateUrl}
+      )
+    </foreach>
+  </insert>
+</mapper>

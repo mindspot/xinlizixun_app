@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_order_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/order_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:title_text="订单列表" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:id="@+id/order_fragment_userlist_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="25dp"
+            android:text="客户订单"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_fragment_userlist_msg_number"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:background="@drawable/ease_chat_list_unread_msg_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="21dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/global_line_color2" />
+
+    <LinearLayout
+        android:id="@+id/order_fragment_usermeal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="25dp"
+            android:text="客户套餐信息"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_fragment_usermeal_msg_number"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:background="@drawable/ease_chat_list_unread_msg_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="21dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/global_line_color2" />
+
+    <LinearLayout
+        android:id="@+id/order_fragment_mylaunch_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="25dp"
+            android:text="我发起的督导订单"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_fragment_mylaunch_msg_number"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:background="@drawable/ease_chat_list_unread_msg_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="21dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/global_line_color2" />
+
+    <LinearLayout
+        android:id="@+id/order_fragment_myget_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="25dp"
+            android:text="我收到的督导订单"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_fragment_myget_msg_number"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:background="@drawable/ease_chat_list_unread_msg_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="21dp"
+            android:src="@mipmap/common_right_arrows_icon" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/global_line_color2" />
+</LinearLayout>

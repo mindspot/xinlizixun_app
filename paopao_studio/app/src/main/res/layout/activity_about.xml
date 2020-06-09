@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/about_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.main.center.AboutActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/about_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="公司介绍" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/about_activity_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:textColor="#ff333333"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/about_activity_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:textColor="#ff333333"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/about_activity_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:textColor="#ff333333"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+</LinearLayout>

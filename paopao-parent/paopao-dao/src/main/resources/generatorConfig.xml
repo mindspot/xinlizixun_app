@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+    <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--生成mapper.xml时覆盖原文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="true"/>
+            <property name="useMapperCommentGenerator" value="true"/>
+        </plugin>
+        <plugin type="com.kuangji.paopao.LombokPlugin" >
+            <property name="hasLombok" value="true"/>
+        </plugin>
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.userId}"
+                        password="${jdbc.password}">
+            <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <!--<javaModelGenerator targetPackage="com.kuangji.paopao.model" targetProject="paopao-model/src/main/java"/>-->
+
+        <!--<sqlMapGenerator targetPackage="mapper" targetProject="paopao-Mapper/src/main/resources"/>-->
+
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.kuangji.paopao.mapper"-->
+                             <!--targetProject="paopao-Mapper/src/main/java"/>-->
+        <!--&lt;!&ndash;生成全部表tableName设为%&ndash;&gt;-->
+        <!--<table tableName="consultant_extra_info" domainObjectName="ConsultantExtraInfo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="is_delete" javaType="Integer"/>-->
+        <!--</table>-->
+        <javaModelGenerator targetPackage="com.kuangji.paopao.model.consultant" targetProject="paopao-entity/src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper.consultant" targetProject="paopao-dao/src/main/resources"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.kuangji.paopao.mapper.consultant"
+                             targetProject="paopao-dao/src/main/java"/>
+        <!--生成全部表tableName设为%-->
+        <!--<table tableName="consultant_education_experience" domainObjectName="EducationExperience"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="education_type" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <!--<table tableName="consultant_training_experience" domainObjectName="TrainingExperience"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <!--<table tableName="consultant_publish_material" domainObjectName="PublishMaterial"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="type" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <!--<table tableName="consultant_supervised_experience" domainObjectName="SupervisedExperience"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="supervision_method" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <!--<table tableName="consultant_certification" domainObjectName="Certification"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="certificate_age" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <!--<table tableName="consultant_service" domainObjectName="ConsultantService"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="up_down_flag" javaType="Integer"/>-->
+            <!--<columnOverride column="operate_type" javaType="Integer"/>-->
+            <!--<columnOverride column="is_delete" javaType="Integer"/>-->
+            <!--<ignoreColumn column="update_time"/>-->
+        <!--</table>-->
+        <!--<table tableName="review_record" domainObjectName="ReviewRecord"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="ref_type" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+        <!--</table>-->
+        <!--<table tableName="user" domainObjectName="User"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="type" javaType="Integer"/>-->
+            <!--<columnOverride column="sex" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<columnOverride column="is_delete" javaType="Integer"/>-->
+            <!--<ignoreColumn column="update_time"/>-->
+        <!--</table>-->
+        <!--<table tableName="platform_working_time" domainObjectName="PlatformWorkingTime"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<columnOverride column="is_delete" javaType="Integer"/>-->
+            <!--<ignoreColumn column="update_time"/>-->
+        <!--</table>-->
+        <!--<table tableName="consultant_rate" domainObjectName="ConsultantRate"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="platform_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="channel_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="consultant_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="partner_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<columnOverride column="type" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <!--<table tableName="sub_commission_record" domainObjectName="SubCommissionRecord"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="platform_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="channel_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="consultant_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="partner_rate" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<columnOverride column="type" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <table tableName="coupon_template" domainObjectName="CouponTemplate"
+        enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        enableSelectByExample="false" selectByExampleQueryId="false">
+        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        <columnOverride column="type" javaType="Integer"/>
+        <columnOverride column="valid_type" javaType="Integer"/>
+        <columnOverride column="valid_days" javaType="Integer"/>
+        <columnOverride column="status" javaType="Integer"/>
+        <ignoreColumn column="modified_dt"/>
+        </table>
+        <!--<table tableName="coupon" domainObjectName="Coupon"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="type" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<ignoreColumn column="modified_dt"/>-->
+        <!--</table>-->
+        <table tableName="promotional_activities" domainObjectName="PromotionalActivities"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="status" javaType="Integer"/>
+            <ignoreColumn column="modified_dt"/>
+        </table>
+    </context>
+</generatorConfiguration>

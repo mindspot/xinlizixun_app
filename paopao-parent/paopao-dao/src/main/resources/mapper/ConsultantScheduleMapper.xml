@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.ConsultantScheduleMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.ConsultantSchedule">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="schedule_start_time" jdbcType="VARCHAR" property="scheduleStartTime" />
+    <result column="schedule_end_time" jdbcType="VARCHAR" property="scheduleEndTime" />
+    <result column="platform_working_time_id" jdbcType="INTEGER" property="platformWorkingTimeId" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, consultant_id, schedule_start_time, schedule_end_time, platform_working_time_id, insert_time, 
+    is_delete
+  </sql>
+
+
+  <resultMap id="consultantScheduleResultMap" type="com.kuangji.paopao.model.ConsultantSchedule">
+    <id column="id" property="id"/>
+    <result column="insertTime" property="insertTime"/>
+    <result column="updateTime" property="updateTime"/>
+    <result column="isDelete" property="isDelete"/>
+    <result column="consultantId" property="consultantId"/>
+    <result column="scheduleStartTime" property="scheduleStartTime"/>
+    <result column="scheduleEndTime" property="scheduleEndTime"/>
+    <result column="platformWorkingTimeId" property="platformWorkingTimeId"/>
+
+
+
+  </resultMap>
+
+  <sql id="consultantScheduleColumns">
+    consultant_schedule.ID AS "id",
+    consultant_schedule.INSERT_TIME AS "insertTime",
+    consultant_schedule.UPDATE_TIME AS "updateTime",
+    consultant_schedule.IS_DELETE AS "isDelete",
+    consultant_schedule.user_id AS "consultantId",
+    consultant_schedule.SCHEDULE_START_TIME AS "scheduleStartTime",
+    consultant_schedule.SCHEDULE_END_TIME AS "scheduleEndTime",
+    consultant_schedule.PLATFORM_WORKING_TIME_ID AS "platformWorkingTimeId"
+  </sql>
+
+  <sql id="consultantScheduleJoins">
+
+  </sql>
+
+  <select id="get" resultMap="consultantScheduleResultMap">
+    SELECT
+    <include refid="consultantScheduleColumns" />
+    FROM consultant_schedule <include refid="consultantScheduleJoins" />
+    <where>
+      IS_DELETE=0
+      AND consultant_schedule.ID = #{id}
+    </where>
+  </select>
+
+  <select id="getConsultantScheduleTime" resultMap="consultantScheduleResultMap">
+    SELECT
+    <include refid="consultantScheduleColumns" />
+    FROM consultant_schedule <include refid="consultantScheduleJoins" />
+    <where>
+      IS_DELETE=0
+      AND consultant_schedule.user_id=#{consultantId}
+      AND consultant_schedule.PLATFORM_WORKING_TIME_ID=#{platformWorkingTimeId}
+    </where>
+  </select>
+
+  <select id="list" resultMap="consultantScheduleResultMap">
+    SELECT
+    <include refid="consultantScheduleColumns" />
+    FROM consultant_schedule <include refid="consultantScheduleJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+  <select id="listAll" resultMap="consultantScheduleResultMap">
+    SELECT
+    <include refid="consultantScheduleColumns" />
+    FROM consultant_schedule <include refid="consultantScheduleJoins" />
+    <where>
+      IS_DELETE=0
+    </where>
+  </select>
+
+
+  <insert id="insertBatch">
+    INSERT INTO
+    consultant_schedule
+    (
+    user_id,
+    SCHEDULE_START_TIME,
+    SCHEDULE_END_TIME,
+    PLATFORM_WORKING_TIME_ID,
+    un_key
+    )
+    VALUES
+    <foreach collection ="list" item="consultantSchedule" separator =",">
+      (
+      #{consultantSchedule.consultantId},
+      #{consultantSchedule.scheduleStartTime},
+      #{consultantSchedule.scheduleEndTime},
+      #{consultantSchedule.platformWorkingTimeId},
+      #{consultantSchedule.unKey}
+      )
+    </foreach>
+  </insert>
+
+
+  <update id="logicDeleteById">
+    UPDATE  consultant_schedule SET
+    IS_DELETE=1
+    WHERE
+    IS_DELETE=0
+    AND ID = #{id}
+  </update>
+
+  <update id="deleteByConsultantId">
+    DELETE
+    FROM
+    consultant_schedule
+    WHERE
+    is_delete=0
+    AND user_id=#{consultantId}
+
+  </update>
+</mapper>

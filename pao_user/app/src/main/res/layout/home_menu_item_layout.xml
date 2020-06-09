@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_menu_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/global_white_color"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/home_menu_item_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/applogo" />
+
+    <TextView
+        android:id="@+id/home_menu_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="个人成长"
+        android:textColor="#ff333333"
+        android:textSize="14sp" />
+</LinearLayout>

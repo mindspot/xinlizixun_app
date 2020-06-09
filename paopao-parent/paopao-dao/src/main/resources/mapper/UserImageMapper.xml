@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuangji.paopao.mapper.UserImageMapper">
+  <resultMap id="BaseResultMap" type="com.kuangji.paopao.model.UserImage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="img_type" jdbcType="BIT" property="imgType" />
+    <result column="is_main" jdbcType="BIT" property="isMain" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, img_url, img_type, is_main, parent_id, user_id, insert_time, is_delete
+  </sql>
+  
+  
+    <insert id="insertBatchUserImageBatch">
+        INSERT INTO user_image(
+            IMG_URL,
+            IMG_TYPE,
+            user_id
+        )
+        VALUES
+        <foreach collection ="imgs" item="userImage" separator =",">
+        (
+            #{userImage},
+            #{type},
+            #{userId}
+        )
+        </foreach>
+    </insert>
+
+     <update id="deleteConsultantExtraInfoImgs">
+        DELETE
+        	  user_image
+        FROM
+        WHERE
+        	is_delete=0 
+        AND user_image.user_id= #{id}
+        AND img_type in(2,4,5,6)
+    </update>
+    <select id="listIdCards" resultType="com.kuangji.paopao.model.UserImage">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM
+        user_image
+        WHERE
+        is_delete=0
+        AND user_id = #{userId}
+        AND img_type = 1
+    </select>
+</mapper>

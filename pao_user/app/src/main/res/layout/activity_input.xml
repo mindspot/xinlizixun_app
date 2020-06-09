@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/input_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_white_color"
+    android:orientation="vertical"
+    tools:context="module.main.center.InputActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/input_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_text="取消"
+        app:right_button_text="完成"
+        app:right_button_text_color="@color/theme_color" />
+
+    <LinearLayout
+        android:id="@+id/input_activity_one_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#f7f7f7"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input_activity_edittext"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="left|center"
+            android:hint="请输入..."
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/input_activity_clear"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:src="@mipmap/common_clear_edittext" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/input_activity_two_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#f7f7f7"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/input_activity_edittext2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="left"
+            android:hint="请输入..."
+            android:maxLength="50"
+            android:padding="15dp"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/input_activity_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="5dp"
+            android:text="50"
+            android:textColor="#ff666666"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

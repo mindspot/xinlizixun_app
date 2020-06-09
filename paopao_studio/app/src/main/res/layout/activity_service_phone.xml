@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/service_phone_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="module.main.center.ServicePhoneActivity">
+
+    <ui.title.ToolBarTitleView
+        android:id="@+id/service_phone_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:defult_style="TRAN_BLCAK"
+        app:left_button_drawable="@mipmap/common_black_back_icon"
+        app:title_text="联系我们" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/global_line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="19dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/iphone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="联系电话"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_phone_activity_one_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询师联系热线:"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_one_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="400-82738237"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_phone_activity_two_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询师联系热线:"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_two_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="400-82738237"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_phone_activity_three_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询师联系热线:"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_three_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="400-82738237"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_phone_activity_four_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询师联系热线:"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_four_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="400-82738237"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_phone_activity_five_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询师联系热线:"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_five_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="400-82738237"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_phone_activity_six_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="咨询师联系热线:"
+            android:textColor="#ff666666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_six_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="400-82738237"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/customer_service" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="在线客服"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/service_phone_activity_service_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击联系在线客服1"
+            android:textColor="#9DDCAF"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_service_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="点击联系在线客服2"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/service_phone_activity_service_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击联系在线客服3"
+            android:textColor="#9DDCAF"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_service_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="点击联系在线客服4"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/service_phone_activity_service_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击联系在线客服5"
+            android:textColor="#9DDCAF"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/service_phone_activity_service_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="点击联系在线客服6"
+            android:textColor="#ffa6dfb6"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>
